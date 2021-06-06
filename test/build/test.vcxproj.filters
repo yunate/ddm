@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{0E052AF2-565D-421C-AB1A-525717701C14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ddm">
+      <UniqueIdentifier>{a9f78d3d-ba87-40bb-8ca9-7b6335e12dc7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ddm\ipc">
+      <UniqueIdentifier>{575ad942-6929-4b75-99a2-922155ac3062}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ddm\pickle">
+      <UniqueIdentifier>{f40aaffc-ef12-43e6-81ed-11eea4aaf524}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ddm\thread">
+      <UniqueIdentifier>{e6415152-226a-40bf-b8fa-175e6b94a9a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ddm\thread\async">
+      <UniqueIdentifier>{800fdaf1-6490-4a5b-b5f8-4498147b9af5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ddm\ipc\test_shared_memory_ipc.cpp">
+      <Filter>src\ddm\ipc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ddm\pickle\pickle.cpp">
+      <Filter>src\ddm\pickle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ddm\thread\test_thread.cpp">
+      <Filter>src\ddm\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ddm\thread\async\test_spin_mutex.cpp">
+      <Filter>src\ddm\thread\async</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ddm\test_case_xtimer.cpp">
+      <Filter>src\ddm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ddm\test_cmd_line_util.cpp">
+      <Filter>src\ddm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ddm\test_file_utils.cpp">
+      <Filter>src\ddm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ddm\test_random.cpp">
+      <Filter>src\ddm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ddm\test_shared_memory.cpp">
+      <Filter>src\ddm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ddm\test_single_limted.cpp">
+      <Filter>src\ddm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ddm\test_str_utils.cpp">
+      <Filter>src\ddm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ddm\test_stream.cpp">
+      <Filter>src\ddm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ddm\test_ddfast_str.cpp">
+      <Filter>src\ddm</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\test_case_factory.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

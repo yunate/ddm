@@ -1,0 +1,14 @@
+#dir
+.vs/
+/.git/
+common_bin/
+bin/
+
+#file
+*.db
+*.opendb
+*.opensdf
+*.sdf
+*.suo
+*.tmp
+*.vcxproj.user

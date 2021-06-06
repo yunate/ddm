@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ipc">
+      <UniqueIdentifier>{d3c79e2e-7532-48bc-a8ba-c552091bcf1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ipc\msgdef">
+      <UniqueIdentifier>{e2a15570-c5f1-42ca-9546-25e004a059d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ipc_win">
+      <UniqueIdentifier>{ce15d6af-c542-4871-96f9-f7b3013785c2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\source\main.cpp" />
+    <ClCompile Include="..\source\ipc_win\ipc_channel_pipe.cpp">
+      <Filter>ipc_win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ipc_win\ipc_message.cpp">
+      <Filter>ipc_win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ipc_win\ipc_message_loop.cpp">
+      <Filter>ipc_win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ipc_win\ipc_pending_task.cpp">
+      <Filter>ipc_win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ipc_win\ipc_pickle.cpp">
+      <Filter>ipc_win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ipc_win\ipc_sync_channel_pipe.cpp">
+      <Filter>ipc_win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ipc_win\ipc_thread.cpp">
+      <Filter>ipc_win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ipc\PipeHelper.cpp">
+      <Filter>ipc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ipc\PipeManager.cpp">
+      <Filter>ipc</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\source\ipc_win\ipc_callback.h">
+      <Filter>ipc_win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ipc_win\ipc_channel_listener.h">
+      <Filter>ipc_win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ipc_win\ipc_channel_pipe.h">
+      <Filter>ipc_win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ipc_win\ipc_channel_sender.h">
+      <Filter>ipc_win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ipc_win\ipc_message.h">
+      <Filter>ipc_win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ipc_win\ipc_message_handler.h">
+      <Filter>ipc_win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ipc_win\ipc_message_loop.h">
+      <Filter>ipc_win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ipc_win\ipc_pending_task.h">
+      <Filter>ipc_win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ipc_win\ipc_pickle.h">
+      <Filter>ipc_win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ipc_win\ipc_sync_channel_pipe.h">
+      <Filter>ipc_win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ipc_win\ipc_thread.h">
+      <Filter>ipc_win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ipc\PipeHelper.h">
+      <Filter>ipc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ipc\msgdef\S2CMsgDef.h">
+      <Filter>ipc\msgdef</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ipc\msgdef\CommonMsgDef.h">
+      <Filter>ipc\msgdef</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ipc\msgdef\C2SMsgDef.h">
+      <Filter>ipc\msgdef</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ipc\PipeListener.h">
+      <Filter>ipc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ipc\PipeManager.h">
+      <Filter>ipc</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

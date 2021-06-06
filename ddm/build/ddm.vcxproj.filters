@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{0B55D21F-A533-4471-98D1-5837C9B611E1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\file">
+      <UniqueIdentifier>{fb63db9a-8bba-4159-80cb-290fbb453c6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ipc">
+      <UniqueIdentifier>{19383cba-d217-4fc5-8135-bebbff177d15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\pickle">
+      <UniqueIdentifier>{708b5904-07eb-44ca-b669-9c6f9d87293f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\shared_memory">
+      <UniqueIdentifier>{5011fed9-da1c-497f-b897-506ab395b537}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\str">
+      <UniqueIdentifier>{7fe95bb4-5fd8-4a99-99a7-5f1eb4a2eb0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\stream">
+      <UniqueIdentifier>{9980ed96-2ca9-4cd2-bcb4-492f1504958a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\thread">
+      <UniqueIdentifier>{fdfd555d-a0c9-46cc-b309-1909cdf3587a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\thread\async">
+      <UniqueIdentifier>{b1bcfafc-ca99-4aff-a400-a4ff33eae10a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\thread\loop">
+      <UniqueIdentifier>{db90fa64-765f-4b92-b3e1-5eae7010e67d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\thread\task">
+      <UniqueIdentifier>{2b84c4f4-d924-44ce-908e-4b9e63549d1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\thread\thread_manager">
+      <UniqueIdentifier>{d41d7413-a95b-41bf-9861-81aa1d251835}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\asm">
+      <UniqueIdentifier>{33dbf854-394d-4f30-ba73-9e5b12257771}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\asm\x64">
+      <UniqueIdentifier>{4e81b09c-1761-4d36-8e54-2f9e75008a31}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\cmd_line_util.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\random.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\resource_util.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\file\big_file_utils.cpp">
+      <Filter>src\file</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\file\dir_utils.cpp">
+      <Filter>src\file</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\file\file_reader.cpp">
+      <Filter>src\file</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\file\file_writer.cpp">
+      <Filter>src\file</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\file\ini_file.cpp">
+      <Filter>src\file</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ipc\shared_memory_ipc.cpp">
+      <Filter>src\ipc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\pickle\pickle.cpp">
+      <Filter>src\pickle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\shared_memory\shared_memory.cpp">
+      <Filter>src\shared_memory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\shared_memory\shared_memory_manager.cpp">
+      <Filter>src\shared_memory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\str\str_utils.cpp">
+      <Filter>src\str</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\stream\file_stream.cpp">
+      <Filter>src\stream</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\stream\memory_stream.cpp">
+      <Filter>src\stream</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\thread\async\spin_mutex.cpp">
+      <Filter>src\thread\async</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\thread\loop\simple_loop.cpp">
+      <Filter>src\thread\loop</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\thread\loop\win_msg_loop.cpp">
+      <Filter>src\thread\loop</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\thread\task\heartbeat_task_queue.cpp">
+      <Filter>src\thread\task</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\thread\task\simple_task_queue.cpp">
+      <Filter>src\thread\task</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\thread\thread_manager\simple_thread_manager.cpp">
+      <Filter>src\thread\thread_manager</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\cmd_line_util.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\color_print.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\cpu_thread_count.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\g_def.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\get_user_input.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ddmath.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\nocopyable.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\random.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\resource_util.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\single_limited.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\singleton.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\traits.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ddtimer.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\file\big_file_utils.h">
+      <Filter>src\file</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\file\dir_utils.h">
+      <Filter>src\file</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\file\file_reader.h">
+      <Filter>src\file</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\file\file_writer.h">
+      <Filter>src\file</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\file\ini_file.h">
+      <Filter>src\file</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ipc\shared_memory_ipc.h">
+      <Filter>src\ipc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\pickle\pickle.h">
+      <Filter>src\pickle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\shared_memory\shared_memory.h">
+      <Filter>src\shared_memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\shared_memory\shared_memory_manager.h">
+      <Filter>src\shared_memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\str\regex_example.h">
+      <Filter>src\str</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\str\str_utils.h">
+      <Filter>src\str</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\str\url_parser.h">
+      <Filter>src\str</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\str\ddfast_str.hpp">
+      <Filter>src\str</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\stream\file_stream.h">
+      <Filter>src\stream</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\stream\i_ddstream.h">
+      <Filter>src\stream</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\stream\memory_stream.h">
+      <Filter>src\stream</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\thread\async\semaphore.h">
+      <Filter>src\thread\async</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\thread\async\simple_event.h">
+      <Filter>src\thread\async</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\thread\async\spin_mutex.h">
+      <Filter>src\thread\async</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\thread\loop\i_loop.h">
+      <Filter>src\thread\loop</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\thread\loop\simple_loop.h">
+      <Filter>src\thread\loop</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\thread\loop\win_msg_loop.h">
+      <Filter>src\thread\loop</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\thread\task\heartbeat_task_queue.h">
+      <Filter>src\thread\task</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\thread\task\i_ddtask.h">
+      <Filter>src\thread\task</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\thread\task\i_heartbeat_task.h">
+      <Filter>src\thread\task</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\thread\task\simple_function_task.h">
+      <Filter>src\thread\task</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\thread\task\simple_task_queue.h">
+      <Filter>src\thread\task</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\thread\thread_manager\simple_thread_manager.h">
+      <Filter>src\thread\thread_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\thread\thread_manager\task_thread.h">
+      <Filter>src\thread\thread_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ddassert.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\src\asm\x64\utils.asm">
+      <Filter>src\asm\x64</Filter>
+    </CustomBuild>
+  </ItemGroup>
+</Project>

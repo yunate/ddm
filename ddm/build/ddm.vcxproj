@@ -1,0 +1,356 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug_Mdd|Win32">
+      <Configuration>Debug_Mdd</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug_Mdd|x64">
+      <Configuration>Debug_Mdd</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release_Md|Win32">
+      <Configuration>Release_Md</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release_Md|x64">
+      <Configuration>Release_Md</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\cmd_line_util.cpp" />
+    <ClCompile Include="..\src\file\big_file_utils.cpp" />
+    <ClCompile Include="..\src\file\dir_utils.cpp" />
+    <ClCompile Include="..\src\file\file_reader.cpp" />
+    <ClCompile Include="..\src\file\file_writer.cpp" />
+    <ClCompile Include="..\src\file\ini_file.cpp" />
+    <ClCompile Include="..\src\ipc\shared_memory_ipc.cpp" />
+    <ClCompile Include="..\src\pickle\pickle.cpp" />
+    <ClCompile Include="..\src\random.cpp" />
+    <ClCompile Include="..\src\resource_util.cpp" />
+    <ClCompile Include="..\src\shared_memory\shared_memory.cpp" />
+    <ClCompile Include="..\src\shared_memory\shared_memory_manager.cpp" />
+    <ClCompile Include="..\src\stream\file_stream.cpp" />
+    <ClCompile Include="..\src\stream\memory_stream.cpp" />
+    <ClCompile Include="..\src\str\str_utils.cpp" />
+    <ClCompile Include="..\src\thread\async\spin_mutex.cpp" />
+    <ClCompile Include="..\src\thread\loop\simple_loop.cpp" />
+    <ClCompile Include="..\src\thread\loop\win_msg_loop.cpp" />
+    <ClCompile Include="..\src\thread\task\heartbeat_task_queue.cpp" />
+    <ClCompile Include="..\src\thread\task\simple_task_queue.cpp" />
+    <ClCompile Include="..\src\thread\thread_manager\simple_thread_manager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\cmd_line_util.h" />
+    <ClInclude Include="..\src\color_print.h" />
+    <ClInclude Include="..\src\cpu_thread_count.h" />
+    <ClInclude Include="..\src\ddassert.h" />
+    <ClInclude Include="..\src\file\big_file_utils.h" />
+    <ClInclude Include="..\src\file\dir_utils.h" />
+    <ClInclude Include="..\src\file\file_reader.h" />
+    <ClInclude Include="..\src\file\file_writer.h" />
+    <ClInclude Include="..\src\file\ini_file.h" />
+    <ClInclude Include="..\src\get_user_input.h" />
+    <ClInclude Include="..\src\g_def.h" />
+    <ClInclude Include="..\src\ipc\shared_memory_ipc.h" />
+    <ClInclude Include="..\src\ddmath.h" />
+    <ClInclude Include="..\src\nocopyable.hpp" />
+    <ClInclude Include="..\src\pickle\pickle.h" />
+    <ClInclude Include="..\src\random.h" />
+    <ClInclude Include="..\src\resource_util.h" />
+    <ClInclude Include="..\src\shared_memory\shared_memory.h" />
+    <ClInclude Include="..\src\shared_memory\shared_memory_manager.h" />
+    <ClInclude Include="..\src\singleton.hpp" />
+    <ClInclude Include="..\src\single_limited.h" />
+    <ClInclude Include="..\src\stream\file_stream.h" />
+    <ClInclude Include="..\src\stream\i_ddstream.h" />
+    <ClInclude Include="..\src\stream\memory_stream.h" />
+    <ClInclude Include="..\src\str\regex_example.h" />
+    <ClInclude Include="..\src\str\str_utils.h" />
+    <ClInclude Include="..\src\str\url_parser.h" />
+    <ClInclude Include="..\src\str\ddfast_str.hpp" />
+    <ClInclude Include="..\src\thread\async\semaphore.h" />
+    <ClInclude Include="..\src\thread\async\simple_event.h" />
+    <ClInclude Include="..\src\thread\async\spin_mutex.h" />
+    <ClInclude Include="..\src\thread\loop\i_loop.h" />
+    <ClInclude Include="..\src\thread\loop\simple_loop.h" />
+    <ClInclude Include="..\src\thread\loop\win_msg_loop.h" />
+    <ClInclude Include="..\src\thread\task\heartbeat_task_queue.h" />
+    <ClInclude Include="..\src\thread\task\i_ddtask.h" />
+    <ClInclude Include="..\src\thread\task\i_heartbeat_task.h" />
+    <ClInclude Include="..\src\thread\task\simple_function_task.h" />
+    <ClInclude Include="..\src\thread\task\simple_task_queue.h" />
+    <ClInclude Include="..\src\thread\thread_manager\simple_thread_manager.h" />
+    <ClInclude Include="..\src\thread\thread_manager\task_thread.h" />
+    <ClInclude Include="..\src\traits.hpp" />
+    <ClInclude Include="..\src\ddtimer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\src\asm\x64\utils.asm">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Md|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Mdd|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">ml64 /Fo $(IntDir)%(fileName).obj /c $(ProjectDir)..\src\asm\x64\%(fileName).asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release_Md|x64'">ml64 /Fo $(IntDir)%(fileName).obj /c $(ProjectDir)..\src\asm\x64\%(fileName).asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug_Mdd|x64'">ml64 /Fo $(IntDir)%(fileName).obj /c $(ProjectDir)..\src\asm\x64\%(fileName).asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">ml64 /Fo $(IntDir)%(fileName).obj /c $(ProjectDir)..\src\asm\x64\%(fileName).asm</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)%(fileName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release_Md|x64'">$(IntDir)%(fileName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug_Mdd|x64'">$(IntDir)%(fileName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)%(fileName).obj;%(Outputs)</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{A2273E95-E708-4485-B0A7-E628C3DA4B11}</ProjectGuid>
+    <RootNamespace>ddm1</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Mdd|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_Md|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Mdd|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_Md|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Mdd|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release_Md|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Mdd|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release_Md|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)bin\$(Configuration)_$(PlatForm)\</OutDir>
+    <IntDir>$(OutDir)tmp\$(ProjectName)\</IntDir>
+    <IncludePath>$(ProjectDir)..\src\;$(ProjectDir)..\vendor\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\vendor\;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Mdd|Win32'">
+    <OutDir>$(SolutionDir)bin\$(Configuration)_$(PlatForm)\</OutDir>
+    <IntDir>$(OutDir)tmp\$(ProjectName)\</IntDir>
+    <IncludePath>$(ProjectDir)..\src\;$(ProjectDir)..\vendor\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\vendor\;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)bin\$(Configuration)_$(PlatForm)\</OutDir>
+    <IntDir>$(OutDir)tmp\$(ProjectName)\</IntDir>
+    <IncludePath>$(ProjectDir)..\src\;$(ProjectDir)..\vendor\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\vendor\;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_Md|Win32'">
+    <OutDir>$(SolutionDir)bin\$(Configuration)_$(PlatForm)\</OutDir>
+    <IntDir>$(OutDir)tmp\$(ProjectName)\</IntDir>
+    <IncludePath>$(ProjectDir)..\src\;$(ProjectDir)..\vendor\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\vendor\;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)bin\$(Configuration)_$(PlatForm)\</OutDir>
+    <IntDir>$(OutDir)tmp\$(ProjectName)\</IntDir>
+    <IncludePath>$(ProjectDir)..\src\;$(ProjectDir)..\vendor\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\vendor\;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Mdd|x64'">
+    <OutDir>$(SolutionDir)bin\$(Configuration)_$(PlatForm)\</OutDir>
+    <IntDir>$(OutDir)tmp\$(ProjectName)\</IntDir>
+    <IncludePath>$(ProjectDir)..\src\;$(ProjectDir)..\vendor\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\vendor\;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)bin\$(Configuration)_$(PlatForm)\</OutDir>
+    <IntDir>$(OutDir)tmp\$(ProjectName)\</IntDir>
+    <IncludePath>$(ProjectDir)..\src\;$(ProjectDir)..\vendor\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\vendor\;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_Md|x64'">
+    <OutDir>$(SolutionDir)bin\$(Configuration)_$(PlatForm)\</OutDir>
+    <IntDir>$(OutDir)tmp\$(ProjectName)\</IntDir>
+    <IncludePath>$(ProjectDir)..\src\;$(ProjectDir)..\vendor\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\vendor\;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>false</ConformanceMode>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Mdd|Win32'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>false</ConformanceMode>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>false</ConformanceMode>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Mdd|x64'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>false</ConformanceMode>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>false</ConformanceMode>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_Md|Win32'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>false</ConformanceMode>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>false</ConformanceMode>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_Md|x64'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>false</ConformanceMode>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
