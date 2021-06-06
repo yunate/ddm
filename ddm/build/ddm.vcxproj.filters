@@ -116,7 +116,7 @@
     <ClInclude Include="..\src\color_print.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\cpu_thread_count.h">
+    <ClInclude Include="..\src\sys.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\src\g_def.h">

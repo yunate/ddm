@@ -3,6 +3,8 @@
 #define color_print_h_
 
 #include "g_def.h"
+#ifdef DD_WINDOW
+
 #include <Windows.h>
 #include <stdio.h>
 BEG_NSP_DDM
@@ -46,4 +48,5 @@ do {\
     }\
 }while (0)
 END_NSP_DDM
+#endif
 #endif // color_print_h_

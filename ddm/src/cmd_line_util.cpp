@@ -1,11 +1,11 @@
 #define  _CRT_SECURE_NO_WARNINGS
-
 #include "cmd_line_util.h"
+#ifdef  DD_WINDOW
 
 #include <windows.h>
 #include <shellapi.h>
 BEG_NSP_DDM
-void cmd_line_util::get_cmds(std::vector<ddstr>& cmds)
+void get_cmds(std::vector<ddstr>& cmds)
 {
     ddstr cmd = ::GetCommandLine();
 
@@ -41,5 +41,6 @@ void cmd_line_util::get_cmds(std::vector<ddstr>& cmds)
     }
 }
 
+#endif
 END_NSP_DDM
 

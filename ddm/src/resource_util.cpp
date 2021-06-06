@@ -1,6 +1,6 @@
 #include "resource_util.h"
+#ifdef DD_WINDOW
 #include "file/file_writer.h"
-
 BEG_NSP_DDM
 
 bool resource_util::release_res(HMODULE hModule, DWORD resId, const ddstr& resTy, const ddstr& target)
@@ -27,3 +27,4 @@ bool resource_util::release_res(HMODULE hModule, DWORD resId, const ddstr& resTy
     return spFileWriter->write_buffa((ddchara*)pData, dwSize);
 }
 END_NSP_DDM
+#endif

@@ -2,6 +2,8 @@
 #define single_limited_h_ 1
 
 #include "g_def.h"
+#ifdef DD_WINDOW
+
 #include <vector>
 #include <windows.h>
 BEG_NSP_DDM
@@ -55,4 +57,5 @@ private:
 };
 
 END_NSP_DDM
+#endif
 #endif // single_limted_h_

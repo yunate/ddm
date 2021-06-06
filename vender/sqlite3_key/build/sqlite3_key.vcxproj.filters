@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{81118B72-4561-40F2-A16C-FE29718E3A62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="res">
+      <UniqueIdentifier>{EC9D60C4-6BFE-4E53-AAAC-8B43C4820994}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vendor">
+      <UniqueIdentifier>{359FF65B-A644-4552-8284-BC6BFE3A9495}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
