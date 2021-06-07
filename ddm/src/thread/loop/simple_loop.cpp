@@ -20,7 +20,8 @@ bool simple_loop::wait_loop_end(u32 waitTime /*= MAX_U32*/)
 
     {
         std::lock_guard<std::recursive_mutex> lock(m_mutex);
-        if (m_hasLoopEnd) {
+        if (m_has_loop_end || !m_has_loop_beg) {
+            m_has_loop_end = true;
             return true;
         }
 
@@ -51,13 +52,17 @@ void NSP_DDM::simple_loop::loop()
 {
     {
         std::lock_guard<std::recursive_mutex> lock(m_mutex);
+        m_has_loop_beg = true;
+        if (m_has_loop_end) {
+            return;
+        }
         m_loopId = std::this_thread::get_id();
-        m_hasLoopEnd = false;
+        m_has_loop_end = false;
     }
     loop_core();
     {
         std::lock_guard<std::recursive_mutex> lock(m_mutex);
-        m_hasLoopEnd = true;
+        m_has_loop_end = true;
     }
     m_loopEndEvent.set_event();
 }

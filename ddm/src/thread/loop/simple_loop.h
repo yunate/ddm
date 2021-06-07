@@ -31,7 +31,8 @@ protected:
 
 private:
     simple_event m_loopEndEvent;
-    bool m_hasLoopEnd = false;
+    bool m_has_loop_end = false;
+    bool m_has_loop_beg = false;
 };
 
 END_NSP_DDM
