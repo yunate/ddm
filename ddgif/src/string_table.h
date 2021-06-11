@@ -1,7 +1,7 @@
 #ifndef __STRING_TABLE_H_
 #define __STRING_TABLE_H_
 
-#include "DogGifDef.h"
+#include "ddgifdef.h"
 #include <string>
 
 #define MAX_LZW_CODE 4096

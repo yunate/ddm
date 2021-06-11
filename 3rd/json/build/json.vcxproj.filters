@@ -4,11 +4,24 @@
     <Filter Include="src">
       <UniqueIdentifier>{418416CA-2F8E-4640-BFA0-25B7A4B39EB0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="res">
-      <UniqueIdentifier>{4F2F8196-F974-44CE-A23F-0C0D41365BE9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="vendor">
-      <UniqueIdentifier>{D77144E8-30D2-46F3-A9A7-EE761B1EFC66}</UniqueIdentifier>
-    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\cJSON.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\CJsonObject.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\cJSON.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\CJsonObject.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Test.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

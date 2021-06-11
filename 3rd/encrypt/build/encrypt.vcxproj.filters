@@ -4,11 +4,102 @@
     <Filter Include="src">
       <UniqueIdentifier>{2F3916A2-6379-4907-B630-BA41B45CDFDB}</UniqueIdentifier>
     </Filter>
-    <Filter Include="res">
-      <UniqueIdentifier>{2E957CC0-E407-4350-A826-D852BF994073}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="vendor">
-      <UniqueIdentifier>{07B37092-BB82-4125-A30C-312D2ABDD917}</UniqueIdentifier>
-    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\aes.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\b64.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\crc32.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\hmac.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\md5.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\p224_ec.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\p256.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\p256_ec.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\p256_ecdsa.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\p256_prng.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\pbkdf2.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\rc4.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\sha.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\sha1.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\sha256.c">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\aes.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\b64.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\crc32.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\hash-internal.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\hmac.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\md5.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\p224.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\p256.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\p256_ecdsa.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\p256_prng.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\pbkdf2.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\rc4.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\sha.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\sha1.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\sha256.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Test.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

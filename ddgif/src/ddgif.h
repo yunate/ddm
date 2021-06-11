@@ -4,11 +4,11 @@
 // https://www.jianshu.com/p/62ad4f953660
 **********************************************************************/
 
-#ifndef __DOGGIF_H_
-#define __DOGGIF_H_
+#ifndef ddgif_h
+#define ddgif_h
 
-#include "DogGifDef.h"
-#include "StringTable.h"
+#include "ddgifdef.h"
+#include "string_table.h"
 #include <string>
 
 namespace DogGifNSP
@@ -144,5 +144,5 @@ private:
 };
 
 }
-#endif // __DOGGIF_H_
+#endif
 

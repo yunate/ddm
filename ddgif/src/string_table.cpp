@@ -1,4 +1,4 @@
-#include "StringTable.h"
+#include "string_table.h"
 namespace DogGifNSP
 {
 

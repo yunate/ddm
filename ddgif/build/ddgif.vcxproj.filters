@@ -4,11 +4,27 @@
     <Filter Include="src">
       <UniqueIdentifier>{32054FD8-4C0F-46B9-BAAB-35EE7B20D72F}</UniqueIdentifier>
     </Filter>
-    <Filter Include="res">
-      <UniqueIdentifier>{702F3EBA-AE44-4A81-9938-F1BFF35154FF}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="vendor">
-      <UniqueIdentifier>{EFD30610-B83A-479D-A357-25BBB27A8FD3}</UniqueIdentifier>
-    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\ddgif.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\string_table.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\ddgif.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ddgifdef.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\string_table.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

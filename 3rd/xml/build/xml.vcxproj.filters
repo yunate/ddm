@@ -4,11 +4,30 @@
     <Filter Include="src">
       <UniqueIdentifier>{0ECC07F4-583E-4581-AFAF-F0A641048403}</UniqueIdentifier>
     </Filter>
-    <Filter Include="res">
-      <UniqueIdentifier>{33816EA6-7674-44EB-8A12-24BB143811B9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="vendor">
-      <UniqueIdentifier>{68389CD0-54B5-43C6-919D-7CB6B1AE44F0}</UniqueIdentifier>
-    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\Test.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\tinystr.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\tinyxml.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\tinystr.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\tinyxml.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\tinyxmlerror.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\tinyxmlparser.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

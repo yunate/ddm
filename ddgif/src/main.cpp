@@ -1,4 +1,5 @@
 ﻿
+#if 0
 #include "DogGif/DogGif.h"
 #include "file_utils_writer.h"
 #include "file_utils_reader.h"
@@ -271,3 +272,4 @@ int main___()
     writer.WriteBuffA((const char*)pbuff, buffLen);
     return 1;
 }
+#endif

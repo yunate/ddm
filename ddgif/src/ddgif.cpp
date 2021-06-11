@@ -1,6 +1,5 @@
-#include "DogGif.h"
-#include "StringTable.h"
-
+#include "ddgif.h"
+#include "string_table.h"
 #include <memory.h>
 
 namespace DogGifNSP
