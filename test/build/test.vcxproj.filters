@@ -69,6 +69,9 @@
     <ClCompile Include="..\src\ddwin\test_ddwin.cpp">
       <Filter>src\ddwin</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\ddm\test_case_ddfilter.cpp">
+      <Filter>src\ddm</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\test_case_factory.h">

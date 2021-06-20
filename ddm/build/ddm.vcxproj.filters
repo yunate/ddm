@@ -239,6 +239,9 @@
     <ClInclude Include="..\src\ddassert.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\ddfilter.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\src\asm\x64\utils.asm">
