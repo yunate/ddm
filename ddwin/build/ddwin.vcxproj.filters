@@ -4,11 +4,27 @@
     <Filter Include="src">
       <UniqueIdentifier>{E667F0FA-AC86-443A-B30C-0FDD476A8967}</UniqueIdentifier>
     </Filter>
-    <Filter Include="res">
-      <UniqueIdentifier>{E1AC9609-0F59-4A6F-9742-3DBE523462FB}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="vendor">
-      <UniqueIdentifier>{E62EDBED-63ED-45C5-BA6D-812297486402}</UniqueIdentifier>
-    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\base_native_window.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\simple_native_window.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\win_class_register.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\base_native_window.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\simple_native_window.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\win_class_register.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

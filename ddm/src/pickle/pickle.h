@@ -67,6 +67,18 @@ public:
         return *this;
     }
 
+    inline pickle& append_buff(const void* buff, u32 buff_Len)
+    {
+        DD_ASSERT(buff != nullptr);
+        DD_ASSERT(buff_Len != 0);
+        (*this).append_pod(buff_Len);
+        u8* beg = this->append(buff_Len);
+        if (beg != nullptr) {
+            ::memcpy(beg, (u8*)buff, buff_Len);
+        }
+        return *this;
+    }
+
 protected:
     void free_buff();
 
@@ -117,6 +129,25 @@ public:
         data = *((T*)(beg));
         m_pos += align(size, (u32)sizeof(u32));
         return true;
+    }
+
+    inline pickle_reader& read_buff(void* buff, u32 buff_len)
+    {
+        u32 len = 0;
+        (void)read_next_pod(len);
+        DD_ASSERT(buff_len >= len);
+        u8* data = read_next(len);
+        if (data != nullptr) {
+            ::memcpy(buff, data, len);
+        }
+
+        return *this;
+    }
+
+    inline u8* read_buff(u32& buff_len)
+    {
+        (void)read_next_pod(buff_len);
+        return read_next(buff_len);
     }
 
 protected:
@@ -211,12 +242,7 @@ inline pickle& operator << (pickle& pck, const T& r)
 
 inline pickle& operator<<(pickle& pck, const std::string& r)
 {
-    pck << (u32)r.size();
-    u8* beg = pck.append((u32)r.size());
-    if (beg != nullptr) {
-        ::memcpy(beg, (u8*)r.data(), r.size());
-    }
-    return pck;
+    return pck.append_buff(r.data(), (u32)r.size());
 }
 
 inline pickle& operator<<(pickle& pck, const char* r)
@@ -227,12 +253,7 @@ inline pickle& operator<<(pickle& pck, const char* r)
 
 inline pickle& operator<<(pickle& pck, const std::wstring& r)
 {
-    pck << (u32)r.size();
-    u8* beg = pck.append((u32)r.size() * sizeof(wchar_t));
-    if (beg != nullptr) {
-        ::memcpy(beg, (u8*)r.data(), r.size());
-    }
-    return pck;
+    return pck.append_buff(r.data(), (u32)r.size() * sizeof(wchar_t));
 }
 
 inline pickle& operator<<(pickle& pck, const wchar_t* r)
@@ -251,12 +272,9 @@ inline pickle_reader& operator >> (pickle_reader& reader, T& r)
 inline pickle_reader& operator>>(pickle_reader& reader, std::string& r)
 {
     u32 size = 0;
-    reader >> size;
-    if (size != 0) {
-        char* data = (char*)reader.read_next(size);
-        if (data != nullptr) {
-            r.assign(data, size);
-        }
+    char* data = (char*)reader.read_buff(size);
+    if (size != 0 && data != nullptr) {
+        r.assign(data, size);
     }
     return reader;
 }
@@ -264,12 +282,9 @@ inline pickle_reader& operator>>(pickle_reader& reader, std::string& r)
 inline pickle_reader& operator>>(pickle_reader& reader, std::wstring& r)
 {
     u32 size = 0;
-    reader >> size;
-    if (size != 0) {
-        wchar_t* data = (wchar_t*)reader.read_next(size * sizeof(wchar_t));
-        if (data != nullptr) {
-            r.assign(data, size);
-        }
+    wchar_t* data = (wchar_t*)reader.read_buff(size);
+    if (size != 0 && data != nullptr) {
+        r.assign(data, size / 2);
     }
     return reader;
 }

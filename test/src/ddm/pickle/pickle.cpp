@@ -1,4 +1,5 @@
 
+#define _CRT_SECURE_NO_WARNINGS
 #include "test_case_factory.h"
 #include "pickle/pickle.h"
 #include "ipc_win/ipc_pickle.h"
@@ -176,6 +177,7 @@ abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzab
 
 TEST(test_pickle, u1)
 {
+    return;
     ddtimer timer;
     ::Sleep(1000);
 
@@ -190,5 +192,40 @@ TEST(test_pickle, u1)
         ipc_pickle();
     }
     std::cout << "ipc_pickle " << timer.get_time_pass() / 1000 << std::endl;
+}
+
+struct My
+{
+    char name[1024];
+};
+TEST(test_pickle, u2)
+{
+
+    My it;
+    ::strcpy(it.name, "abcdefg");
+
+    {
+        pickle p1;
+        p1 << "abcd";
+        p1 << L"abcd";
+        p1.append_buff(it.name, sizeof(it.name));
+
+        pickle_reader pr(&p1);
+        std::string s1;
+        std::wstring s2;
+        pr >> s1 >> s2;
+        My it1;
+        pr.read_buff(it1.name, sizeof(it.name));
+    }
+
+    ipc::Pickle pi;
+    pi.WriteData(it.name, sizeof(it.name));
+
+    My it1;
+    ipc::PickleIterator pc(pi);
+    int nameLen = sizeof(it1.name);
+    char* name = nullptr;
+    pc.ReadData((const char**)(&name), &nameLen);
+    ::memcpy(it1.name, name, sizeof(it1.name));
 }
 END_NSP_DDM

@@ -68,7 +68,7 @@ bool DogGif::DogGif::Init(u8 * pBuff, u32 buffLen)
     }
 
     m_hasInit = true;
-    m_curFrame = m_gifGolInfo.m_frameData.size();
+    m_curFrame = (u32)m_gifGolInfo.m_frameData.size();
     return true;
 }
 
@@ -148,7 +148,7 @@ bool DogGif::HasInit()
 
 u32 DogGif::GetFrameCount()
 {
-    return m_gifGolInfo.m_frameData.size();
+    return (u32)m_gifGolInfo.m_frameData.size();
 }
 
 u32 DogGif::GetCurFrameIndex()

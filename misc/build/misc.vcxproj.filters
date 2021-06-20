@@ -4,11 +4,66 @@
     <Filter Include="src">
       <UniqueIdentifier>{9EF8342B-1CFA-4372-9503-D030AC6AE14C}</UniqueIdentifier>
     </Filter>
-    <Filter Include="res">
-      <UniqueIdentifier>{EB98588E-F3B2-4329-9BBA-9FBB0977B7E5}</UniqueIdentifier>
+    <Filter Include="src\ci_pinyin">
+      <UniqueIdentifier>{7c384b93-dbbd-47b6-be22-7f201f36f34f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="vendor">
-      <UniqueIdentifier>{B1A0893D-E518-436E-BD1D-A4754440D624}</UniqueIdentifier>
+    <Filter Include="src\logic_executor">
+      <UniqueIdentifier>{dd558218-c917-4f4b-b3e4-e2fafb523f9b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\service">
+      <UniqueIdentifier>{9f85a3b9-f5fe-4941-ad69-23385a0ffbd5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\win_registry_key">
+      <UniqueIdentifier>{a021324e-7904-419d-a8e5-512257b32a16}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\ci_pinyin\CiPinYinTable.cpp">
+      <Filter>src\ci_pinyin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ci_pinyin\CiToPinYin.cpp">
+      <Filter>src\ci_pinyin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\service\service_utils.cpp">
+      <Filter>src\service</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\win_registry_key\win_registry_key.cpp">
+      <Filter>src\win_registry_key</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\ci_pinyin\CiToPinYin.h">
+      <Filter>src\ci_pinyin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ci_pinyin\CiToPinYintest3.h">
+      <Filter>src\ci_pinyin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\logic_executor\IExecutor.h">
+      <Filter>src\logic_executor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\logic_executor\LogicAndExecutor.h">
+      <Filter>src\logic_executor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\logic_executor\LogicNotExecutor.h">
+      <Filter>src\logic_executor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\logic_executor\LogicOrExecutor.h">
+      <Filter>src\logic_executor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\logic_executor\Test.h">
+      <Filter>src\logic_executor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\service\service_utils.h">
+      <Filter>src\service</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\service\Test.h">
+      <Filter>src\service</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\win_registry_key\Test.h">
+      <Filter>src\win_registry_key</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\win_registry_key\win_registry_key.h">
+      <Filter>src\win_registry_key</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

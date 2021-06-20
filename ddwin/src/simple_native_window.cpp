@@ -45,6 +45,6 @@ bool simple_native_window::update_win_pos(s32 x, s32 y, s32 w, s32 h)
 
 bool simple_native_window::update_win_pos()
 {
-    return TRUE == SetWindowPos(m_hWnd, HWND_TOP, m_x, m_y, m_w, m_h, SWP_SHOWWINDOW);
+    return TRUE == ::SetWindowPos(m_hWnd, HWND_TOP, m_x, m_y, m_w, m_h, SWP_SHOWWINDOW);
 }
 END_NSP_DDM

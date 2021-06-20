@@ -2,8 +2,8 @@
 #ifndef win_class_register_h_
 #define win_class_register_h_
 
-#include "base/g_def.h"
-#include "base/nocopyable.hpp"
+#include "g_def.h"
+#include "nocopyable.hpp"
 #include <windows.h>
 BEG_NSP_DDM
 

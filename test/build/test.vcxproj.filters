@@ -19,6 +19,9 @@
     <Filter Include="src\ddm\thread\async">
       <UniqueIdentifier>{800fdaf1-6490-4a5b-b5f8-4498147b9af5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\ddwin">
+      <UniqueIdentifier>{9b46b848-4dbf-4f71-a396-2cc3087d4c11}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
@@ -62,6 +65,9 @@
     </ClCompile>
     <ClCompile Include="..\src\ddm\test_ddfast_str.cpp">
       <Filter>src\ddm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ddwin\test_ddwin.cpp">
+      <Filter>src\ddwin</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

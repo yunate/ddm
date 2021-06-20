@@ -2,8 +2,8 @@
 #ifndef base_native_window_h_
 #define base_native_window_h_
 
-#include "base/g_def.h"
-#include "base/nocopyable.hpp"
+#include "g_def.h"
+#include "nocopyable.hpp"
 #include <windows.h>
 BEG_NSP_DDM
 
