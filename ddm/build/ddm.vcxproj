@@ -61,6 +61,7 @@
     <ClInclude Include="..\src\cmd_line_util.h" />
     <ClInclude Include="..\src\color_print.h" />
     <ClInclude Include="..\src\ddfilter.h" />
+    <ClInclude Include="..\src\member_count.hpp" />
     <ClInclude Include="..\src\sys.h" />
     <ClInclude Include="..\src\ddassert.h" />
     <ClInclude Include="..\src\file\big_file_utils.h" />

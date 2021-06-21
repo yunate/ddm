@@ -36,6 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\ddm\ipc\test_shared_memory_ipc.cpp" />
+    <ClCompile Include="..\src\ddm\test_case_member_count.cpp" />
     <ClCompile Include="..\src\ddm\pickle\pickle.cpp" />
     <ClCompile Include="..\src\ddm\test_case_ddfilter.cpp" />
     <ClCompile Include="..\src\ddm\test_case_xtimer.cpp" />

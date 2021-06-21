@@ -228,4 +228,28 @@ TEST(test_pickle, u2)
     pc.ReadData((const char**)(&name), &nameLen);
     ::memcpy(it1.name, name, sizeof(it1.name));
 }
+
+TEST(test_pickle, pod)
+{
+    struct Pod
+    {
+        double a;
+        float b;
+        u8 c;
+        u16 d;
+        u32 e;
+        u64 f;
+        s8 g;
+        s16 h;
+        s32 i;
+        s64 j;
+    };
+    static_assert(std::is_pod<Pod>::value, "Pod is not pod");
+    Pod pod{ 1.0, 1.0f, 1, 2, 3, 4, 5, 6, 7, 8 };
+    pickle p1;
+    p1 << pod;
+    pickle_reader pr(&p1);
+    Pod podr;
+    pr >> podr;
+}
 END_NSP_DDM

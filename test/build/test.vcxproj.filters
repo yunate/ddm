@@ -72,6 +72,9 @@
     <ClCompile Include="..\src\ddm\test_case_ddfilter.cpp">
       <Filter>src\ddm</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\ddm\test_case_member_count.cpp">
+      <Filter>src\ddm</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\test_case_factory.h">
