@@ -252,4 +252,42 @@ TEST(test_pickle, pod)
     Pod podr;
     pr >> podr;
 }
+
+struct PickleNotPod
+{
+    double a = 0;
+    float b = 0;
+    std::string c;
+};
+
+template<>
+class pickle_reader_writer_helper<PickleNotPod, container_traits::container_traits_none>
+{
+public:
+    static pickle& write(pickle& pck, const PickleNotPod& r)
+    {
+        pck << r.a;
+        pck << r.b;
+        pck << r.c;
+        return pck;
+    }
+
+    static pickle_reader& read(pickle_reader& reader, PickleNotPod& r)
+    {
+        reader >> r.a;
+        reader >> r.b;
+        reader >> r.c;
+        return reader;
+    }
+};
+
+TEST(test_pickle, PickleNotPod)
+{
+    PickleNotPod s{ 1.0, 1.0f, "abc" };
+    pickle p1;
+    p1 << s;
+    pickle_reader pr(&p1);
+    PickleNotPod ss;
+    pr >> ss;
+}
 END_NSP_DDM

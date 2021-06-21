@@ -16,6 +16,7 @@ BEG_NSP_DDM
 
 enum class container_traits
 {
+    container_traits_none,
     container_traits_pod,
     container_traits_vector,
     container_traits_map,
@@ -23,9 +24,11 @@ enum class container_traits
     container_traits_stack,
     container_traits_queue
 };
+template<class, class pod_dummy = void>
+constexpr container_traits _container_traits = container_traits::container_traits_none;
 
-template<class>
-constexpr container_traits _container_traits = container_traits::container_traits_pod;
+template<class T>
+constexpr container_traits _container_traits<T, std::enable_if_t<std::is_pod_v<T>, void>> = container_traits::container_traits_pod;
 
 template<class T>
 constexpr container_traits _container_traits<std::vector<T>> = container_traits::container_traits_vector;
