@@ -37,7 +37,7 @@ inline bool PickleIterator::ReadBuiltinType(Type* result) {
   if (!read_from) {
     return false;
   }
-  if (sizeof(Type) > sizeof(uint32_t)) {
+  if constexpr (sizeof(Type) > sizeof(uint32_t)) {
     ::memcpy(result, read_from, sizeof(*result));
   } else {
     *result = *reinterpret_cast<const Type*>(read_from);

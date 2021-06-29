@@ -302,12 +302,14 @@ class pickle_reader_writer_helper<StructName, container_traits::container_traits
 public:                                                                                                                  \
     static pickle& write(pickle& pck, const StructName& r)                                                               \
     {                                                                                                                    \
+        r;                                                                                                               \
         pck DD_EACH(DD_PICKLE_OPT_LL, __VA_ARGS__);                                                                      \
         return pck;                                                                                                      \
     }                                                                                                                    \
                                                                                                                          \
     static pickle_reader& read(pickle_reader& reader, StructName& r)                                                     \
     {                                                                                                                    \
+        r;                                                                                                               \
         reader DD_EACH(DD_PICKLE_OPT_RR, __VA_ARGS__);                                                                   \
         return reader;                                                                                                   \
     }                                                                                                                    \
@@ -321,6 +323,7 @@ class pickle_reader_writer_helper<StructName, container_traits::container_traits
 public:                                                                                                                  \
     static pickle& write(pickle& pck, const StructName& r)                                                               \
     {                                                                                                                    \
+        r;                                                                                                               \
         pickle_reader_writer_helper<BaseStructName, container_traits::container_traits_none>::write(pck, r);             \
         pck DD_EACH(DD_PICKLE_OPT_LL, __VA_ARGS__);                                                                      \
         return pck;                                                                                                      \
@@ -328,6 +331,7 @@ public:                                                                         
                                                                                                                          \
     static pickle_reader& read(pickle_reader& reader, StructName& r)                                                     \
     {                                                                                                                    \
+        r;                                                                                                               \
         pickle_reader_writer_helper<BaseStructName, container_traits::container_traits_none>::read(reader, r);           \
         reader DD_EACH(DD_PICKLE_OPT_RR, __VA_ARGS__);                                                                   \
         return reader;                                                                                                   \

@@ -7,7 +7,6 @@
 BEG_NSP_DDM
 TEST(test_ddwin, simple_native_window)
 {
-    return;
     HINSTANCE hinst = ::GetModuleHandle(NULL);
     win_class_register::regist_all(hinst);
     simple_native_window nativeWin;

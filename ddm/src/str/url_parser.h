@@ -253,8 +253,8 @@ inline void parse_url(const ddstra& url, dd_url& dogUrl)
             dogUrl.m_path = url.substr(index, extendEndIndex - index + 1);
             size_t pathEndIndex = 0;
 
-            for (size_t i = 0; i < dogUrl.m_path.length(); ++i) {
-                if (dogUrl.m_path[i] == '\\' || dogUrl.m_path[i] == '/') {
+            for (size_t ii = 0; ii < dogUrl.m_path.length(); ++ii) {
+                if (dogUrl.m_path[ii] == '\\' || dogUrl.m_path[ii] == '/') {
                     if (pathEndIndex == 0 || dogUrl.m_path[pathEndIndex - 1] != '/') {
                         dogUrl.m_path[pathEndIndex++] = '/';
                     }

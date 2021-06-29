@@ -33,7 +33,7 @@ class MessageLoop {
   // 退出消息循环
   virtual void Quit() {}
 
-  virtual void PostTask(const Closure& task) {}
+  virtual void PostTask(const Closure&) {}
   virtual void ScheduleWork() {}
 
   // 消息循环是否正在运行

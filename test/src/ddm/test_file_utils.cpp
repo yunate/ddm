@@ -31,10 +31,10 @@ TEST(test_file_utils, uft16_uft8)
         }
 
         {
-            sp_file_reader file = create_UCS2_file_reader(L"2.txt");
-            if (file != nullptr) {
+            sp_file_reader file1 = create_UCS2_file_reader(L"2.txt");
+            if (file1 != nullptr) {
                 ddstrw w;
-                while (file->getlinew(w))
+                while (file1->getlinew(w))
                 {
                     ddstra ansi;
                     str_utils::uft16_ansi(w, ansi);

@@ -13,6 +13,7 @@ public:
 
     bool OnServerBackTest(const std::shared_ptr<ipc::Message>& spMsg, int ty)
     {
+        ty;
         std::wstring pipeName = spMsg->ReadString();
         std::wstring str = spMsg->ReadString();
         std::wcout << str << std::endl;
@@ -62,12 +63,14 @@ class Server
 public:
     bool Onreg(const std::shared_ptr<ipc::Message>& spMsg, int ty)
     {
+        ty;
         m_spPipeHelper->OnRegist(spMsg);
         return true;
     }
 
     bool OnClientTest(const std::shared_ptr<ipc::Message>& spMsg, int ty)
     {
+        ty;
         std::wcout << spMsg->ReadString() << std::endl;
         return true;
     }

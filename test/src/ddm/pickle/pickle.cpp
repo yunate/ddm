@@ -156,14 +156,14 @@ abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzab
     int size = 0;
     pc.ReadInt(&size);
     vec1.resize(size);
-    for (int i = 0; i < size; ++i) {
-        pc.ReadString(&vec1[i]);
+    for (int ii = 0; ii < size; ++ii) {
+        pc.ReadString(&vec1[ii]);
     }
 
     std::map<int, int> mp1;
     int sizem = 0;
     pc.ReadInt(&sizem);
-    for (int i = 0; i < sizem; ++i) {
+    for (int ii = 0; ii < sizem; ++ii) {
         int key = 0;
         int val = 0;
         pc.ReadInt(&key);
@@ -174,25 +174,24 @@ abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzab
     std::string o;
     pc.ReadString(&o);
 }
-
-TEST(test_pickle, u1)
-{
-    return;
-    ddtimer timer;
-    ::Sleep(1000);
-
-    timer.reset();
-    for (int i = 0; i < 100000; ++i) {
-        my_pickele();
-    }
-    std::cout << "my_pickele " << timer.get_time_pass() / 1000 << std::endl;
-
-    timer.reset();
-    for (int i = 0; i < 100000; ++i) {
-        ipc_pickle();
-    }
-    std::cout << "ipc_pickle " << timer.get_time_pass() / 1000 << std::endl;
-}
+// 
+// TEST(test_pickle, u1)
+// {
+//     ddtimer timer;
+//     ::Sleep(1000);
+// 
+//     timer.reset();
+//     for (int i = 0; i < 100000; ++i) {
+//         my_pickele();
+//     }
+//     std::cout << "my_pickele " << timer.get_time_pass() / 1000 << std::endl;
+// 
+//     timer.reset();
+//     for (int i = 0; i < 100000; ++i) {
+//         ipc_pickle();
+//     }
+//     std::cout << "ipc_pickle " << timer.get_time_pass() / 1000 << std::endl;
+// }
 
 struct My
 {

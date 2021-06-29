@@ -142,7 +142,7 @@
 // for each example:
 // #define OPT(a, idx) int a;
 // DD_EACH(OPT, a, b, c)
-#define _DD_EACH_0(opt,  a)
+#define _DD_EACH_0(opt,  idx, a)
 #define _DD_EACH_1(opt,  idx, a)      opt(a, idx)
 #define _DD_EACH_2(opt,  idx, a, ...) opt(a, idx) DD_EXPEND(_DD_EACH_1(opt, DD_CONCAT(DD_INC_, idx), __VA_ARGS__))
 #define _DD_EACH_3(opt,  idx, a, ...) opt(a, idx) DD_EXPEND(_DD_EACH_2(opt, DD_CONCAT(DD_INC_, idx), __VA_ARGS__))

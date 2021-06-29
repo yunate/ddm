@@ -7,7 +7,6 @@
 BEG_NSP_DDM
 TEST(test_thread, simple_task_queue)
 {
-    return;
     simple_task_queue task_que;
     for (int i = 0; i < 30; ++i) {
         task_que.push_task([i]() {
@@ -25,7 +24,6 @@ TEST(test_thread, simple_task_queue)
 
 TEST(test_thread, heartbeat_task_thread)
 {
-    return;
     std::atomic_int count = 0;
     heartbeat_task_thread taskThread;
     taskThread.start();
@@ -62,7 +60,6 @@ TEST(test_thread, heartbeat_task_thread)
 
 TEST(test_thread, simple_task_thread)
 {
-    return;
     std::atomic_int count = 0;
     simple_task_thread taskThread;
     taskThread.start();

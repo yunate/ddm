@@ -27,7 +27,6 @@ TEST(test_event, event1)
 
 TEST(simplex_sm_ipc, client)
 {
-    return;
     simple_thread_manager thread_manager;
     shared_memory_ipc_client client;
     if (!client.create(_DDT("simplex_sm_ipc"), 1024 * 1024)) {
