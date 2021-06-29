@@ -290,4 +290,123 @@ TEST(test_pickle, PickleNotPod)
     PickleNotPod ss;
     pr >> ss;
 }
+
+struct PickleNotPod20
+{
+    float a = 1;
+    float a1 = 1;
+    float a2 = 1;
+    float a3 = 1;
+    float a4 = 1;
+    float a5 = 1;
+    float a6 = 1;
+    float a7 = 1;
+    float a8 = 1;
+    float a9 = 1;
+    float a10 = 1;
+    float a11 = 1;
+    float a12 = 1;
+    float a13 = 1;
+    float a14 = 1;
+    float a15 = 1;
+    float a16 = 1;
+    float a17 = 1;
+    float a18 = 1;
+    float a19 = 1;
+};
+DD_PICKLE_TRAITS_GEN(PickleNotPod20, a, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19)
+TEST(test_pickle, PickleNotPod20)
+{
+    PickleNotPod20 s{ 2.0, 2.0, 2.0 , 1.0 , 1.0 , 1.0 , 1.0 , 1.0 , 1.0 , 1.0 , 1.0 , 1.0 , 1.0 , 1.0 , 1.0 , 1.0 , 1.0 , 1.0 , 1.0 , 1.0 };
+    pickle p1;
+    p1 << s;
+    pickle_reader pr(&p1);
+    PickleNotPod20 ss;
+    pr >> ss;
+}
+
+struct PickleNotPod25 : public PickleNotPod20
+{
+    char a = 1;
+    char a1 = 1;
+    char a2 = 1;
+    char a3 = 1;
+    std::string a4 = "abced";
+};
+DD_PICKLE_TRAITS_GEN_EX(PickleNotPod25, PickleNotPod20, a, a1, a2, a3, a4)
+TEST(test_pickle, PickleNotPod25)
+{
+    PickleNotPod25 s;
+    s.a4 = "ddd";
+    pickle p1;
+    p1 << s;
+    pickle_reader pr(&p1);
+    PickleNotPod25 ss;
+    pr >> ss;
+}
+
+struct PickleNotPod0
+{
+};
+DD_PICKLE_TRAITS_GEN(PickleNotPod0)
+TEST(test_pickle, PickleNotPod0)
+{
+    PickleNotPod0 s;
+    pickle p1;
+    p1 << s;
+    pickle_reader pr(&p1);
+    PickleNotPod0 ss;
+    pr >> ss;
+}
+
+struct PickleNotPod0_b : public PickleNotPod20
+{
+};
+DD_PICKLE_TRAITS_GEN_EX(PickleNotPod0_b, PickleNotPod20)
+TEST(test_pickle, PickleNotPod0_b)
+{
+    PickleNotPod0_b s;
+    pickle p1;
+    p1 << s;
+    pickle_reader pr(&p1);
+    PickleNotPod0_b ss;
+    pr >> ss;
+}
+
+// DD_PICKLE_TRAITS_GEN宏最多20个参数
+// struct PickleNotPod21
+// {
+//     char a;
+//     char a1;
+//     char a2;
+//     char a3;
+//     char a4;
+//     char a5;
+//     char a6;
+//     char a7;
+//     char a8;
+//     char a9;
+//     char a10;
+//     char a11;
+//     char a12;
+//     char a13;
+//     char a14;
+//     char a15;
+//     char a16;
+//     char a17;
+//     char a18;
+//     char a19;
+//     char a20;
+// };
+// DD_PICKLE_TRAITS_GEN(PickleNotPod21, a, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20)
+// TEST(test_pickle, PickleNotPod21)
+// {
+//     PickleNotPod20 s{ 1.0, 1.0, 1.0 , 1.0 , 1.0 , 1.0 , 1.0 , 1.0 , 1.0 , 1.0 , 1.0 , 1.0 , 1.0 , 1.0 , 1.0 , 1.0 , 1.0 , 1.0 , 1.0 , 1.0 , 1.0 };
+//     pickle p1;
+//     p1 << s;
+//     pickle_reader pr(&p1);
+//     PickleNotPod ss;
+//     pr >> ss;
+// }
+
 END_NSP_DDM

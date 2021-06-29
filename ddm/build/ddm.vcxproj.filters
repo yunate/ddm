@@ -245,6 +245,9 @@
     <ClInclude Include="..\src\member_count.hpp">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\ddmacro.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\src\asm\x64\utils.asm">
