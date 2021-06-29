@@ -161,12 +161,12 @@ template<class T, container_traits traits = _container_traits<T>>
 class pickle_reader_writer_helper;
 
 template<class T>
-class pickle_reader_writer_helper<T, container_traits::container_traits_pod>
+class pickle_reader_writer_helper<T, container_traits::container_traits_standard_layout>
 {
 public:
     static pickle& write(pickle& pck, const T& r)
     {
-        static_assert(std::is_pod<T>::value, "T is not pod");
+        static_assert(std::is_standard_layout<T>::value, "T is not pod");
         static_assert(!std::is_pointer<T>::value, "T should not be a pointer");
         pck.append_pod(r);
         return pck;
@@ -174,7 +174,7 @@ public:
 
     static pickle_reader& read(pickle_reader& reader, T& r)
     {
-        static_assert(std::is_pod<T>::value, "T is not pod");
+        static_assert(std::is_standard_layout<T>::value, "T is not pod");
         static_assert(!std::is_pointer<T>::value, "T should not be a pointer");
         (void)reader.read_next_pod(r);
         return reader;
@@ -297,7 +297,7 @@ inline pickle_reader& operator>>(pickle_reader& reader, std::wstring& r)
 // 最多20个参数
 #define DD_PICKLE_TRAITS_GEN(StructName, ...)                                                                            \
 template<>                                                                                                               \
-class pickle_reader_writer_helper<StructName, container_traits::container_traits_none>                                   \
+class pickle_reader_writer_helper<StructName, _container_traits<StructName>>                                             \
 {                                                                                                                        \
 public:                                                                                                                  \
     static pickle& write(pickle& pck, const StructName& r)                                                               \
@@ -318,13 +318,13 @@ public:                                                                         
 // 最多20个参数
 #define DD_PICKLE_TRAITS_GEN_EX(StructName, BaseStructName, ...)                                                         \
 template<>                                                                                                               \
-class pickle_reader_writer_helper<StructName, container_traits::container_traits_none>                                   \
+class pickle_reader_writer_helper<StructName, _container_traits<StructName>>                                             \
 {                                                                                                                        \
 public:                                                                                                                  \
     static pickle& write(pickle& pck, const StructName& r)                                                               \
     {                                                                                                                    \
         r;                                                                                                               \
-        pickle_reader_writer_helper<BaseStructName, container_traits::container_traits_none>::write(pck, r);             \
+        pickle_reader_writer_helper<BaseStructName, _container_traits<BaseStructName>>::write(pck, r);                   \
         pck DD_EACH(DD_PICKLE_OPT_LL, __VA_ARGS__);                                                                      \
         return pck;                                                                                                      \
     }                                                                                                                    \
@@ -332,7 +332,7 @@ public:                                                                         
     static pickle_reader& read(pickle_reader& reader, StructName& r)                                                     \
     {                                                                                                                    \
         r;                                                                                                               \
-        pickle_reader_writer_helper<BaseStructName, container_traits::container_traits_none>::read(reader, r);           \
+        pickle_reader_writer_helper<BaseStructName, _container_traits<BaseStructName>>::read(reader, r);                 \
         reader DD_EACH(DD_PICKLE_OPT_RR, __VA_ARGS__);                                                                   \
         return reader;                                                                                                   \
     }                                                                                                                    \
