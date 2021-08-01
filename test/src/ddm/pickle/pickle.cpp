@@ -332,7 +332,7 @@ struct PickleNotPod25 : public PickleNotPod20
     char a3 = 1;
     std::string a4 = "abced";
 };
-DD_PICKLE_TRAITS_GEN_EX(PickleNotPod25, PickleNotPod20, a, a1, a2, a3, a4)
+DD_PICKLE_TRAITS_GEN_EX(PickleNotPod25, DD_EXPEND(PickleNotPod20), a, a1, a2, a3, a4)
 TEST(test_pickle, PickleNotPod25)
 {
     PickleNotPod25 s;
@@ -358,10 +358,10 @@ TEST(test_pickle, PickleNotPod0)
     pr >> ss;
 }
 
-struct PickleNotPod0_b : public PickleNotPod20
+struct PickleNotPod0_b : public PickleNotPod20, PickleNotPod0
 {
 };
-DD_PICKLE_TRAITS_GEN_EX(PickleNotPod0_b, PickleNotPod20)
+DD_PICKLE_TRAITS_GEN_EX(PickleNotPod0_b, DD_EXPEND(PickleNotPod20, PickleNotPod0))
 TEST(test_pickle, PickleNotPod0_b)
 {
     PickleNotPod0_b s;
