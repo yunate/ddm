@@ -226,7 +226,7 @@ void PipeManager::OnCreate(const std::wstring& name,
     auto waitEvent = spEvent.lock();
     if (waitEvent != nullptr)
     {
-        waitEvent->set_event();
+        waitEvent->notify_one();
     }
 }
 
@@ -279,7 +279,7 @@ void PipeManager::OnClose(SPSyncPipe spPipe, const std::weak_ptr<NSP_DDM::simple
     auto waitEvent = spEvent.lock();
     if (waitEvent != nullptr)
     {
-        waitEvent->set_event();
+        waitEvent->notify_one();
     }
 }
 

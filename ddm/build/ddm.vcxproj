@@ -92,6 +92,7 @@
     <ClInclude Include="..\src\thread\async\semaphore.h" />
     <ClInclude Include="..\src\thread\async\simple_event.h" />
     <ClInclude Include="..\src\thread\async\spin_mutex.h" />
+    <ClInclude Include="..\src\thread\async\sync_n_buff.h" />
     <ClInclude Include="..\src\thread\loop\i_loop.h" />
     <ClInclude Include="..\src\thread\loop\simple_loop.h" />
     <ClInclude Include="..\src\thread\loop\win_msg_loop.h" />

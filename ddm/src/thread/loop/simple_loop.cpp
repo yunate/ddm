@@ -34,15 +34,15 @@ bool simple_loop::wait_loop_end(u32 waitTime /*= MAX_U32*/)
 
     bool result = false;
     if (MAX_U32 != waitTime) {
-        result = m_loopEndEvent.time_wait(waitTime);
+        result = m_loopEndEvent.wait(waitTime);
     } else {
-        m_loopEndEvent.Wait();
+        m_loopEndEvent.wait();
         result = true;
     }
 
     // ∑¿÷π÷ÿ∏¥µ˜”√wait_loop_end
     if (result) {
-        m_loopEndEvent.set_event();
+        m_loopEndEvent.notify_one();
     }
 
     return result;
@@ -64,7 +64,7 @@ void NSP_DDM::simple_loop::loop()
         std::lock_guard<std::recursive_mutex> lock(m_mutex);
         m_has_loop_end = true;
     }
-    m_loopEndEvent.set_event();
+    m_loopEndEvent.notify_one();
 }
 END_NSP_DDM
 

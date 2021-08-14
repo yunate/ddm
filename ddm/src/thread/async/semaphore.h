@@ -12,46 +12,64 @@ class semaphore :
     public nocopyable
 {
 public:
-    /** 等待一个信号（消费）
-    @note 如果在Wait()前已经有信号了，那么wait将不会等待
+    /** 超时等待
+    @param [in] timeOut 超时时间
+    @return 超时返回false，否者true
     */
-    void wait() 
+    bool wait(u32 timeOut = MAX_U32)
     {
         std::unique_lock<std::mutex> lck(m_mutex);
-
-        if (m_count <= 0) {
+        bool rtn = true;
+        while (m_count <= 0 && !m_notyfiall) {
             // 不会死锁，考虑：
             // 1、m_mutex.unlock();
             // 2、wait()
             // 3、m_mutex.lock();
             // wait(lck) 相当于将1、2两步放到一个cpu周期内
-            m_con.wait(lck);
+            if (timeOut == MAX_U32) {
+                m_con.wait(lck);
+            } else {
+                rtn = (m_con.wait_for(lck, std::chrono::milliseconds(timeOut)) == std::cv_status::no_timeout);
+            }
         }
 
-        --m_count;
+        if (rtn && !m_notyfiall) {
+            --m_count;
+        }
 
-        // 防止NotifyAll的情况m_count减少为0
         if (m_count < 0) {
             m_count = 0;
         }
+        return rtn;
     }
 
     /** 发出一个信号（生产）
     */
-    void signal()
+    void notify_one()
     {
-        std::unique_lock<std::mutex> lck(m_mutex);
-        ++m_count;
+        {
+            std::unique_lock<std::mutex> lck(m_mutex);
+            ++m_count;
+        }
         m_con.notify_one();
     }
 
-    /** 唤醒所有（重置）
-    */
+    // 调用该函数侯，所有的wait 都被通知，未来调用的wait 也不会等待，除非调用reset()函数恢复状态
     void notify_all()
     {
-        m_count = 0;
-        std::unique_lock<std::mutex> lck(m_mutex);
+        {
+            std::unique_lock<std::mutex> lck(m_mutex);
+            m_notyfiall = true;
+            ++m_count;
+        }
         m_con.notify_all();
+    }
+
+    void reset(u32 cnt)
+    {
+        std::unique_lock<std::mutex> lck(m_mutex);
+        m_notyfiall = false;
+        m_count = cnt;
     }
 
 private:
@@ -67,6 +85,9 @@ private:
     @note 主要是为了先调用SetEvent()，然后调用wait() 不会被唤醒的情况，所谓的“虚假唤醒”。考虑在Wait()前加上::Sleep(1000);
     */
     long m_count = 0;
+
+    // notify all 时候的标记
+    bool m_notyfiall = false;
 };
 
 END_NSP_DDM

@@ -130,7 +130,7 @@ bool SyncChannelPipe::OnMessageReceived(const Message& message) {
       
       NSP_DDM::simple_event* wait_event = (*iter)->done_event;
       if ((wait_event != NULL)) {
-        wait_event->set_event();
+        wait_event->notify_one();
       }
 
       return true;
@@ -155,7 +155,7 @@ void SyncChannelPipe::SignalAllEvents() {
       NSP_DDM::simple_event* wait_event = (*iter)->done_event;
 
     if ((wait_event != NULL)) {
-      wait_event->set_event();
+      wait_event->notify_one();
     }
   }
 }

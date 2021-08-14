@@ -248,6 +248,9 @@
     <ClInclude Include="..\src\ddmacro.hpp">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\thread\async\sync_n_buff.h">
+      <Filter>src\thread\async</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\src\asm\x64\utils.asm">

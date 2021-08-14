@@ -20,7 +20,7 @@ bool simple_task_queue::stop(u32 waitTime)
         std::lock_guard<std::recursive_mutex> lock(m_mutex);
         if (!m_stop) {
             clear_all();
-            m_event.set_event();
+            m_event.notify_one();
         }
     }
 
@@ -60,7 +60,7 @@ void simple_task_queue::push_task(const std::shared_ptr<i_ddtask>& task)
 
     std::lock_guard<std::recursive_mutex> lock(m_mutex);
     m_taskQue.push(task);
-    m_event.set_event();
+    m_event.notify_one();
 }
 
 void simple_task_queue::push_task(const std::function<void()>& task)
@@ -86,7 +86,7 @@ void simple_task_queue::loop_core()
             }
         }
 
-        m_event.Wait();
+        m_event.wait();
 
         // 将队列里的全部执行掉
         while (true) {

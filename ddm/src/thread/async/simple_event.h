@@ -3,6 +3,7 @@
 #define simple_event_h_ 1
 
 #include "g_def.h"
+#include "ddmath.h"
 #include "nocopyable.hpp"
 #include <chrono>
 #include <mutex>
@@ -16,52 +17,60 @@ class simple_event :
     public nocopyable
 {
 public:
-    /** 等待一个信号
-    */
-    void Wait()
-    {
-        std::unique_lock<std::mutex> lck(m_mutex);
-
-        if (!m_hasSignal) {
-            // 不会死锁，考虑：
-            // 1、m_mutex.unlock();
-            // 2、wait()
-            // 3、m_mutex.lock();
-            // wait(lck) 相当于将1、2两步放到一个cpu周期内
-            m_con.wait(lck);
-        }
-
-        m_hasSignal = false;
-    }
-
     /** 超时等待
     @param [in] timeOut 超时时间
     @return 超时返回false，否者true
     */
-    bool time_wait(u32 timeOut)
+    bool wait(u32 timeOut = MAX_U32)
     {
         std::unique_lock<std::mutex> lck(m_mutex);
-        std::cv_status statu = std::cv_status::no_timeout;
-        if (!m_hasSignal) {
+        bool rtn = true;
+        while (!m_hasSignal && !m_notyfiall) {
             // 不会死锁，考虑：
             // 1、m_mutex.unlock();
             // 2、wait()
             // 3、m_mutex.lock();
             // wait(lck) 相当于将1、2两步放到一个cpu周期内
-            statu = m_con.wait_for(lck, std::chrono::milliseconds(timeOut));
+            if (timeOut == MAX_U32) {
+                m_con.wait(lck);
+            } else {
+                rtn = (m_con.wait_for(lck, std::chrono::milliseconds(timeOut)) == std::cv_status::no_timeout);
+            }
         }
 
-        m_hasSignal = false;
-        return statu == std::cv_status::no_timeout;
+        if (rtn && !m_notyfiall) {
+            m_hasSignal = false;
+        }
+        return rtn;
     }
 
     /** 设置一个信号
     */
-    void set_event()
+    void notify_one()
+    {
+        {
+            std::unique_lock<std::mutex> lck(m_mutex);
+            m_hasSignal = true;
+        }
+        m_con.notify_one();
+    }
+
+    // 调用该函数侯，所有的wait 都被通知，未来调用的wait 也不会等待，除非调用reset()函数恢复状态
+    void notify_all()
+    {
+        {
+            std::unique_lock<std::mutex> lck(m_mutex);
+            m_notyfiall = true;
+            m_hasSignal = true;
+        }
+        m_con.notify_all();
+    }
+
+    void reset(bool signal)
     {
         std::unique_lock<std::mutex> lck(m_mutex);
-        m_hasSignal = true;
-        m_con.notify_all();
+        m_notyfiall = false;
+        m_hasSignal = signal;
     }
 
 private:
@@ -77,6 +86,9 @@ private:
     @note 主要是为了先调用SetEvent()，然后调用wait的情况。考虑在Wait()前加上::Sleep(1000);
     */
     bool m_hasSignal = false;
+
+    // notify all 时候的标记
+    bool m_notyfiall = false;
 };
 
 END_NSP_DDM
