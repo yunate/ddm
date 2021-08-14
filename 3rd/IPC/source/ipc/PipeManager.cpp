@@ -134,7 +134,7 @@ bool PipeManager::CreatePipe(const std::wstring& name, bool isServer, bool sync/
                       std::shared_ptr<NSP_DDM::simple_event>(spWaitEvent),
                       std::shared_ptr<bool>(spResult)));
 
-        spWaitEvent->time_wait(PIPE_DEFAULT_TIMEOUT);
+        spWaitEvent->wait(PIPE_DEFAULT_TIMEOUT);
         result = *spResult;
     }
     else
@@ -259,7 +259,7 @@ void PipeManager::Close(const std::wstring& name, bool sync/* = false*/)
         ipc::MessageLoopForIPC::GetInstace()->PostTask(
             ipc::Bind(&PipeManager::OnClose, this, pipe, std::weak_ptr<NSP_DDM::simple_event>(spWaitEvent)));
 
-        spWaitEvent->time_wait(PIPE_DEFAULT_TIMEOUT);
+        spWaitEvent->wait(PIPE_DEFAULT_TIMEOUT);
     }
     else
     {
@@ -325,7 +325,7 @@ bool PipeManager::CloseAndReCreate(const std::wstring& name, bool isServer, bool
                       std::weak_ptr<NSP_DDM::simple_event>(spWaitEvent),
                       std::weak_ptr<bool>(spResult)));
 
-        spWaitEvent->time_wait(PIPE_DEFAULT_TIMEOUT);
+        spWaitEvent->wait(PIPE_DEFAULT_TIMEOUT);
         result = *spResult;
     }
     else

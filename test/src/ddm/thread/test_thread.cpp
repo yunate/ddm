@@ -5,6 +5,38 @@
 #include <iostream>
 #include <atomic>
 BEG_NSP_DDM
+TEST(test_thread, simple_task_thread_long_time)
+{
+    std::atomic_int count = 0;
+    simple_task_thread taskThread;
+    taskThread.start();
+
+    for (int i = 0; i < 30; ++i) {
+        auto& it = taskThread.get_task_queue();
+        it.push_task([&count, i]() {
+            std::cout << "push_heartbeat_task" << i << std::endl;
+            ++count;
+            std::this_thread::sleep_for(std::chrono::milliseconds(10));
+            return true;
+        });
+    }
+
+    while (true)
+    {
+        if (count == 30) {
+            break;
+        }
+
+        // ::Sleep(10);
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    }
+
+    taskThread.stop();
+    taskThread.stop();
+    taskThread.stop();
+}
+
+
 TEST(test_thread, simple_task_queue)
 {
     simple_task_queue task_que;

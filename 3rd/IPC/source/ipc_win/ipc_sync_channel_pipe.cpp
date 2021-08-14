@@ -31,7 +31,7 @@ bool SyncChannelPipe::Send(Message* message) {
    if (result) {
        NSP_DDM::simple_event* pump_message_event = pending_message.done_event;
      if (pump_message_event) {
-       pump_message_event->time_wait(timeout);
+       pump_message_event->wait(timeout);
      }
    }
 

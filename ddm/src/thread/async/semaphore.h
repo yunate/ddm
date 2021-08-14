@@ -4,7 +4,7 @@
 
 #include "g_def.h"
 #include "nocopyable.hpp"
-
+#include "ddmath.h"
 #include <mutex>
 BEG_NSP_DDM
 
@@ -28,8 +28,9 @@ public:
             // wait(lck) 相当于将1、2两步放到一个cpu周期内
             if (timeOut == MAX_U32) {
                 m_con.wait(lck);
-            } else {
-                rtn = (m_con.wait_for(lck, std::chrono::milliseconds(timeOut)) == std::cv_status::no_timeout);
+            } else if (m_con.wait_for(lck, std::chrono::milliseconds(timeOut)) == std::cv_status::timeout) {
+               rtn = false;
+               break;
             }
         }
 
