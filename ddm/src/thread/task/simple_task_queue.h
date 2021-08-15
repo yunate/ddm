@@ -10,6 +10,8 @@
 #include <functional>
 #include <memory>
 #include <queue>
+#include <list>
+#include <condition_variable>
 
 BEG_NSP_DDM
 
@@ -18,16 +20,23 @@ BEG_NSP_DDM
 class simple_task_queue :
     public simple_loop
 {
+    using sp_task = std::shared_ptr<i_ddtask>;
+    using task_queue = std::queue<sp_task, std::list<sp_task>>;
+    using _lock_guard = std::lock_guard<std::recursive_mutex>;
 public:
     /** 构造函数
     */
-    simple_task_queue();
+    simple_task_queue(u32 max_cnt = MAX_U32);
 
     /** 析构函数
     */
     virtual ~simple_task_queue();
 
 public:
+    // 获取设置队列最大值，MAX_U32 表示无限
+    u32 get_max_cnt();
+    void set_max_cnt(u32 max_cnt);
+
     /** 停止所有任务
     */
     virtual bool stop(u32 waitTime);
@@ -46,13 +55,17 @@ public:
 
     /** 添加一个任务
     @param [in] task 任务
+    @param [in] wait_time 如果任务队列满了的等待时间 MAX_U32 表示永不超时，单位 ms
+    @return 是否成功，如果队列满了并且超时了返回false
     */
-    void push_task(const std::shared_ptr<i_ddtask>& task);
+    bool push_task(const sp_task& task, u32 wait_time = MAX_U32);
 
     /** 添加一个函数任务
     @param [in] task 任务
+    @param [in] wait_time 如果任务队列满了的等待时间 MAX_U32 表示永不超时，单位 ms
+    @return 是否成功，如果队列满了并且超时了，或者停止了返回 false
     */
-    void push_task(const std::function<void()>& task);
+    bool push_task(const std::function<void()>& task, u32 wait_time = MAX_U32);
 
     /** 获得当前队列中的数量，包含当前正在执行的，返回0说明队列空闲
     @return 当前队列中的数量
@@ -64,18 +77,23 @@ protected:
     */
     virtual void loop_core();
 
-private:
-    /** 线程事件
-    */
-    simple_event m_event;
+protected:
+    // 消费循环 do while 中使用 m_dotask_cv 等待直到任务队列不为空
+    std::condition_variable_any m_dotask_cv;
+
+    // push 操作用 m_push_cv 来等待任务队列直到有空闲位置
+    std::condition_variable_any m_push_cv;
+
+    // 任务队列最大值，为 MAX_U32 表示无限
+    u32 m_max_cnt = MAX_U32;
 
     /** 任务队列
     */
-    std::queue<std::shared_ptr<i_ddtask> > m_taskQue;
+    task_queue m_taskQue;
 
     /** 当前正在执行的
     */
-    std::shared_ptr<i_ddtask> m_currentTask;
+    sp_task m_currentTask;
 };
 
 END_NSP_DDM

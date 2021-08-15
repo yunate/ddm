@@ -5,7 +5,8 @@
 #include "ddmath.h"
 
 BEG_NSP_DDM
-simple_task_queue::simple_task_queue()
+simple_task_queue::simple_task_queue(u32 max_cnt /*= MAX_U32*/) :
+    m_max_cnt(max_cnt)
 {
 }
 
@@ -14,13 +15,26 @@ simple_task_queue::~simple_task_queue()
     (void)stop(MAX_U32);
 }
 
+u32 simple_task_queue::get_max_cnt()
+{
+    _lock_guard lock(m_mutex);
+    return m_max_cnt;
+}
+
+void simple_task_queue::set_max_cnt(u32 max_cnt)
+{
+    _lock_guard lock(m_mutex);
+    m_max_cnt = max_cnt;
+}
+
 bool simple_task_queue::stop(u32 waitTime)
 {
     {
-        std::lock_guard<std::recursive_mutex> lock(m_mutex);
+        _lock_guard lock(m_mutex);
         if (!m_stop) {
             clear_all();
-            m_event.notify_one();
+            m_dotask_cv.notify_one();
+            m_stop = true;
         }
     }
 
@@ -29,7 +43,7 @@ bool simple_task_queue::stop(u32 waitTime)
 
 void simple_task_queue::stop_current()
 {
-    std::lock_guard<std::recursive_mutex> lock(m_mutex);
+    _lock_guard lock(m_mutex);
 
     if (m_currentTask != nullptr) {
         m_currentTask->stop();
@@ -38,39 +52,52 @@ void simple_task_queue::stop_current()
 
 void simple_task_queue::clear_all()
 {
-    std::lock_guard<std::recursive_mutex> lock(m_mutex);
+    _lock_guard lock(m_mutex);
     stop_current();
     clear_queue();
 }
 
 void simple_task_queue::clear_queue()
 {
-    std::queue<std::shared_ptr<i_ddtask> > tmp = std::queue<std::shared_ptr<i_ddtask> >();
+    task_queue tmp;
     {
-        std::lock_guard<std::recursive_mutex> lock(m_mutex);
+        _lock_guard lock(m_mutex);
         m_taskQue.swap(tmp);
     }
+
+    m_push_cv.notify_one();
 }
 
-void simple_task_queue::push_task(const std::shared_ptr<i_ddtask>& task)
+bool simple_task_queue::push_task(const sp_task& task, u32 wait_time /*= MAX_U32*/)
 {
+    _lock_guard lock(m_mutex);
     if (m_stop) {
-        return;
+        return false;
     }
 
-    std::lock_guard<std::recursive_mutex> lock(m_mutex);
+    if (m_max_cnt != MAX_U32) {
+        while (m_taskQue.size() >= m_max_cnt) {
+            if (wait_time == MAX_U32) {
+                m_push_cv.wait(lock);
+            } else if (m_push_cv.wait_for(lock, std::chrono::milliseconds(wait_time)) == std::cv_status::timeout) {
+                return false;
+            }
+        }
+    }
+
     m_taskQue.push(task);
-    m_event.notify_one();
+    m_dotask_cv.notify_one();
+    return true;
 }
 
-void simple_task_queue::push_task(const std::function<void()>& task)
+bool simple_task_queue::push_task(const std::function<void()>& task, u32 wait_time /*= MAX_U32*/)
 {
-    push_task(std::shared_ptr<i_ddtask>(new simple_function_task(task)));
+    return push_task(sp_task(new simple_function_task(task)));
 }
 
 size_t simple_task_queue::get_task_count()
 {
-    std::lock_guard<std::recursive_mutex> lock(m_mutex);
+    _lock_guard lock(m_mutex);
     return m_taskQue.size() + (m_currentTask != nullptr ? 1 : 0);
 }
 
@@ -79,43 +106,36 @@ void simple_task_queue::loop_core()
     while (true)
     {
         {
-            std::lock_guard<std::recursive_mutex> lock(m_mutex);
-
+            _lock_guard lock(m_mutex);
             if (m_stop) {
                 break;
             }
-        }
 
-        m_event.wait();
-
-        // 将队列里的全部执行掉
-        while (true) {
-            // 取出队首
-            {
-                std::lock_guard<std::recursive_mutex> lock(m_mutex);
-
+            if (m_taskQue.empty()) {
+                (void)m_dotask_cv.wait_for(lock, std::chrono::milliseconds(100));
                 if (m_taskQue.empty()) {
-                    break;
-                }
-
-                m_currentTask = m_taskQue.front();
-                m_taskQue.pop();
-
-                if (m_currentTask == nullptr) {
                     continue;
                 }
             }
 
-            // 执行任务
-            m_currentTask->do_task();
+            // 取出队首
+            m_currentTask = m_taskQue.front();
+            m_taskQue.pop();
 
-            // 准备销毁
-            std::shared_ptr<i_ddtask> tmp = m_currentTask;
-
-            {
-                std::lock_guard<std::recursive_mutex> lock(m_mutex);
-                m_currentTask = nullptr;
+            if (m_currentTask == nullptr) {
+                continue;
             }
+        }
+
+        // 执行任务
+        m_currentTask->do_task();
+        m_push_cv.notify_one();
+
+        // 准备销毁
+        sp_task tmp = m_currentTask;
+        {
+            _lock_guard lock(m_mutex);
+            m_currentTask = nullptr;
         }
     }
 }
