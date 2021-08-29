@@ -78,8 +78,8 @@ bool simple_task_queue::push_task(const sp_task& task, u32 wait_time /*= MAX_U32
     if (m_max_cnt != MAX_U32) {
         while (m_taskQue.size() >= m_max_cnt) {
             if (wait_time == MAX_U32) {
-                m_push_cv.wait(lock);
-            } else if (m_push_cv.wait_for(lock, std::chrono::milliseconds(wait_time)) == std::cv_status::timeout) {
+                m_push_cv.wait(m_mutex);
+            } else if (m_push_cv.wait_for(m_mutex, std::chrono::milliseconds(wait_time)) == std::cv_status::timeout) {
                 return false;
             }
         }
@@ -112,7 +112,7 @@ void simple_task_queue::loop_core()
             }
 
             if (m_taskQue.empty()) {
-                (void)m_dotask_cv.wait_for(lock, std::chrono::milliseconds(100));
+                (void)m_dotask_cv.wait_for(m_mutex, std::chrono::milliseconds(100));
                 if (m_taskQue.empty()) {
                     continue;
                 }

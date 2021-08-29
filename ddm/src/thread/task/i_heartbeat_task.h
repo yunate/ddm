@@ -32,7 +32,7 @@ public:
     /** 获得心跳间隔，单位ms
     @return 心跳间隔
     */
-    virtual u32 get_timeout() = 0;
+    virtual u32 get_timeout() const = 0;
 };
 
 /** 任务智能指针
@@ -98,7 +98,7 @@ public:
     /** 获得心跳间隔，单位ms
     @return 心跳间隔
     */
-    virtual u32 get_timeout() override
+    virtual u32 get_timeout() const override
     {
         return m_timeOut;
     }

@@ -1,6 +1,7 @@
 
 #include "heartbeat_task_queue.h"
 #include "ddmath.h"
+#include "ddtimer.h"
 
 BEG_NSP_DDM
 
@@ -13,8 +14,7 @@ struct heartbeat_task_wraper
     */
     heartbeat_task_wraper(const sp_heartbeat_task& spHeartBeatTask) :
         m_spHeartBeatTask(spHeartBeatTask) {
-        auto dur = std::chrono::high_resolution_clock::now().time_since_epoch();
-        m_preExecuteTime = std::chrono::duration_cast<std::chrono::milliseconds>(dur).count();
+        m_preExecuteTime = ddtimer::now_ms();
     }
 
     /** 是否可以执行了？返回true时候会更新时间戳
@@ -22,9 +22,7 @@ struct heartbeat_task_wraper
     */
     bool CanExecute()
     {
-        auto dur = std::chrono::high_resolution_clock::now().time_since_epoch();
-        long long nowTime = std::chrono::duration_cast<std::chrono::milliseconds>(dur).count();
-
+        u64 nowTime = ddtimer::now_ms();
         if (nowTime - m_preExecuteTime >= m_spHeartBeatTask->get_timeout()) {
             m_preExecuteTime = nowTime;
             return true;
@@ -39,7 +37,7 @@ struct heartbeat_task_wraper
 
     /** 上次执行时间，如果一次都没有执行过为创建时间
     */
-    long long m_preExecuteTime;
+    u64 m_preExecuteTime;
 };
 
 //////////////////////////////////////////////////////////////////////////
@@ -166,7 +164,7 @@ void heartbeat_task_queue::loop_core()
             }
         }
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(1));
+        ddtimer::sleep(1);
     }
 }
 
