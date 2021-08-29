@@ -5,20 +5,22 @@
 #include <iostream>
 #include <atomic>
 BEG_NSP_DDM
-TEST(test_thread, simple_task_thread_long_time)
+TEST(test_thread1, simple_task_thread_long_time)
 {
     std::atomic_int count = 0;
     simple_task_thread taskThread;
+    taskThread.get_task_queue().set_max_cnt(5);
     taskThread.start();
 
     for (int i = 0; i < 30; ++i) {
         auto& it = taskThread.get_task_queue();
         it.push_task([&count, i]() {
-            std::cout << "push_heartbeat_task" << i << std::endl;
             ++count;
             std::this_thread::sleep_for(std::chrono::milliseconds(10));
+            std::cout << "simple_task_thread_long_time execute" << i << std::endl;
             return true;
         });
+        std::cout << "simple_task_thread_long_time it.push_task" << i << std::endl;
     }
 
     while (true)
@@ -32,12 +34,40 @@ TEST(test_thread, simple_task_thread_long_time)
     }
 
     taskThread.stop();
-    taskThread.stop();
-    taskThread.stop();
+    std::cout << "simple_task_thread_long_time stop";
 }
 
+TEST(test_thread1, simple_task_thread_long_time1)
+{
+    std::atomic_int count = 0;
+    simple_task_thread taskThread;
+    taskThread.get_task_queue().set_max_cnt(5);
+    taskThread.start();
 
-TEST(test_thread, simple_task_queue)
+    for (int i = 0; i < 30; ++i) {
+        auto& it = taskThread.get_task_queue();
+        it.push_task([&count, i]() {
+            ++count;
+            std::this_thread::sleep_for(std::chrono::milliseconds(20));
+            std::cout << "simple_task_thread_long_time execute" << i << std::endl;
+            return true;
+        });
+        if (i == 12) {
+            taskThread.stop();
+        }
+        std::cout << "simple_task_thread_long_time it.push_task" << i << std::endl;
+    }
+
+    while (true)
+    {
+        // ::Sleep(10);
+        std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+    }
+
+    std::cout << "simple_task_thread_long_time stop";
+}
+
+TEST(test_thread1, simple_task_queue)
 {
     simple_task_queue task_que;
     for (int i = 0; i < 30; ++i) {
@@ -121,7 +151,7 @@ TEST(test_thread, simple_task_thread)
     taskThread.stop();
 }
 
-TEST(test_thread, simple_thread_manager)
+TEST(test_thread1, simple_thread_manager)
 {
     std::atomic_int count = 0;
     simple_thread_manager threadManager;
