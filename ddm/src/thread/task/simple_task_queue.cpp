@@ -92,7 +92,7 @@ bool simple_task_queue::push_task(const sp_task& task, u32 wait_time /*= MAX_U32
 
 bool simple_task_queue::push_task(const std::function<void()>& task, u32 wait_time /*= MAX_U32*/)
 {
-    return push_task(sp_task(new simple_function_task(task)));
+    return push_task(sp_task(new simple_function_task(task)), wait_time);
 }
 
 size_t simple_task_queue::get_task_count()
