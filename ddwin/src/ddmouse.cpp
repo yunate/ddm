@@ -25,6 +25,7 @@ bool ddmouse::is_mdown()
 
 bool ddmouse::on_msg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
+    bool result = false;
     const POINTS pt = MAKEPOINTS(lParam);
     switch (msg)
     {
@@ -38,7 +39,7 @@ bool ddmouse::on_msg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
                 MK_LBUTTON & fwKeys, MK_RBUTTON & fwKeys, MK_MBUTTON & fwKeys
             };
             push_mouse_event(ev);
-            call_cbs(ON_LDOWN, ev);
+            result = call_cbs(ON_LDOWN, ev);
             break;
         }
     case WM_LBUTTONUP:
@@ -51,7 +52,7 @@ bool ddmouse::on_msg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
                 MK_LBUTTON & fwKeys, MK_RBUTTON & fwKeys, MK_MBUTTON & fwKeys
             };
             push_mouse_event(ev);
-            call_cbs(ON_LUP, ev);
+            result = call_cbs(ON_LUP, ev);
             try_leave(hWnd, wParam, pt);
             break;
         }
@@ -65,7 +66,7 @@ bool ddmouse::on_msg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
                 MK_LBUTTON & fwKeys, MK_RBUTTON & fwKeys, MK_MBUTTON & fwKeys
             };
             push_mouse_event(ev);
-            call_cbs(ON_LDBCLICK, ev);
+            result = call_cbs(ON_LDBCLICK, ev);
             break;
         }
 
@@ -79,7 +80,7 @@ bool ddmouse::on_msg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
                 MK_LBUTTON & fwKeys, MK_RBUTTON & fwKeys, MK_MBUTTON & fwKeys
             };
             push_mouse_event(ev);
-            call_cbs(ON_RUP, ev);
+            result = call_cbs(ON_RUP, ev);
             try_leave(hWnd, wParam, pt);
             break;
         }
@@ -93,7 +94,7 @@ bool ddmouse::on_msg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
                 MK_LBUTTON & fwKeys, MK_RBUTTON & fwKeys, MK_MBUTTON & fwKeys
             };
             push_mouse_event(ev);
-            call_cbs(ON_RDOWN, ev);
+            result = call_cbs(ON_RDOWN, ev);
             break;
         }
     case WM_RBUTTONDBLCLK:
@@ -106,7 +107,7 @@ bool ddmouse::on_msg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
                 MK_LBUTTON & fwKeys, MK_RBUTTON & fwKeys, MK_MBUTTON & fwKeys
             };
             push_mouse_event(ev);
-            call_cbs(ON_RDBCLICK, ev);
+            result = call_cbs(ON_RDBCLICK, ev);
             break;
         }
 
@@ -119,7 +120,7 @@ bool ddmouse::on_msg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
                 MK_LBUTTON & fwKeys, MK_RBUTTON & fwKeys, MK_MBUTTON & fwKeys
             };
             push_mouse_event(ev);
-            call_cbs(ON_MDOWN, ev);
+            result = call_cbs(ON_MDOWN, ev);
             break;
         }
     case WM_MBUTTONUP: {
@@ -131,7 +132,7 @@ bool ddmouse::on_msg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
                 MK_LBUTTON & fwKeys, MK_RBUTTON & fwKeys, MK_MBUTTON & fwKeys
             };
             push_mouse_event(ev);
-            call_cbs(ON_MUP, ev);
+            result = call_cbs(ON_MUP, ev);
             try_leave(hWnd, wParam, pt);
             break;
         }
@@ -145,7 +146,7 @@ bool ddmouse::on_msg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
                 MK_LBUTTON & fwKeys, MK_RBUTTON & fwKeys, MK_MBUTTON & fwKeys
             };
             push_mouse_event(ev);
-            call_cbs(ON_MDBCLICK, ev);
+            result = call_cbs(ON_MDBCLICK, ev);
             break;
         }
     case WM_MOUSEWHEEL:
@@ -159,7 +160,7 @@ bool ddmouse::on_msg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
                 MK_LBUTTON & fwKeys, MK_RBUTTON & fwKeys, MK_MBUTTON & fwKeys
             };
             push_mouse_event(ev);
-            call_cbs(ON_MID_WHELL, ev);
+            result = call_cbs(ON_MID_WHELL, ev);
             break;
         }
 
@@ -173,7 +174,7 @@ bool ddmouse::on_msg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
                 MK_LBUTTON & fwKeys, MK_RBUTTON & fwKeys, MK_MBUTTON & fwKeys
             };
             // push_mouse_event(ev);
-            call_cbs(ON_MOVE, ev);
+            result = call_cbs(ON_MOVE, ev);
 
             RECT rect;
             wnd_utils::get_client_rect(hWnd, rect);
@@ -202,7 +203,7 @@ bool ddmouse::on_msg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
             break;
         }
     }
-    return false;
+    return result;
 }
 
 void ddmouse::trim_mouse_events()
@@ -218,11 +219,9 @@ void ddmouse::push_mouse_event(const MOUSE_EVENTD& kb_event)
     trim_mouse_events();
 }
 
-void ddmouse::call_cbs(const MOUSE_EVENT_CBS& cbs, const MOUSE_EVENTD& ev)
+bool ddmouse::call_cbs(const MOUSE_EVENT_CB& cb, const MOUSE_EVENTD& ev)
 {
-    for (const auto& it : cbs) {
-        if (!it(ev)) { break; }
-    }
+    return cb(ev);
 }
 
 void ddmouse::on_leave(WPARAM wParam, POINTS pt)

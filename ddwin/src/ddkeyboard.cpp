@@ -62,11 +62,9 @@ void ddkeyboard::push_kb_event(const KB_EVENT& kb_event)
     trim_kb_events();
 }
 
-void ddkeyboard::call_cbs(const KB_EVENT_CBS& cbs, u8 code)
+bool ddkeyboard::call_cbs(const KB_EVENT_CB& cb, u8 code)
 {
-    for (const auto& it : ON_CHAR) {
-        if (!it(code)) { break; }
-    }
+    return cb(code);
 }
 END_NSP_DDM
 

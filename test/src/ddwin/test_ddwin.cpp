@@ -78,13 +78,13 @@ TEST(test_ddwin, simple_native_window1)
     wnd_utils::set_size(nativeWin.get_wnd(), 500, 300);
 
     static std::wstring title;
-    nativeWin.KB.ON_KEY_DOWN.push_back([&nativeWin](u8 code) {
-        title.push_back(code);
+    nativeWin.KB.ON_KEY_DOWN = ([&nativeWin](u8 code) {
+        title = (code);
         wnd_utils::set_title(nativeWin.get_wnd(), title.c_str());
         return true;
     });
 
-    nativeWin.KB.ON_KEY_UP.push_back([&nativeWin](u8 code) {
+    nativeWin.KB.ON_KEY_UP = ([&nativeWin](u8 code) {
         if (code == 'F') {
             title = L"";
             wnd_utils::set_title(nativeWin.get_wnd(), L"Reset");
@@ -92,7 +92,7 @@ TEST(test_ddwin, simple_native_window1)
         return true;
     });
 
-    nativeWin.MOUSE.ON_LDOWN.push_back([&nativeWin](const MOUSE_EVENTD& ev) {
+    nativeWin.MOUSE.ON_LDOWN = ([&nativeWin](const MOUSE_EVENTD& ev) {
         if (ev.code == VK_LBUTTON &&
             ev.type == MOUSE_EVENTD::TYPE::down) {
             wnd_utils::set_title(nativeWin.get_wnd(), str_utils::str_format(L"ON_LDOWN:pt:%d,%d", ev.x, ev.y).c_str());
@@ -104,7 +104,7 @@ TEST(test_ddwin, simple_native_window1)
 
         return true;
     });
-    nativeWin.MOUSE.ON_LUP.push_back([&nativeWin](const MOUSE_EVENTD& ev) {
+    nativeWin.MOUSE.ON_LUP = ([&nativeWin](const MOUSE_EVENTD& ev) {
         if (ev.code == VK_LBUTTON &&
             ev.type == MOUSE_EVENTD::TYPE::up) {
             wnd_utils::set_title(nativeWin.get_wnd(), str_utils::str_format(L"ON_LUP:pt:%d,%d", ev.x, ev.y).c_str());
@@ -115,7 +115,7 @@ TEST(test_ddwin, simple_native_window1)
         }
         return true;
     });
-    nativeWin.MOUSE.ON_LDBCLICK.push_back([&nativeWin](const MOUSE_EVENTD& ev) {
+    nativeWin.MOUSE.ON_LDBCLICK = ([&nativeWin](const MOUSE_EVENTD& ev) {
         if (ev.code == VK_LBUTTON &&
             ev.type == MOUSE_EVENTD::TYPE::dbclick) {
             wnd_utils::set_title(nativeWin.get_wnd(), str_utils::str_format(L"ON_LDBCLICK:pt:%d,%d", ev.x, ev.y).c_str());
@@ -127,7 +127,7 @@ TEST(test_ddwin, simple_native_window1)
         return true;
     });
 
-    nativeWin.MOUSE.ON_RDOWN.push_back([&nativeWin](const MOUSE_EVENTD& ev) {
+    nativeWin.MOUSE.ON_RDOWN = ([&nativeWin](const MOUSE_EVENTD& ev) {
         if (ev.code == VK_RBUTTON &&
             ev.type == MOUSE_EVENTD::TYPE::down) {
             wnd_utils::set_title(nativeWin.get_wnd(), str_utils::str_format(L"ON_RDOWN:pt:%d,%d", ev.x, ev.y).c_str());
@@ -138,7 +138,7 @@ TEST(test_ddwin, simple_native_window1)
         }
         return true;
     });
-    nativeWin.MOUSE.ON_RUP.push_back([&nativeWin](const MOUSE_EVENTD& ev) {
+    nativeWin.MOUSE.ON_RUP = ([&nativeWin](const MOUSE_EVENTD& ev) {
         if (ev.code == VK_RBUTTON &&
             ev.type == MOUSE_EVENTD::TYPE::up) {
             wnd_utils::set_title(nativeWin.get_wnd(), str_utils::str_format(L"ON_RUP:pt:%d,%d", ev.x, ev.y).c_str());
@@ -149,7 +149,7 @@ TEST(test_ddwin, simple_native_window1)
         }
         return true;
     });
-    nativeWin.MOUSE.ON_RDBCLICK.push_back([&nativeWin](const MOUSE_EVENTD& ev) {
+    nativeWin.MOUSE.ON_RDBCLICK = ([&nativeWin](const MOUSE_EVENTD& ev) {
         if (ev.code == VK_RBUTTON &&
             ev.type == MOUSE_EVENTD::TYPE::dbclick) {
             wnd_utils::set_title(nativeWin.get_wnd(), str_utils::str_format(L"ON_RDBCLICK:pt:%d,%d", ev.x, ev.y).c_str());
@@ -161,7 +161,7 @@ TEST(test_ddwin, simple_native_window1)
         return true;
     });
 
-    nativeWin.MOUSE.ON_MDOWN.push_back([&nativeWin](const MOUSE_EVENTD& ev) {
+    nativeWin.MOUSE.ON_MDOWN = ([&nativeWin](const MOUSE_EVENTD& ev) {
         if (ev.code == VK_MBUTTON &&
             ev.type == MOUSE_EVENTD::TYPE::down) {
             wnd_utils::set_title(nativeWin.get_wnd(), str_utils::str_format(L"ON_MDOWN:pt:%d,%d", ev.x, ev.y).c_str());
@@ -172,7 +172,7 @@ TEST(test_ddwin, simple_native_window1)
         }
         return true;
     });
-    nativeWin.MOUSE.ON_MUP.push_back([&nativeWin](const MOUSE_EVENTD& ev) {
+    nativeWin.MOUSE.ON_MUP = ([&nativeWin](const MOUSE_EVENTD& ev) {
         if (ev.code == VK_MBUTTON &&
             ev.type == MOUSE_EVENTD::TYPE::up) {
             wnd_utils::set_title(nativeWin.get_wnd(), str_utils::str_format(L"ON_MUP:pt:%d,%d", ev.x, ev.y).c_str());
@@ -183,7 +183,7 @@ TEST(test_ddwin, simple_native_window1)
         }
         return true;
     });
-    nativeWin.MOUSE.ON_MDBCLICK.push_back([&nativeWin](const MOUSE_EVENTD& ev) {
+    nativeWin.MOUSE.ON_MDBCLICK = ([&nativeWin](const MOUSE_EVENTD& ev) {
         if (ev.code == VK_MBUTTON &&
             ev.type == MOUSE_EVENTD::TYPE::dbclick) {
             wnd_utils::set_title(nativeWin.get_wnd(), str_utils::str_format(L"ON_MDBCLICK:pt:%d,%d", ev.x, ev.y).c_str());
@@ -194,7 +194,7 @@ TEST(test_ddwin, simple_native_window1)
         }
         return true;
     });
-    nativeWin.MOUSE.ON_MID_WHELL.push_back([&nativeWin](const MOUSE_EVENTD& ev) {
+    nativeWin.MOUSE.ON_MID_WHELL = ([&nativeWin](const MOUSE_EVENTD& ev) {
         if (ev.code == VK_MBUTTON &&
             ev.type == MOUSE_EVENTD::TYPE::wheel) {
             wnd_utils::set_title(nativeWin.get_wnd(), str_utils::str_format(L"ON_MID_WHELL:pt:%d,%d, del:%d", ev.x, ev.y, ev.wheel_del).c_str());
@@ -206,7 +206,7 @@ TEST(test_ddwin, simple_native_window1)
         return true;
     });
 
-    nativeWin.MOUSE.ON_MOVE.push_back([&nativeWin](const MOUSE_EVENTD& ev) {
+    nativeWin.MOUSE.ON_MOVE = ([&nativeWin](const MOUSE_EVENTD& ev) {
         if (ev.code == 0 &&
             ev.type == MOUSE_EVENTD::TYPE::move) {
             wnd_utils::set_title(nativeWin.get_wnd(), str_utils::str_format(L"ON_MOVE:pt:%d,%d", ev.x, ev.y).c_str());
@@ -217,7 +217,7 @@ TEST(test_ddwin, simple_native_window1)
         }
         return true;
     });
-    nativeWin.MOUSE.ON_ENTER.push_back([&nativeWin](const MOUSE_EVENTD& ev) {
+    nativeWin.MOUSE.ON_ENTER = ([&nativeWin](const MOUSE_EVENTD& ev) {
         if (ev.code == 0 &&
             ev.type == MOUSE_EVENTD::TYPE::enter) {
             wnd_utils::set_title(nativeWin.get_wnd(), str_utils::str_format(L"ON_ENTER:pt:%d,%d", ev.x, ev.y).c_str());
@@ -228,7 +228,7 @@ TEST(test_ddwin, simple_native_window1)
         }
         return true;
     });
-    nativeWin.MOUSE.ON_LEAVE.push_back([&nativeWin](const MOUSE_EVENTD& ev) {
+    nativeWin.MOUSE.ON_LEAVE = ([&nativeWin](const MOUSE_EVENTD& ev) {
         if (ev.code == 0 &&
             ev.type == MOUSE_EVENTD::TYPE::leave) {
             wnd_utils::set_title(nativeWin.get_wnd(), str_utils::str_format(L"ON_LEAVE:pt:%d,%d", ev.x, ev.y).c_str());

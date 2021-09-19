@@ -20,7 +20,6 @@ struct KB_EVENT
 };
 
 using KB_EVENT_CB = std::function<bool(u8)>;
-using KB_EVENT_CBS = std::list<KB_EVENT_CB>;
 
 class ddkeyboard : private nocopyable
 {
@@ -39,14 +38,14 @@ public:
     u32 kb_events_max_size = 16;
 
 public:
-    KB_EVENT_CBS ON_KEY_DOWN;
-    KB_EVENT_CBS ON_KEY_UP;
-    KB_EVENT_CBS ON_CHAR;
+    KB_EVENT_CB ON_KEY_DOWN;
+    KB_EVENT_CB ON_KEY_UP;
+    KB_EVENT_CB ON_CHAR;
 
 private:
     void trim_kb_events();
     void push_kb_event(const KB_EVENT& kb_event);
-    void call_cbs(const KB_EVENT_CBS& cbs, u8 code);
+    bool call_cbs(const KB_EVENT_CB& cb, u8 code);
 };
 
 END_NSP_DDM
