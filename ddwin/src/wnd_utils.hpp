@@ -106,5 +106,5 @@ inline ddstr wnd_utils::get_title(HWND hwnd)
     return title.c_str();
 }
 
-#endif 
 END_NSP_DDM
+#endif
