@@ -26,5 +26,8 @@
     <ClInclude Include="..\src\win_class_register.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\wnd_utils.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

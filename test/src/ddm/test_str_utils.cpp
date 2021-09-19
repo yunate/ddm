@@ -7,6 +7,13 @@
 
 BEG_NSP_DDM
 
+TEST(test_str_utils, str_fmt)
+{
+    std::string fmt = str_utils::str_format("%d.%d.%d", 1, 2, 3);
+    std::wstring wfmt = str_utils::str_format(L"%d.%d.%d", 1, 2, 3);
+
+}
+
 TEST(test_str_utils, uft16_uft8)
 {
     ddstrw str = L"hello test";

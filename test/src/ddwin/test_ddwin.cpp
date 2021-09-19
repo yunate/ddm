@@ -5,13 +5,14 @@
 #include "thread/loop/win_msg_loop.h"
 
 BEG_NSP_DDM
-TEST(test_ddwin, simple_native_window)
+TEST(test_ddwin1, simple_native_window)
 {
     HINSTANCE hinst = ::GetModuleHandle(NULL);
     win_class_register::regist_all(hinst);
     simple_native_window nativeWin;
     nativeWin.create(_DDT("simple_native_window"), hinst);
-    nativeWin.update_win_pos(500, 200, 500, 300);
+    wnd_utils::set_pos(nativeWin.get_wnd(), 500, 200);
+    wnd_utils::set_size(nativeWin.get_wnd(), 500, 300);
     win_msg_loop loop;
     loop.loop();
 }
@@ -66,7 +67,11 @@ TEST(test_ddwin, simple_native_window1)
     win_class_register::regist_all(hinst);
     simple_native_window1 nativeWin;
     (void)nativeWin.create(_DDT("simple_native_window"), hinst);
-    nativeWin.update_win_pos(500, 200, 500, 300);
+    wnd_utils::set_pos(nativeWin.get_wnd(), 500, 200);
+    wnd_utils::set_size(nativeWin.get_wnd(), 500, 300);
+    wnd_utils::set_title(nativeWin.get_wnd(), L"xxxx");
+    wnd_utils::set_title(nativeWin.get_wnd(), "aaaaaa");
+    std::wstring ss = wnd_utils::get_title(nativeWin.get_wnd());
     nativeWin.loop();
 }
 

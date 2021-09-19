@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #ifndef str_utils_h_
 #define str_utils_h_ 1
 
@@ -6,6 +7,34 @@
 BEG_NSP_DDM
 class str_utils
 {
+public:
+    template<typename ... Args>
+    static std::string str_format(const std::string& format, Args ... args)
+    {
+        auto size_buf = std::snprintf(nullptr, 0, format.c_str(), args ...) + 1;
+        std::unique_ptr<char[]> buf(new(std::nothrow) char[size_buf]);
+
+        if (buf == nullptr) {
+            return std::string("");
+        }
+
+        (void)std::snprintf(buf.get(), size_buf, format.c_str(), args ...);
+        return std::string(buf.get(), buf.get() + size_buf - 1);
+    }
+
+    template<typename ... Args>
+    static std::wstring str_format(const std::wstring& format, Args ... args)
+    {
+        auto size_buf = ::_snwprintf(nullptr, 0, format.c_str(), args ...) + 1;
+        std::unique_ptr<wchar_t[]> buf(new(std::nothrow) wchar_t[size_buf]);
+
+        if (buf == nullptr) {
+            return std::wstring(L"");
+        }
+
+        ::_snwprintf(buf.get(), size_buf, format.c_str(), args ...);
+        return std::wstring(buf.get(), buf.get() + size_buf - 1);
+    }
     ///////////////////////////////编码转换部分///////////////////////////////////////////
 public:
     /** 宽字符转多字符,调std库中转换，注意这个转换具有原子性，也就是说多线程加速是不行的
@@ -13,42 +42,42 @@ public:
     @param [in] des 结果，编码一般为Unicode
     @return 是否成功
     */
-    static bool uft16_uft8(const ddstrw& src, ddstra& des);
+    static bool uft16_uft8(const std::wstring& src, std::string& des);
 
     /** 宽字符转多字符
     @param [in] src 源，编码一般为Unicode
     @param [in] des 结果，编码一般为Unicode
     @return 是否成功
     */
-    static bool uft16_uft8_ex(const ddstrw& src, ddstra& des);
+    static bool uft16_uft8_ex(const std::wstring& src, std::string& des);
 
     /** 多字符转宽字符（编码一般为UNICODE码），注意这个转换具有原子性，也就是说多线程加速是不行的
     @param [in] src 源，编码一般为Unicode
     @param [in] des 结果，编码一般为Unicode
     @return 是否成功
     */
-    static bool uft8_uft16(const ddstra& src, ddstrw& des);
+    static bool uft8_uft16(const std::string& src, std::wstring& des);
 
     /** 宽字符转多字符
     @param [in] src 源，编码一般为Unicode
     @param [in] des 结果，编码一般为Unicode
     @return 是否成功
     */
-    static bool uft8_uft16_ex(const ddstra& src, ddstrw& des);
+    static bool uft8_uft16_ex(const std::string& src, std::wstring& des);
 
     /** 宽字符转ANSI（编码一般为UNICODE码）
     @param [in] src 源，编码一般为Unicode
     @param [in] des 结果，编码为ANSI windows下中国编码一般为GBK
     @return 是否成功
     */
-    static bool uft16_ansi(const ddstrw& src, ddstra& des);
+    static bool uft16_ansi(const std::wstring& src, std::string& des);
 
     /** ANSI转宽字符（编码一般为UNICODE码）
     @param [in] src 源，编码为ANSI windows下中国编码一般为GBK
     @param [in] des 结果，编码一般为Unicode
     @return 是否成功
     */
-    static bool ansi_uft16(const ddstra& src, ddstrw& des);
+    static bool ansi_uft16(const std::string& src, std::wstring& des);
 
     ///////////////////////////////c字符串处理部分///////////////////////////////////////////
 public:

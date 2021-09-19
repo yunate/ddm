@@ -43,6 +43,7 @@
     <ClInclude Include="..\src\base_native_window.h" />
     <ClInclude Include="..\src\simple_native_window.h" />
     <ClInclude Include="..\src\win_class_register.h" />
+    <ClInclude Include="..\src\wnd_utils.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{27CCA0FD-A8E1-46B1-84F2-98388D518E72}</ProjectGuid>

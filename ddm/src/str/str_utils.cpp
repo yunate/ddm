@@ -6,7 +6,7 @@
 
 BEG_NSP_DDM
 
-bool str_utils::uft16_uft8(const ddstrw& src, ddstra& des)
+bool str_utils::uft16_uft8(const std::wstring& src, std::string& des)
 {
     try {
         std::wstring_convert<std::codecvt_utf8<wchar_t> > wcv;
@@ -92,7 +92,7 @@ static bool uft16_uft8_ex_core(char* dest, size_t* destLen, const wchar_t* src, 
     return (*destLen != 0);
 }
 
-bool str_utils::uft16_uft8_ex(const ddstrw& src, ddstra& des)
+bool str_utils::uft16_uft8_ex(const std::wstring& src, std::string& des)
 {
     size_t destLen = 0;
     uft16_uft8_ex_core(nullptr, &destLen, src.c_str(), src.length());
@@ -106,7 +106,7 @@ bool str_utils::uft16_uft8_ex(const ddstrw& src, ddstra& des)
     return res;
 }
 
-bool str_utils::uft8_uft16(const ddstra& src, ddstrw& des)
+bool str_utils::uft8_uft16(const std::string& src, std::wstring& des)
 {
     try {
         std::wstring_convert<std::codecvt_utf8<wchar_t> > wcv;
@@ -179,7 +179,7 @@ static bool uft8_uft16_ex_core(wchar_t* dest, size_t* destLen, const char* src, 
     return false;
 }
 
-bool str_utils::uft8_uft16_ex(const ddstra& src, ddstrw& des)
+bool str_utils::uft8_uft16_ex(const std::string& src, std::wstring& des)
 {
     size_t destLen = 0;
     uft8_uft16_ex_core(nullptr, &destLen, src.c_str(), src.length());
@@ -193,7 +193,7 @@ bool str_utils::uft8_uft16_ex(const ddstra& src, ddstrw& des)
     return res;
 }
 
-bool str_utils::uft16_ansi(const ddstrw& src, ddstra& des)
+bool str_utils::uft16_ansi(const std::wstring& src, std::string& des)
 {
     setlocale(LC_CTYPE, "");
     std::mbstate_t state = {};
@@ -221,7 +221,7 @@ bool str_utils::uft16_ansi(const ddstrw& src, ddstra& des)
     return true;
 }
 
-bool str_utils::ansi_uft16(const ddstra& src, ddstrw& des)
+bool str_utils::ansi_uft16(const std::string& src, std::wstring& des)
 {
     setlocale(LC_CTYPE, "");
     std::mbstate_t state = {};

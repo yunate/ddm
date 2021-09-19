@@ -5,7 +5,7 @@ BEG_NSP_DDM
 
 int test_main()
 {
-    TCF.insert_white_type("test_thread");
+    TCF.insert_white_type("test_ddwin");
     TCF.run();
     ::system("pause");
     return 0;
