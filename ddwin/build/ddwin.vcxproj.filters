@@ -15,6 +15,12 @@
     <ClCompile Include="..\src\win_class_register.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\ddkeyboard.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ddmouse.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\base_native_window.h">
@@ -27,6 +33,12 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\src\wnd_utils.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ddmouse.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ddkeyboard.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

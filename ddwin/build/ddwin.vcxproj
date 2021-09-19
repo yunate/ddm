@@ -36,11 +36,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\base_native_window.cpp" />
+    <ClCompile Include="..\src\ddkeyboard.cpp" />
+    <ClCompile Include="..\src\ddmouse.cpp" />
     <ClCompile Include="..\src\simple_native_window.cpp" />
     <ClCompile Include="..\src\win_class_register.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\base_native_window.h" />
+    <ClInclude Include="..\src\ddmouse.h" />
+    <ClInclude Include="..\src\ddkeyboard.h" />
     <ClInclude Include="..\src\simple_native_window.h" />
     <ClInclude Include="..\src\win_class_register.h" />
     <ClInclude Include="..\src\wnd_utils.hpp" />

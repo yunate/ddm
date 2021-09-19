@@ -1,40 +1,28 @@
-#define _CRT_SECURE_NO_WARNINGS
 #ifndef str_utils_h_
 #define str_utils_h_ 1
 
 #include "g_def.h"
-
+#include <stdarg.h>
 BEG_NSP_DDM
 class str_utils
 {
 public:
-    template<typename ... Args>
-    static std::string str_format(const std::string& format, Args ... args)
+    template<class ...Args>
+    inline static std::string str_format(const std::string& format, Args... args)
     {
-        auto size_buf = std::snprintf(nullptr, 0, format.c_str(), args ...) + 1;
-        std::unique_ptr<char[]> buf(new(std::nothrow) char[size_buf]);
-
-        if (buf == nullptr) {
-            return std::string("");
-        }
-
-        (void)std::snprintf(buf.get(), size_buf, format.c_str(), args ...);
-        return std::string(buf.get(), buf.get() + size_buf - 1);
+        char buff[10240];
+        int cnt = ::sprintf_s(buff, std::size(buff), format.c_str(), args...);
+        return buff;
     }
 
-    template<typename ... Args>
-    static std::wstring str_format(const std::wstring& format, Args ... args)
+    template<class ...Args>
+    static std::wstring str_format(const std::wstring& format, Args...args)
     {
-        auto size_buf = ::_snwprintf(nullptr, 0, format.c_str(), args ...) + 1;
-        std::unique_ptr<wchar_t[]> buf(new(std::nothrow) wchar_t[size_buf]);
-
-        if (buf == nullptr) {
-            return std::wstring(L"");
-        }
-
-        ::_snwprintf(buf.get(), size_buf, format.c_str(), args ...);
-        return std::wstring(buf.get(), buf.get() + size_buf - 1);
+        wchar_t buff[10240];
+        int cnt = ::swprintf_s(buff, std::size(buff), format.c_str(), args...);
+        return buff;
     }
+
     ///////////////////////////////编码转换部分///////////////////////////////////////////
 public:
     /** 宽字符转多字符,调std库中转换，注意这个转换具有原子性，也就是说多线程加速是不行的

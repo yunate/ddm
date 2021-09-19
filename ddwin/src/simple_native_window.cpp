@@ -10,19 +10,24 @@ simple_native_window::simple_native_window()
 {
 }
 
-LRESULT CALLBACK simple_native_window::win_proc_chain(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+bool simple_native_window::win_proc_chain(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
-    return S_FALSE;
+    if (KB.on_msg(hWnd, uMsg, wParam, lParam)) {
+        return true;
+    }
+    if (MOUSE.on_msg(hWnd, uMsg, wParam, lParam)) {
+        return true;
+    }
+    return false;
 }
 
 bool simple_native_window::create(const ddstr& winName, HINSTANCE hInst)
 {
-    m_inst = hInst;
     m_hWnd = ::CreateWindowEx(WS_EX_OVERLAPPEDWINDOW,
                               get_class_name().c_str(), winName.c_str(),
                               WS_OVERLAPPEDWINDOW,
                               CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,
-                              0, 0, m_inst, this);// 传给WM_CREATE事件响应
+                              0, 0, hInst, this);// 传给WM_CREATE事件响应
     if (m_hWnd == NULL) {
         return false;
     }

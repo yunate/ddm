@@ -7,7 +7,7 @@ LRESULT base_native_window::win_proc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM
     // 获得实列对象，处理窗口事件
     base_native_window* pThis = (base_native_window*)::GetWindowLongPtr(hWnd, GWLP_USERDATA);
     if (pThis != NULL) {
-        if (S_OK == pThis->win_proc_chain(hWnd, uMsg, wParam, lParam)) {
+        if (pThis->win_proc_chain(hWnd, uMsg, wParam, lParam)) {
             return S_OK;
         }
     } else if (WM_CREATE == uMsg) {

@@ -14,6 +14,7 @@ public:
     static bool set_pos(HWND hwnd, s32 x, s32 y);
     static bool set_size(HWND hwnd, s32 w, s32 h);
     static void get_rect(HWND hwnd, RECT& rect);
+    static void get_client_rect(HWND hwnd, RECT& rect);
 
     // ÏÔÊ¾Òþ²Ø
     static void show(HWND hwnd, bool show);
@@ -46,6 +47,11 @@ inline bool wnd_utils::set_size(HWND hwnd, s32 w, s32 h)
 inline void wnd_utils::get_rect(HWND hwnd, RECT& rect)
 {
     (void)::GetWindowRect(hwnd, &rect);
+}
+
+inline void wnd_utils::get_client_rect(HWND hwnd, RECT& rect)
+{
+    (void)::GetClientRect(hwnd, &rect);
 }
 
 inline void wnd_utils::show(HWND hwnd, bool show)
