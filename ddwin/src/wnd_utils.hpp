@@ -1,4 +1,6 @@
-#pragma once
+#ifndef wnd_utils_h_
+#define wnd_utils_h_
+
 #include "g_def.h"
 
 #include <windows.h>
@@ -104,4 +106,5 @@ inline ddstr wnd_utils::get_title(HWND hwnd)
     return title.c_str();
 }
 
+#endif 
 END_NSP_DDM
