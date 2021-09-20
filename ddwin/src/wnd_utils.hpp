@@ -13,6 +13,7 @@ public:
     // Œª÷√/¥Û–°
     static bool set_pos(HWND hwnd, s32 x, s32 y);
     static bool set_size(HWND hwnd, s32 w, s32 h);
+    static bool set_client_size(HWND hwnd, s32 w, s32 h);
     static void get_rect(HWND hwnd, RECT& rect);
     static void get_client_rect(HWND hwnd, RECT& rect);
 
@@ -42,6 +43,35 @@ inline bool wnd_utils::set_pos(HWND hwnd, s32 x, s32 y)
 inline bool wnd_utils::set_size(HWND hwnd, s32 w, s32 h)
 {
     return TRUE == ::SetWindowPos(hwnd, NULL, 0, 0, w, h, SWP_NOZORDER | SWP_NOMOVE);
+}
+
+inline bool wnd_utils::set_client_size(HWND hwnd, s32 w, s32 h)
+{
+    bool isshow = is_show(hwnd);
+    bool result = false;
+    do 
+    {
+        if (isshow) {
+            show(hwnd, false);
+        }
+
+        if (!set_size(hwnd, 200, 200)) {
+            break;
+        }
+
+        RECT rect;
+        get_rect(hwnd, rect);
+        RECT rect1;
+        get_client_rect(hwnd, rect1);
+        LONG wdel = (rect.right - rect.left) - (rect1.right - rect1.left);
+        LONG hdel = (rect.bottom - rect.top) - (rect1.bottom - rect1.top);
+        result = set_size(hwnd, w + wdel, h + hdel);
+    } while (0);
+    
+    if (isshow) {
+        show(hwnd, true);
+    }
+    return result;
 }
 
 inline void wnd_utils::get_rect(HWND hwnd, RECT& rect)
