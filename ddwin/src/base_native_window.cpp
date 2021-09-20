@@ -4,6 +4,7 @@ BEG_NSP_DDM
 
 LRESULT base_native_window::win_proc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
+    g_win_class_register;
     // 获得实列对象，处理窗口事件
     base_native_window* pThis = (base_native_window*)::GetWindowLongPtr(hWnd, GWLP_USERDATA);
     if (pThis != NULL) {

@@ -77,16 +77,14 @@ TEST(test_ddwin, simple_native_window1)
     wnd_utils::set_pos(nativeWin.get_wnd(), 500, 200);
     wnd_utils::set_size(nativeWin.get_wnd(), 500, 300);
 
-    static std::wstring title;
     nativeWin.KB.ON_KEY_DOWN = ([&nativeWin](u8 code) {
-        title = (code);
-        wnd_utils::set_title(nativeWin.get_wnd(), title.c_str());
+        wnd_utils::set_title(nativeWin.get_wnd(), (s8*)&code);
         return true;
     });
 
     nativeWin.KB.ON_KEY_UP = ([&nativeWin](u8 code) {
-        if (code == 'F') {
-            title = L"";
+        bool isCtrl = ddkeyboard::is_ctrl_down();
+        if (isCtrl && code == 'C') {
             wnd_utils::set_title(nativeWin.get_wnd(), L"Reset");
         }
         return true;

@@ -27,27 +27,28 @@ bool ddkeyboard::is_caplock()
 //////////////////////////////////////////////////////////////////////////
 bool ddkeyboard::on_msg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
+    bool result = false;
     switch (msg)
     {
     case WM_KEYDOWN:
     case WM_SYSKEYDOWN: // sys key commands need to be handled to track ALT key (VK_MENU) and F10
         if (!(lParam & 0x40000000) || key_down_repeat) {
-            call_cbs(ON_KEY_DOWN, static_cast<u8>(wParam));
+            result = call_cbs(ON_KEY_DOWN, static_cast<u8>(wParam));
             push_kb_event(KB_EVENT{ true, static_cast<u8>(wParam) });
             trim_kb_events();
         }
         break;
     case WM_KEYUP:
     case WM_SYSKEYUP:
-        call_cbs(ON_KEY_UP, static_cast<u8>(wParam));
+        result = call_cbs(ON_KEY_UP, static_cast<u8>(wParam));
         push_kb_event(KB_EVENT{ false, static_cast<u8>(wParam) });
         trim_kb_events();
         break;
     case WM_CHAR:
-        call_cbs(ON_CHAR, static_cast<u8>(wParam));
+        result = call_cbs(ON_CHAR, static_cast<u8>(wParam));
         break;
     }
-    return false;
+    return result;
 }
 
 void ddkeyboard::trim_kb_events()
@@ -64,6 +65,9 @@ void ddkeyboard::push_kb_event(const KB_EVENT& kb_event)
 
 bool ddkeyboard::call_cbs(const KB_EVENT_CB& cb, u8 code)
 {
+    if (cb == nullptr) {
+        return false;
+    }
     return cb(code);
 }
 END_NSP_DDM

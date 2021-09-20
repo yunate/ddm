@@ -221,6 +221,9 @@ void ddmouse::push_mouse_event(const MOUSE_EVENTD& kb_event)
 
 bool ddmouse::call_cbs(const MOUSE_EVENT_CB& cb, const MOUSE_EVENTD& ev)
 {
+    if (cb == nullptr) {
+        return false;
+    }
     return cb(ev);
 }
 
