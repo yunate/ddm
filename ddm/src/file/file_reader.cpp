@@ -1,5 +1,6 @@
 
 #include "file_reader.h"
+#include "ddassert.h"
 #ifdef DD_WINDOW
 BEG_NSP_DDM
 file_reader::file_reader(const ddstr& path) :

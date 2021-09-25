@@ -1,4 +1,5 @@
 #include "simple_loop.h"
+#include "ddassert.h"
 BEG_NSP_DDM
 
 simple_loop::~simple_loop()

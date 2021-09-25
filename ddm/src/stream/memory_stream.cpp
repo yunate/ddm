@@ -1,5 +1,6 @@
 
 #include "memory_stream.h"
+#include "ddassert.h"
 #include "ddmath.h"
 #include <malloc.h>
 #include <memory.h>

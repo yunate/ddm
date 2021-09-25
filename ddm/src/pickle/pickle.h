@@ -3,6 +3,7 @@
 #define PIKLE_H_
 
 #include "g_def.h"
+#include "ddassert.h"
 #include "ddmath.h"
 #include "traits.hpp"
 #include "ddmacro.hpp"

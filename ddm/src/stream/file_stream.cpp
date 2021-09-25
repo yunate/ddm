@@ -1,4 +1,5 @@
 #include "file_stream.h"
+#include "ddassert.h"
 #ifdef DD_WINDOW
 #include <tchar.h>
 

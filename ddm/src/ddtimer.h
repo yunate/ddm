@@ -15,6 +15,8 @@
 BEG_NSP_DDM
 
 // 纳秒
+
+static const auto g_system_steady = std::chrono::system_clock::now().time_since_epoch() - std::chrono::steady_clock::now().time_since_epoch();
 class ddtimer
 {
 public:
@@ -28,14 +30,74 @@ public:
     // 纳秒
     static inline u64 now()
     {
-        return std::chrono::steady_clock::now().time_since_epoch().count();
+        return (std::chrono::steady_clock::now().time_since_epoch() + g_system_steady).count();
     }
 
     // 毫秒
     static inline u64 now_ms()
     {
-        auto dur = std::chrono::high_resolution_clock::now().time_since_epoch();
+        auto dur = std::chrono::system_clock::now().time_since_epoch();
         return (u64)std::chrono::duration_cast<std::chrono::milliseconds>(dur).count();
+    }
+
+    struct time_info
+    {
+        // 年月日时分秒
+        u32 year;
+        u32 mon;
+        u32 day;
+        u32 hour;
+        u32 min;
+        u32 sec;
+        u32 milli;
+        u32 micro;
+        u32 nano;
+
+        // 周几
+        u32 weekday;
+
+        // 一年的第几天
+        u32 yearday;
+    };
+
+    static inline void now_fmt(time_info& ti)
+    {
+        std::chrono::system_clock::time_point n = std::chrono::system_clock::now();
+        time_fmt(std::chrono::system_clock::now().time_since_epoch().count(), 10000000, ti);
+    }
+
+    static inline void ms_fmt(u64 ms_epoch, time_info& ti)
+    {
+        time_fmt(ms_epoch, 1000, ti);
+    }
+
+    static inline void micro_fmt(u64 micro_epoch, time_info& ti)
+    {
+        time_fmt(micro_epoch, 1000000, ti);
+    }
+
+    static inline void nano_fmt(u64 nano_epoch, time_info& ti)
+    {
+        time_fmt(nano_epoch, 1000000000, ti);
+    }
+
+    static inline void time_fmt(u64 epoch, u64 to_sec, time_info& ti)
+    {
+        time_t tt = epoch / to_sec;
+        static::tm local_tm;
+        (void)::localtime_s(&local_tm, &tt);
+        ti.year = local_tm.tm_year + 1900;
+        ti.mon = local_tm.tm_mon + 1;
+        ti.day = local_tm.tm_mday;
+        ti.hour = local_tm.tm_hour;
+        ti.min = local_tm.tm_min;
+        ti.sec = local_tm.tm_sec;
+        u64 timeepoch = epoch * (1000000000 / to_sec);
+        ti.milli = (timeepoch % 1000000000) / 1000000;
+        ti.micro = (timeepoch % 1000000) / 1000;
+        ti.nano = (timeepoch % 1000);
+        ti.weekday = local_tm.tm_wday + 1;
+        ti.yearday = local_tm.tm_yday + 1;
     }
 
     // sleep_time 单位毫秒

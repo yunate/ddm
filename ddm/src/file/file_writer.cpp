@@ -1,5 +1,6 @@
 
 #include "file_writer.h"
+#include "ddassert.h"
 #ifdef DD_WINDOW
 BEG_NSP_DDM
 

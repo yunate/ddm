@@ -78,6 +78,10 @@
 // expend
 #define DD_EXPEND(...) __VA_ARGS__
 
+// string
+#define _DD_TOSTRING(x) #x
+#define DD_TOSTRING(x) DD_EXPEND(_DD_TOSTRING(x))
+
 // concat
 #define _DD_CONCAT(A, B) A##B
 #define DD_CONCAT(A, B) DD_EXPEND(_DD_CONCAT(A, B))

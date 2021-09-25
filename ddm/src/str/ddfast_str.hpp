@@ -3,6 +3,7 @@
 #define ddfast_str_basic_hpp
 
 #include "g_def.h"
+#include "ddassert.h"
 
 BEG_NSP_DDM
 template <class t>
