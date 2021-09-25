@@ -19,9 +19,9 @@ BEG_NSP_DDM
     (1 != ::_CrtDbgReport(_CRT_ASSERT, __FILE__, __LINE__, NULL, format, __VA_ARGS__)) || \
     (_CrtDbgBreak(), 0))
 #else
-#define DD_ASSERT(x) ((void)0)
-#define DD_ASSERT_FMTW(expr, format, ...)
-#define DD_ASSERT_FMTA(expr, format, ...)
+#define DD_ASSERT(x) (x);
+#define DD_ASSERT_FMTW(expr, format, ...) (expr);
+#define DD_ASSERT_FMTA(expr, format, ...) (expr);
 #endif
 
 #ifdef _UNICODE 
