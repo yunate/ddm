@@ -14,8 +14,6 @@
 
 BEG_NSP_DDM
 
-// дицК
-
 static const auto g_system_steady = std::chrono::system_clock::now().time_since_epoch() - std::chrono::steady_clock::now().time_since_epoch();
 class ddtimer
 {
