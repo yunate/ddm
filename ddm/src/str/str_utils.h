@@ -10,7 +10,7 @@ public:
     template<class ...Args>
     inline static std::string str_format(const std::string& format, Args... args)
     {
-        char buff[10240];
+        char buff[5120];
         int cnt = ::sprintf_s(buff, std::size(buff), format.c_str(), args...);
         return buff;
     }
@@ -18,7 +18,7 @@ public:
     template<class ...Args>
     static std::wstring str_format(const std::wstring& format, Args...args)
     {
-        wchar_t buff[10240];
+        wchar_t buff[5120];
         int cnt = ::swprintf_s(buff, std::size(buff), format.c_str(), args...);
         return buff;
     }
