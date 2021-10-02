@@ -14,12 +14,12 @@ ini_file::ini_file(const ddstr& sPath)
 
 sp_ini_file ini_file::create_obj(const ddstr& sPath, bool bAlwaysCreate)
 {
-    if (dir_uitls::is_path_exist(sPath)) {
+    if (dir_utils::is_path_exist(sPath)) {
         return sp_ini_file(new(std::nothrow) ini_file(sPath));
     }
 
     if (bAlwaysCreate) {
-        dir_uitls::create_file(sPath);
+        dir_utils::create_file(sPath);
         return sp_ini_file(new(std::nothrow) ini_file(sPath));
     }
 

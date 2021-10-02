@@ -27,7 +27,7 @@ void win_msg_loop::loop()
             ::TranslateMessage(&m_msg);
             ::DispatchMessage(&m_msg);
         }
-	}
+    }
 }
 
 bool win_msg_loop::filter_msg(MSG* msg)

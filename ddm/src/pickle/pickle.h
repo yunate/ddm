@@ -136,6 +136,7 @@ public:
 
     inline pickle_reader& read_buff(void* buff, u32 buff_len)
     {
+        (buff_len);
         u32 len = 0;
         (void)read_next_pod(len);
         DD_ASSERT(buff_len >= len);

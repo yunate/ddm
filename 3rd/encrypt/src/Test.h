@@ -4,12 +4,12 @@
 using namespace std;
 
 /*
-	这个就不写例子了
+    这个就不写例子了
 */
 namespace utilstest
 {
-	static void Test_Encrypt()
-	{
-	
-	}
+    static void Test_Encrypt()
+    {
+    
+    }
 }

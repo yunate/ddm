@@ -22,6 +22,9 @@
     <Filter Include="src\ddwin">
       <UniqueIdentifier>{9b46b848-4dbf-4f71-a396-2cc3087d4c11}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\hook">
+      <UniqueIdentifier>{ccd3a690-7ee7-42b1-9754-3e1085bda8fc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
@@ -80,6 +83,9 @@
     </ClCompile>
     <ClCompile Include="..\src\test_case_ddwindows_utils.cpp">
       <Filter>src\ddm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\hook\test_case_classic_syringe.cpp">
+      <Filter>src\hook</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

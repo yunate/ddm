@@ -105,7 +105,7 @@ void sha1_init(sha1_context *context)
  */
 int sha1_final(sha1_context *context, unsigned char *hash)
 {
-	int i;
+    int i;
 
     if (context->Corrupted)
     {
@@ -118,8 +118,8 @@ int sha1_final(sha1_context *context, unsigned char *hash)
         context->Computed = 1;
     }
 
-	for (i = 0; i < 20; ++ i)
-		hash[i] = *((unsigned char *)context->Message_Digest + i - i % 4 + 3 - i % 4);
+    for (i = 0; i < 20; ++ i)
+        hash[i] = *((unsigned char *)context->Message_Digest + i - i % 4 + 3 - i % 4);
 
     return 1;
 }

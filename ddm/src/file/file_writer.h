@@ -57,11 +57,11 @@ using sp_file_writer = std::shared_ptr<file_writer>;
 
 static bool create_file_if_not_exit(const ddstr& path)
 {
-    if (!dir_uitls::is_path_exist(path)) {
-        return dir_uitls::create_file(path);
+    if (!dir_utils::is_path_exist(path)) {
+        return dir_utils::create_file(path);
     }
 
-    if (dir_uitls::is_dir(path)) {
+    if (dir_utils::is_dir(path)) {
         return false;
     }
 

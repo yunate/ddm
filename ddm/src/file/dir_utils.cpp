@@ -5,7 +5,7 @@
 #include <Windows.h>
 BEG_NSP_DDM
 
-bool dir_uitls::is_dir(const ddstr& path)
+bool dir_utils::is_dir(const ddstr& path)
 {
     DWORD ftyp = ::GetFileAttributes(path.c_str());
 
@@ -17,13 +17,13 @@ bool dir_uitls::is_dir(const ddstr& path)
     return false;
 }
 
-bool dir_uitls::is_path_exist(const ddstr& filePath)
+bool dir_utils::is_path_exist(const ddstr& filePath)
 {
     DWORD dwAttrib = ::GetFileAttributes(filePath.c_str());
     return (INVALID_FILE_ATTRIBUTES != dwAttrib);
 }
 
-bool dir_uitls::create_file(const ddstr& filePath)
+bool dir_utils::create_file(const ddstr& filePath)
 {
     DWORD dwDesiredAccess = GENERIC_READ | GENERIC_WRITE;
     DWORD dwShareMode = 0;
@@ -47,12 +47,12 @@ bool dir_uitls::create_file(const ddstr& filePath)
     return true;
 }
 
-bool dir_uitls::delete_file(const ddstr& dfilePath)
+bool dir_utils::delete_file(const ddstr& dfilePath)
 {
     return (::DeleteFile(dfilePath.c_str()) == TRUE);
 }
 
-bool dir_uitls::delete_dir(const ddstr& dirPath)
+bool dir_utils::delete_dir(const ddstr& dirPath)
 {
     if (!is_path_exist(dirPath)) {
         return false;
@@ -100,7 +100,7 @@ bool dir_uitls::delete_dir(const ddstr& dirPath)
     return true;
 }
 
-bool dir_uitls::create_dir(const ddstr& dirPath)
+bool dir_utils::create_dir(const ddstr& dirPath)
 {
     if (is_path_exist(dirPath)) {
         return true;
@@ -109,7 +109,7 @@ bool dir_uitls::create_dir(const ddstr& dirPath)
     return ::CreateDirectory(dirPath.c_str(), nullptr) == TRUE;
 }
 
-bool dir_uitls::create_dir_ex(const ddstr& dirPath)
+bool dir_utils::create_dir_ex(const ddstr& dirPath)
 {
     if (dirPath.empty()) {
         return false;
@@ -140,7 +140,7 @@ bool dir_uitls::create_dir_ex(const ddstr& dirPath)
     return true;
 }
 
-void dir_uitls::enum_dir(const ddstr& dirPath, std::function<void(const ddstr & path, bool isDir)> callBack)
+void dir_utils::enum_dir(const ddstr& dirPath, std::function<void(const ddstr & path, bool isDir)> callBack)
 {
     ddstr rootPath = dirPath;
 
@@ -197,7 +197,7 @@ void dir_uitls::enum_dir(const ddstr& dirPath, std::function<void(const ddstr & 
     }
 }
 
-void dir_uitls::enum_dir(const ddstr& dirPath, std::vector<ddstr>& out, std::function<bool(const ddstr&, bool)> filter)
+void dir_utils::enum_dir(const ddstr& dirPath, std::vector<ddstr>& out, std::function<bool(const ddstr&, bool)> filter)
 {
     enum_dir(dirPath, [filter, &out](const ddstr& path, bool isDir) {
                 if (filter == nullptr || filter(path, isDir)) {

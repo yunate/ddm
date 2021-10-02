@@ -1,24 +1,26 @@
 
 #include "test_case_factory.h"
-#include "windows/ddwin_utils.h"
+#include "windows/ddprocess.h"
+
 
 BEG_NSP_DDM
 TEST(test_win_utils, last_error_msg)
 {
-	std::wstring name = get_process_name(-1);
-	DDLOG_LASTERROR();
+    DDLOG_LASTERROR();
 }
 TEST(test_win_utils, get_process_id)
 {
-	std::wstring name = get_process_name(5288);
-	std::vector<DWORD> ids;
-	if (!get_process_ids(L"notepad.exe", ids)) {
-		DDLOG(WARNING, "get_process_ids failure");
-	}
+    ddprocess p1;
+    (void)p1.init(std::wstring(L"notepad.exe"));
 
-	std::wstring fullPath = get_process_fullpath(5288);
-	int i = 0;
-	++i;
+    ddprocess p2;
+    (void)p2.init(11104);
+
+    ddprocess p3;
+    HANDLE hProcess = ::OpenProcess(PROCESS_ALL_ACCESS, FALSE, 11104);
+    if (hProcess != NULL) {
+        (void)p3.init(hProcess, 0);
+    }
 }
 
 END_NSP_DDM

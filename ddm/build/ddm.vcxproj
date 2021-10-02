@@ -36,7 +36,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\cmd_line_util.cpp" />
+    <ClCompile Include="..\src\ddlog.cpp" />
     <ClCompile Include="..\src\file\big_file_utils.cpp" />
+    <ClCompile Include="..\src\file\ddpath.cpp" />
     <ClCompile Include="..\src\file\dir_utils.cpp" />
     <ClCompile Include="..\src\file\file_reader.cpp" />
     <ClCompile Include="..\src\file\file_writer.cpp" />
@@ -56,6 +58,7 @@
     <ClCompile Include="..\src\thread\task\heartbeat_task_queue.cpp" />
     <ClCompile Include="..\src\thread\task\simple_task_queue.cpp" />
     <ClCompile Include="..\src\thread\thread_manager\simple_thread_manager.cpp" />
+    <ClCompile Include="..\src\windows\ddprocess.cpp" />
     <ClCompile Include="..\src\windows\ddwin_utils.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -65,6 +68,7 @@
     <ClInclude Include="..\src\ddmacro.hpp" />
     <ClInclude Include="..\src\ddlog.hpp" />
     <ClInclude Include="..\src\ddinclude.h" />
+    <ClInclude Include="..\src\file\ddpath.h" />
     <ClInclude Include="..\src\member_count.hpp" />
     <ClInclude Include="..\src\sys.h" />
     <ClInclude Include="..\src\ddassert.h" />
@@ -108,6 +112,7 @@
     <ClInclude Include="..\src\thread\thread_manager\task_thread.h" />
     <ClInclude Include="..\src\traits.hpp" />
     <ClInclude Include="..\src\ddtimer.h" />
+    <ClInclude Include="..\src\windows\ddprocess.h" />
     <ClInclude Include="..\src\windows\ddwin_utils.h" />
   </ItemGroup>
   <ItemGroup>

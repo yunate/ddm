@@ -198,6 +198,7 @@ inline u32 sync_n_buff<C<T, A>, ty>::push(const C<T, A>& c, u32 wait_time/* = MA
 template<template<class, class> class C, sync_buff_ty ty, class T, class A>
 inline T sync_n_buff<C<T, A>, ty>::pop()
 {
+#pragma warning(disable:4984)
     if constexpr (ty == sync_buff_ty::sync_buff_ty_list)
     {
         std::lock_guard<sync_n_buff<C<T, A>, ty>> lock(*this);

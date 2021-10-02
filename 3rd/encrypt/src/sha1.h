@@ -46,14 +46,14 @@ typedef struct sha1_context
 extern "C" {
 #endif // __cplusplus
 
-	/*
-	 *  Function Prototypes
-	 */
-	void sha1_init(sha1_context *);
-	int sha1_final(sha1_context *, unsigned char *);
-	void sha1_update(sha1_context *,
-		const unsigned char *,
-		unsigned);
+    /*
+     *  Function Prototypes
+     */
+    void sha1_init(sha1_context *);
+    int sha1_final(sha1_context *, unsigned char *);
+    void sha1_update(sha1_context *,
+        const unsigned char *,
+        unsigned);
 
 #ifdef __cplusplus
 }

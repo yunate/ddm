@@ -14,8 +14,8 @@ TEST(test_file_utils, uft16_uft8)
     // D:\\workspaces\\C++_workspaces\\MyLibrary1\\bin\\Debug_Win32\\ 
 
     {
-        if (!dir_uitls::is_path_exist(L".\\2.txt")) {
-            dir_uitls::create_file(L".\\2.txt");
+        if (!dir_utils::is_path_exist(L".\\2.txt")) {
+            dir_utils::create_file(L".\\2.txt");
         }
         sp_file_writer file = create_UCS2_file_writer(L".\\2.txt");
         if (file != nullptr) {
@@ -48,20 +48,20 @@ TEST(test_file_utils, uft16_uft8)
 
 TEST(test_file_utils, create_dir_ex)
 {
-    dir_uitls::create_dir_ex(_DDT("E:\\aa\\bb\\cc"));
-    dir_uitls::create_dir_ex(_DDT("E:\\aa\\bb1\\cc1\\"));
-    dir_uitls::create_dir_ex(_DDT("E:/aa/bb2\\cc2\\"));
-    dir_uitls::create_dir_ex(_DDT("E:/aa/bb2/cc2/"));
+    dir_utils::create_dir_ex(_DDT("E:\\aa\\bb\\cc"));
+    dir_utils::create_dir_ex(_DDT("E:\\aa\\bb1\\cc1\\"));
+    dir_utils::create_dir_ex(_DDT("E:/aa/bb2\\cc2\\"));
+    dir_utils::create_dir_ex(_DDT("E:/aa/bb2/cc2/"));
 }
 
 TEST(test_file_utils, enum_dir)
 {
     ddstr dirPath = L"E:\\VM";
     std::vector<ddstr> pathAllVec;
-    dir_uitls::enum_dir(dirPath, pathAllVec, nullptr);
+    dir_utils::enum_dir(dirPath, pathAllVec, nullptr);
 
     std::vector<ddstr> pathAllDir;
-    dir_uitls::enum_dir(dirPath, pathAllDir, [](const ddstr&, bool isDir) {
+    dir_utils::enum_dir(dirPath, pathAllDir, [](const ddstr&, bool isDir) {
         if (isDir) {
             return true;
         }
@@ -70,7 +70,7 @@ TEST(test_file_utils, enum_dir)
     });
 
     std::vector<ddstr> pathAllFile;
-    dir_uitls::enum_dir(dirPath, pathAllFile, [](const ddstr&, bool isDir) {
+    dir_utils::enum_dir(dirPath, pathAllFile, [](const ddstr&, bool isDir) {
         if (isDir) {
             return false;
         }
@@ -79,7 +79,7 @@ TEST(test_file_utils, enum_dir)
     });
 
     std::vector<ddstr> pathAllTxt;
-    dir_uitls::enum_dir(dirPath, pathAllTxt, [](const ddstr& path, bool isDir) {
+    dir_utils::enum_dir(dirPath, pathAllTxt, [](const ddstr& path, bool isDir) {
         if (isDir) {
             return false;
         }

@@ -9,7 +9,7 @@
 
 BEG_NSP_DDM
 
-class dir_uitls
+class dir_utils
 {
 public:
     /** 是否是文件夹
