@@ -300,6 +300,8 @@
     <ClInclude Include="..\src\ddsyringe.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\ddapc_syringe.cpp" />
+    <ClCompile Include="..\src\ddclassic_syringe.cpp" />
     <ClCompile Include="..\src\ddsyringe.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

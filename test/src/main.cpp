@@ -5,7 +5,7 @@ BEG_NSP_DDM
 
 int test_main()
 {
-    TCF.insert_white_type("test_classic_syringe");
+    TCF.insert_white_type("test_apc_syringe");
     TCF.run();
     ::system("pause");
     return 0;
