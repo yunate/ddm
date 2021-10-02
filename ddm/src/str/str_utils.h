@@ -11,7 +11,7 @@ public:
     inline static std::string str_format(const std::string& format, Args... args)
     {
         char buff[5120];
-        int cnt = ::sprintf_s(buff, std::size(buff), format.c_str(), args...);
+        (void)::sprintf_s(buff, std::size(buff), format.c_str(), args...);
         return buff;
     }
 
@@ -19,7 +19,7 @@ public:
     static std::wstring str_format(const std::wstring& format, Args...args)
     {
         wchar_t buff[5120];
-        int cnt = ::swprintf_s(buff, std::size(buff), format.c_str(), args...);
+        (void)::swprintf_s(buff, std::size(buff), format.c_str(), args...);
         return buff;
     }
 

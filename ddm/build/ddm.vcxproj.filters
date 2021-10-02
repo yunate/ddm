@@ -43,6 +43,9 @@
     <Filter Include="src\asm\x64">
       <UniqueIdentifier>{4e81b09c-1761-4d36-8e54-2f9e75008a31}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\windows">
+      <UniqueIdentifier>{45f44dc5-681f-4733-b06c-42534beb12a2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\cmd_line_util.cpp">
@@ -107,6 +110,9 @@
     </ClCompile>
     <ClCompile Include="..\src\thread\thread_manager\simple_thread_manager.cpp">
       <Filter>src\thread\thread_manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\windows\ddwin_utils.cpp">
+      <Filter>src\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -250,6 +256,15 @@
     </ClInclude>
     <ClInclude Include="..\src\thread\async\sync_n_buff.h">
       <Filter>src\thread\async</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ddlog.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\windows\ddwin_utils.h">
+      <Filter>src\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ddinclude.h">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

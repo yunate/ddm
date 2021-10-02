@@ -30,6 +30,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ddwin", "ddwin\build\ddwin.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "misc", "misc\build\misc.vcxproj", "{464ED606-CA9D-4655-84FF-2CE66A2B6AC0}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ddhook", "ddhook\build\ddhook.vcxproj", "{8E4AE26B-8F8F-40C2-9E7A-A02392E21E55}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug_Mdd|x64 = Debug_Mdd|x64
@@ -202,6 +204,22 @@ Global
 		{464ED606-CA9D-4655-84FF-2CE66A2B6AC0}.Release|x64.Build.0 = Release|x64
 		{464ED606-CA9D-4655-84FF-2CE66A2B6AC0}.Release|x86.ActiveCfg = Release|Win32
 		{464ED606-CA9D-4655-84FF-2CE66A2B6AC0}.Release|x86.Build.0 = Release|Win32
+		{8E4AE26B-8F8F-40C2-9E7A-A02392E21E55}.Debug_Mdd|x64.ActiveCfg = Debug|x64
+		{8E4AE26B-8F8F-40C2-9E7A-A02392E21E55}.Debug_Mdd|x64.Build.0 = Debug|x64
+		{8E4AE26B-8F8F-40C2-9E7A-A02392E21E55}.Debug_Mdd|x86.ActiveCfg = Debug|Win32
+		{8E4AE26B-8F8F-40C2-9E7A-A02392E21E55}.Debug_Mdd|x86.Build.0 = Debug|Win32
+		{8E4AE26B-8F8F-40C2-9E7A-A02392E21E55}.Debug|x64.ActiveCfg = Debug|x64
+		{8E4AE26B-8F8F-40C2-9E7A-A02392E21E55}.Debug|x64.Build.0 = Debug|x64
+		{8E4AE26B-8F8F-40C2-9E7A-A02392E21E55}.Debug|x86.ActiveCfg = Debug|Win32
+		{8E4AE26B-8F8F-40C2-9E7A-A02392E21E55}.Debug|x86.Build.0 = Debug|Win32
+		{8E4AE26B-8F8F-40C2-9E7A-A02392E21E55}.Release_Md|x64.ActiveCfg = Release|x64
+		{8E4AE26B-8F8F-40C2-9E7A-A02392E21E55}.Release_Md|x64.Build.0 = Release|x64
+		{8E4AE26B-8F8F-40C2-9E7A-A02392E21E55}.Release_Md|x86.ActiveCfg = Release|Win32
+		{8E4AE26B-8F8F-40C2-9E7A-A02392E21E55}.Release_Md|x86.Build.0 = Release|Win32
+		{8E4AE26B-8F8F-40C2-9E7A-A02392E21E55}.Release|x64.ActiveCfg = Release|x64
+		{8E4AE26B-8F8F-40C2-9E7A-A02392E21E55}.Release|x64.Build.0 = Release|x64
+		{8E4AE26B-8F8F-40C2-9E7A-A02392E21E55}.Release|x86.ActiveCfg = Release|Win32
+		{8E4AE26B-8F8F-40C2-9E7A-A02392E21E55}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -214,7 +232,7 @@ Global
 		{066A1A9E-D482-4863-B9B7-911383EF0378} = {61E977D8-89DD-4B78-AE8A-72672237EEEF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {9A14C6CA-63B2-4981-8FEC-FA8AAC6BBDE9}
 		    SolutionGuid = {56D4A83D-6978-4375-BF3D-EE0FEB6092C5}
+		SolutionGuid = {9A14C6CA-63B2-4981-8FEC-FA8AAC6BBDE9}
 	EndGlobalSection
 EndGlobal

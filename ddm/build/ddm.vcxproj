@@ -56,12 +56,15 @@
     <ClCompile Include="..\src\thread\task\heartbeat_task_queue.cpp" />
     <ClCompile Include="..\src\thread\task\simple_task_queue.cpp" />
     <ClCompile Include="..\src\thread\thread_manager\simple_thread_manager.cpp" />
+    <ClCompile Include="..\src\windows\ddwin_utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\cmd_line_util.h" />
     <ClInclude Include="..\src\color_print.h" />
     <ClInclude Include="..\src\ddfilter.h" />
     <ClInclude Include="..\src\ddmacro.hpp" />
+    <ClInclude Include="..\src\ddlog.hpp" />
+    <ClInclude Include="..\src\ddinclude.h" />
     <ClInclude Include="..\src\member_count.hpp" />
     <ClInclude Include="..\src\sys.h" />
     <ClInclude Include="..\src\ddassert.h" />
@@ -105,6 +108,7 @@
     <ClInclude Include="..\src\thread\thread_manager\task_thread.h" />
     <ClInclude Include="..\src\traits.hpp" />
     <ClInclude Include="..\src\ddtimer.h" />
+    <ClInclude Include="..\src\windows\ddwin_utils.h" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\src\asm\x64\utils.asm">
@@ -126,6 +130,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{A2273E95-E708-4485-B0A7-E628C3DA4B11}</ProjectGuid>
     <RootNamespace>ddm1</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

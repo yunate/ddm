@@ -6,6 +6,7 @@
 #include "ddkeyboard.h"
 #include "ddmouse.h"
 #include "str/str_utils.h"
+#include "ddinclude.h"
 
 BEG_NSP_DDM
 TEST(test_ddwin1, simple_native_window)

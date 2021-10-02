@@ -1,7 +1,7 @@
 
 #include "member_count.hpp"
 #include "test_case_factory.h"
-
+#include "ddinclude.h"
 #include <iostream>
 
 BEG_NSP_DDM

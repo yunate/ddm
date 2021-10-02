@@ -136,8 +136,8 @@ inline void wnd_utils::set_title(HWND hwnd, const char* title)
 
 inline ddstr wnd_utils::get_title(HWND hwnd)
 {
-    u32 len = ::GetWindowTextLength(hwnd);
-    ddstr title(len + 1, 0);
+    s32 len = ::GetWindowTextLength(hwnd);
+    ddstr title((size_t)(len) + 1, 0);
     ::GetWindowText(hwnd, ((ddchar*)title.data()), len + 1);
     return title.c_str();
 }

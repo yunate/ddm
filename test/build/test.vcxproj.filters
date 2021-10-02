@@ -78,6 +78,9 @@
     <ClCompile Include="..\src\ddm\thread\async\test_sync_n_buff.cpp">
       <Filter>src\ddm\thread\async</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\test_case_ddwindows_utils.cpp">
+      <Filter>src\ddm</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\test_case_factory.h">

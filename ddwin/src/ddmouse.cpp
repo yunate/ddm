@@ -34,9 +34,9 @@ bool ddmouse::on_msg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
             WORD fwKeys = GET_KEYSTATE_WPARAM(wParam);
             MOUSE_EVENTD ev {
                 MOUSE_EVENTD::TYPE::down, VK_LBUTTON,
-                pt.x, pt.y, 
+                (u32)pt.x, (u32)pt.y, 
                 0,
-                MK_LBUTTON & fwKeys, MK_RBUTTON & fwKeys, MK_MBUTTON & fwKeys
+                bool(MK_LBUTTON & fwKeys), bool(MK_RBUTTON & fwKeys), bool(MK_MBUTTON & fwKeys)
             };
             push_mouse_event(ev);
             result = call_cbs(ON_LDOWN, ev);
@@ -47,9 +47,9 @@ bool ddmouse::on_msg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
             WORD fwKeys = GET_KEYSTATE_WPARAM(wParam);
             MOUSE_EVENTD ev {
                 MOUSE_EVENTD::TYPE::up, VK_LBUTTON,
-                pt.x, pt.y,
+                (u32)pt.x, (u32)pt.y,
                 0,
-                MK_LBUTTON & fwKeys, MK_RBUTTON & fwKeys, MK_MBUTTON & fwKeys
+                bool(MK_LBUTTON & fwKeys), bool(MK_RBUTTON & fwKeys), bool(MK_MBUTTON & fwKeys)
             };
             push_mouse_event(ev);
             result = call_cbs(ON_LUP, ev);
@@ -61,9 +61,9 @@ bool ddmouse::on_msg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
             WORD fwKeys = GET_KEYSTATE_WPARAM(wParam);
             MOUSE_EVENTD ev {
                 MOUSE_EVENTD::TYPE::dbclick, VK_LBUTTON,
-                pt.x, pt.y,
+                (u32)pt.x, (u32)pt.y,
                 0,
-                MK_LBUTTON & fwKeys, MK_RBUTTON & fwKeys, MK_MBUTTON & fwKeys
+                bool(MK_LBUTTON & fwKeys), bool(MK_RBUTTON & fwKeys), bool(MK_MBUTTON & fwKeys)
             };
             push_mouse_event(ev);
             result = call_cbs(ON_LDBCLICK, ev);
@@ -75,9 +75,9 @@ bool ddmouse::on_msg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
             WORD fwKeys = GET_KEYSTATE_WPARAM(wParam);
             MOUSE_EVENTD ev {
                 MOUSE_EVENTD::TYPE::up, VK_RBUTTON,
-                pt.x, pt.y,
+                (u32)pt.x, (u32)pt.y,
                 0,
-                MK_LBUTTON & fwKeys, MK_RBUTTON & fwKeys, MK_MBUTTON & fwKeys
+                bool(MK_LBUTTON & fwKeys), bool(MK_RBUTTON & fwKeys), bool(MK_MBUTTON & fwKeys)
             };
             push_mouse_event(ev);
             result = call_cbs(ON_RUP, ev);
@@ -89,9 +89,9 @@ bool ddmouse::on_msg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
             WORD fwKeys = GET_KEYSTATE_WPARAM(wParam);
             MOUSE_EVENTD ev {
                 MOUSE_EVENTD::TYPE::down, VK_RBUTTON,
-                pt.x, pt.y,
+                (u32)pt.x, (u32)pt.y,
                 0,
-                MK_LBUTTON & fwKeys, MK_RBUTTON & fwKeys, MK_MBUTTON & fwKeys
+                bool(MK_LBUTTON & fwKeys), bool(MK_RBUTTON & fwKeys), bool(MK_MBUTTON & fwKeys)
             };
             push_mouse_event(ev);
             result = call_cbs(ON_RDOWN, ev);
@@ -102,9 +102,9 @@ bool ddmouse::on_msg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
             WORD fwKeys = GET_KEYSTATE_WPARAM(wParam);
             MOUSE_EVENTD ev{
                 MOUSE_EVENTD::TYPE::dbclick, VK_RBUTTON,
-                pt.x, pt.y,
+                (u32)pt.x, (u32)pt.y,
                 0,
-                MK_LBUTTON & fwKeys, MK_RBUTTON & fwKeys, MK_MBUTTON & fwKeys
+                bool(MK_LBUTTON & fwKeys), bool(MK_RBUTTON & fwKeys), bool(MK_MBUTTON & fwKeys)
             };
             push_mouse_event(ev);
             result = call_cbs(ON_RDBCLICK, ev);
@@ -115,9 +115,9 @@ bool ddmouse::on_msg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
             WORD fwKeys = GET_KEYSTATE_WPARAM(wParam);
             MOUSE_EVENTD ev {
                 MOUSE_EVENTD::TYPE::down, VK_MBUTTON,
-                pt.x, pt.y,
+                (u32)pt.x, (u32)pt.y,
                 0,
-                MK_LBUTTON & fwKeys, MK_RBUTTON & fwKeys, MK_MBUTTON & fwKeys
+                bool(MK_LBUTTON & fwKeys), bool(MK_RBUTTON & fwKeys), bool(MK_MBUTTON & fwKeys)
             };
             push_mouse_event(ev);
             result = call_cbs(ON_MDOWN, ev);
@@ -127,9 +127,9 @@ bool ddmouse::on_msg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
             WORD fwKeys = GET_KEYSTATE_WPARAM(wParam);
             MOUSE_EVENTD ev {
                 MOUSE_EVENTD::TYPE::up, VK_MBUTTON,
-                pt.x, pt.y,
+                (u32)pt.x, (u32)pt.y,
                 0,
-                MK_LBUTTON & fwKeys, MK_RBUTTON & fwKeys, MK_MBUTTON & fwKeys
+                bool(MK_LBUTTON & fwKeys), bool(MK_RBUTTON & fwKeys), bool(MK_MBUTTON & fwKeys)
             };
             push_mouse_event(ev);
             result = call_cbs(ON_MUP, ev);
@@ -141,9 +141,9 @@ bool ddmouse::on_msg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
             WORD fwKeys = GET_KEYSTATE_WPARAM(wParam);
             MOUSE_EVENTD ev {
                 MOUSE_EVENTD::TYPE::dbclick, VK_MBUTTON,
-                pt.x, pt.y,
+                (u32)pt.x, (u32)pt.y,
                 0,
-                MK_LBUTTON & fwKeys, MK_RBUTTON & fwKeys, MK_MBUTTON & fwKeys
+                bool(MK_LBUTTON & fwKeys), bool(MK_RBUTTON & fwKeys), bool(MK_MBUTTON & fwKeys)
             };
             push_mouse_event(ev);
             result = call_cbs(ON_MDBCLICK, ev);
@@ -155,9 +155,9 @@ bool ddmouse::on_msg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
             WORD fwKeys = GET_KEYSTATE_WPARAM(wParam);
             MOUSE_EVENTD ev {
                 MOUSE_EVENTD::TYPE::wheel, VK_MBUTTON,
-                pt.x, pt.y,
-                delta,
-                MK_LBUTTON & fwKeys, MK_RBUTTON & fwKeys, MK_MBUTTON & fwKeys
+                (u32)pt.x, (u32)pt.y,
+                (u32)delta,
+                bool(MK_LBUTTON & fwKeys), bool(MK_RBUTTON & fwKeys), bool(MK_MBUTTON & fwKeys)
             };
             push_mouse_event(ev);
             result = call_cbs(ON_MID_WHELL, ev);
@@ -169,9 +169,9 @@ bool ddmouse::on_msg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
             WORD fwKeys = GET_KEYSTATE_WPARAM(wParam);
             MOUSE_EVENTD ev {
                 MOUSE_EVENTD::TYPE::move, 0,
-                pt.x, pt.y,
+                (u32)pt.x, (u32)pt.y,
                 0,
-                MK_LBUTTON & fwKeys, MK_RBUTTON & fwKeys, MK_MBUTTON & fwKeys
+                bool(MK_LBUTTON & fwKeys), bool(MK_RBUTTON & fwKeys), bool(MK_MBUTTON & fwKeys)
             };
             // push_mouse_event(ev);
             result = call_cbs(ON_MOVE, ev);
@@ -188,15 +188,15 @@ bool ddmouse::on_msg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
                     WORD fwKeys = GET_KEYSTATE_WPARAM(wParam);
                     MOUSE_EVENTD ev {
                         MOUSE_EVENTD::TYPE::enter, 0,
-                        pt.x, pt.y,
+                        (u32)pt.x, (u32)pt.y,
                         0,
-                        MK_LBUTTON & fwKeys, MK_RBUTTON & fwKeys, MK_MBUTTON & fwKeys
+                        bool(MK_LBUTTON & fwKeys), bool(MK_RBUTTON & fwKeys), bool(MK_MBUTTON & fwKeys)
                     };
                     push_mouse_event(ev);
                     call_cbs(ON_ENTER, ev);
                 }
             } else {
-                if (is_in_wnd && !((MK_LBUTTON & fwKeys) || (MK_RBUTTON & fwKeys) || (MK_MBUTTON & fwKeys))) {
+                if (is_in_wnd && !((bool(MK_LBUTTON & fwKeys)) || (bool(MK_RBUTTON & fwKeys)) || (bool(MK_MBUTTON & fwKeys)))) {
                     on_leave(wParam, pt);
                 }
             }
@@ -234,9 +234,9 @@ void ddmouse::on_leave(WPARAM wParam, POINTS pt)
     WORD fwKeys = GET_KEYSTATE_WPARAM(wParam);
     MOUSE_EVENTD ev{
         MOUSE_EVENTD::TYPE::leave, 0,
-        pt.x, pt.y,
+        (u32)pt.x, (u32)pt.y,
         0,
-        MK_LBUTTON & fwKeys, MK_RBUTTON & fwKeys, MK_MBUTTON & fwKeys
+        bool(MK_LBUTTON & fwKeys), bool(MK_RBUTTON & fwKeys), bool(MK_MBUTTON & fwKeys)
     };
     push_mouse_event(ev);
     call_cbs(ON_LEAVE, ev);

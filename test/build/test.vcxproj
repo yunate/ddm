@@ -53,6 +53,7 @@
     <ClCompile Include="..\src\ddm\thread\test_thread.cpp" />
     <ClCompile Include="..\src\ddwin\test_ddwin.cpp" />
     <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\test_case_ddwindows_utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\test_case_factory.h" />

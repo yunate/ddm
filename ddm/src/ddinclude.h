@@ -5,7 +5,7 @@
 
 #include "g_def.h"
 #include "ddassert.h"
-#include "dd_log.hpp"
+#include "ddlog.hpp"
 #include "ddmacro.hpp"
 #include "str\str_utils.h"
 #include "ddtimer.h"
