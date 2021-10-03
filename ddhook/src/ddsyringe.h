@@ -41,6 +41,10 @@ private:
     std::wstring m_dllFullPath;
 };
 
+/** 经典注入
+注入的时候将目标入口函数点的前5个字节用当前的替换掉，防止目标进程对Load Library进行了HOOK
+来检查dll是否签名导致注入不了
+*/
 class ddclassic_syringeex : private nocopyable
 {
 public:
