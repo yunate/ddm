@@ -11,7 +11,7 @@ bool ddsyringe::check_param(const std::shared_ptr<ddprocess>& process, const std
     }
 
     if (!dir_utils::is_path_exist(dllFullPath) || dir_utils::is_dir(dllFullPath)) {
-        DDLOG(WARNING, str_utils::str_format("m_dllFullPath is not a valid dll path:%s", dllFullPath.c_str()));
+        DDLOGW(WARNING, str_utils::str_format(L"m_dllFullPath is not a valid dll path:%s", dllFullPath.c_str()));
         return false;
     }
 

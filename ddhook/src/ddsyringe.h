@@ -41,6 +41,20 @@ private:
     std::wstring m_dllFullPath;
 };
 
+class ddclassic_syringeex : private nocopyable
+{
+public:
+    ddclassic_syringeex(const std::shared_ptr<ddprocess>& process, const std::wstring& dllFullPath);
+    ~ddclassic_syringeex() = default;
+
+    bool inject_dll(u32 waitTime = 5000);
+    bool uninject_dll(u32 waitTime = 5000);
+
+private:
+    std::shared_ptr<ddprocess> m_process;
+    std::wstring m_dllFullPath;
+};
+
 /** apc 注入
 1.打开进程，获取进程的句柄，
 2.是在内存空间开辟一段内存空间

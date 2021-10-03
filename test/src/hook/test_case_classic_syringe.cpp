@@ -22,4 +22,12 @@ TEST(test_apc_syringe, test_apc_syringe)
     syringe.uninject_dll();
 }
 
+TEST(test_classic_syringeex, test_classic_syringeex)
+{
+    auto process = std::make_shared<ddprocess>();
+    process->init(L"Feishu.exe");
+    ddclassic_syringeex syringe(process, L"D:\\my\\ddm\\bin\\Debug_win32\\test_syringe.dll");
+    syringe.inject_dll();
+    syringe.uninject_dll();
+}
 END_NSP_DDM
