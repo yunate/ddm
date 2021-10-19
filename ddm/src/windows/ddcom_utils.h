@@ -27,12 +27,12 @@ HRESULT write_com_init_register(const std::wstring& clsid, const std::wstring& d
 HRESULT write_com_uninit_register(const std::wstring& clsid);
 
 template<typename T>
-using ComPtr = Microsoft::WRL::ComPtr<T>;
+using DDComPtr = Microsoft::WRL::ComPtr<T>;
 
-class RefCountBase
+class DDRefCountBase
 {
 public:
-    virtual ~RefCountBase() { }
+    virtual ~DDRefCountBase() { }
     inline unsigned long AddRef() throw()
     {
         InterlockedIncrement(reinterpret_cast<long*>(&m_RefCount));
