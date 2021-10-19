@@ -58,6 +58,7 @@
     <ClCompile Include="..\src\thread\task\heartbeat_task_queue.cpp" />
     <ClCompile Include="..\src\thread\task\simple_task_queue.cpp" />
     <ClCompile Include="..\src\thread\thread_manager\simple_thread_manager.cpp" />
+    <ClCompile Include="..\src\windows\ddcom_utils.cpp" />
     <ClCompile Include="..\src\windows\ddprocess.cpp" />
     <ClCompile Include="..\src\windows\ddwin_utils.cpp" />
   </ItemGroup>
@@ -112,6 +113,7 @@
     <ClInclude Include="..\src\thread\thread_manager\task_thread.h" />
     <ClInclude Include="..\src\traits.hpp" />
     <ClInclude Include="..\src\ddtimer.h" />
+    <ClInclude Include="..\src\windows\ddcom_utils.h" />
     <ClInclude Include="..\src\windows\ddprocess.h" />
     <ClInclude Include="..\src\windows\ddwin_utils.h" />
   </ItemGroup>

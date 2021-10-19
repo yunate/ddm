@@ -20,9 +20,9 @@ std::wstring map_thread_model(com_thread_model model)
     return L"";
 }
 
-bool write_com_init_register(const std::wstring& clsid, const std::wstring& desc, com_thread_model threadModel, const std::wstring dllFullPath)
+HRESULT write_com_init_register(const std::wstring& clsid, const std::wstring& desc, com_thread_model threadModel, const std::wstring dllFullPath)
 {
-    LSTATUS status = 0;
+    LSTATUS status = ERROR_SUCCESS;
     HKEY clsidKey = NULL;
     HKEY inprocServer32Key = NULL;
     TCHAR szModulePath[MAX_PATH];
@@ -67,14 +67,13 @@ bool write_com_init_register(const std::wstring& clsid, const std::wstring& desc
         inprocServer32Key = NULL;
     }
 
-    return (status == S_OK);
+    return HRESULT_FROM_WIN32(status);
 }
 
-bool write_com_uninit_register(const std::wstring& clsid)
+HRESULT write_com_uninit_register(const std::wstring& clsid)
 {
     std::wstring clsidKeyStr = L"CLSID\\" + clsid;
-    ::RegDeleteTree(HKEY_CLASSES_ROOT, clsidKeyStr.c_str());
-    return true;
+    return HRESULT_FROM_WIN32(::RegDeleteTree(HKEY_CLASSES_ROOT, clsidKeyStr.c_str()));
 }
 END_NSP_DDM
 #endif

@@ -22,8 +22,8 @@ enum class com_thread_model
 //          default dllFullPath
 //          ThreadingModel threadModel
 //////////////////////////////////////////////////////////////////////////
-bool write_com_init_register(const std::wstring& clsid, const std::wstring& desc, com_thread_model threadModel, const std::wstring dllFullPath);
-bool write_com_uninit_register(const std::wstring& clsid);
+HRESULT write_com_init_register(const std::wstring& clsid, const std::wstring& desc, com_thread_model threadModel, const std::wstring dllFullPath);
+HRESULT write_com_uninit_register(const std::wstring& clsid);
 
 END_NSP_DDM
 #endif

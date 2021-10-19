@@ -123,6 +123,9 @@
     <ClCompile Include="..\src\file\ddpath.cpp">
       <Filter>src\file</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\windows\ddcom_utils.cpp">
+      <Filter>src\windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\cmd_line_util.h">
@@ -280,6 +283,9 @@
     </ClInclude>
     <ClInclude Include="..\src\file\ddpath.h">
       <Filter>src\file</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\windows\ddcom_utils.h">
+      <Filter>src\windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
