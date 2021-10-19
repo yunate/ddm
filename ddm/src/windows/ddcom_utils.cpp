@@ -20,13 +20,6 @@ std::wstring map_thread_model(com_thread_model model)
     return L"";
 }
 
-//////////////////////////////////////////////////////////////////////////
-// HKEY_CLASSES_ROOT\CLSID\{clsid}
-//     default desc
-//     InprocServer32
-//          default dllFullPath
-//          ThreadingModel threadModel
-//////////////////////////////////////////////////////////////////////////
 bool write_com_init_register(const std::wstring& clsid, const std::wstring& desc, com_thread_model threadModel, const std::wstring dllFullPath)
 {
     LSTATUS status = 0;
