@@ -65,6 +65,10 @@ HRESULT write_com_init_register(const std::wstring& clsid, const std::wstring& d
         inprocServer32Key = NULL;
     }
 
+    if (ERROR_SUCCESS != status) {
+        write_com_uninit_register(clsid);
+    }
+
     return HRESULT_FROM_WIN32(status);
 }
 
