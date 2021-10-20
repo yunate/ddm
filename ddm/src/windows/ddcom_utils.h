@@ -56,6 +56,35 @@ public:
     DDREF_COUNT_GEN(__stdcall, m_RefCount);
 };
 
+class IDDFactory : public IClassFactory
+{
+public:
+    IDDFactory() = default;
+    ~IDDFactory() = default;
+    IDDFactory(const IDDFactory&) = delete;
+    IDDFactory(IDDFactory&&) = delete;
+    IDDFactory& operator= (const IDDFactory&) = delete;
+    IDDFactory& operator= (IDDFactory&&) = delete;
+
+public:
+    virtual HRESULT STDMETHODCALLTYPE LockServer(BOOL fLock)
+    {
+        if (fLock) {
+            (void)InterlockedIncrement(reinterpret_cast<long*>(&m_lockCnt));
+        } else {
+            (void)InterlockedDecrement(reinterpret_cast<long*>(&m_lockCnt));
+        }
+        return S_OK;
+    }
+public:
+    DDREF_COUNT_GEN(STDMETHODCALLTYPE, m_refCount);
+    inline unsigned long GetLockCnt()
+    {
+        return m_lockCnt;
+    }
+protected:
+    unsigned long m_lockCnt = 0;
+};
 
 END_NSP_DDM
 #endif
