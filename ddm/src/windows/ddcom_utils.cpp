@@ -78,7 +78,6 @@ HRESULT write_com_uninit_register(const std::wstring& clsid)
     return HRESULT_FROM_WIN32(::RegDeleteTree(HKEY_CLASSES_ROOT, clsidKeyStr.c_str()));
 }
 
-
 bool NSP_DDM::com_has_register(const std::wstring& clsid)
 {
     std::wstring clsidKeyStr = L"CLSID\\" + clsid;

@@ -61,7 +61,7 @@ class IDDComFactory : public IClassFactory
 {
 public:
     IDDComFactory() { AddRef(); };
-    ~IDDComFactory() = default;
+    virtual ~IDDComFactory() = default;
     IDDComFactory(const IDDComFactory&) = delete;
     IDDComFactory(IDDComFactory&&) = delete;
     IDDComFactory& operator= (const IDDComFactory&) = delete;
