@@ -56,15 +56,15 @@ public:
     DDREF_COUNT_GEN(__stdcall, m_RefCount);
 };
 
-class IDDFactory : public IClassFactory
+class IDDComFactory : public IClassFactory
 {
 public:
-    IDDFactory() = default;
-    ~IDDFactory() = default;
-    IDDFactory(const IDDFactory&) = delete;
-    IDDFactory(IDDFactory&&) = delete;
-    IDDFactory& operator= (const IDDFactory&) = delete;
-    IDDFactory& operator= (IDDFactory&&) = delete;
+    IDDComFactory() = default;
+    ~IDDComFactory() = default;
+    IDDComFactory(const IDDComFactory&) = delete;
+    IDDComFactory(IDDComFactory&&) = delete;
+    IDDComFactory& operator= (const IDDComFactory&) = delete;
+    IDDComFactory& operator= (IDDComFactory&&) = delete;
 
 public:
     virtual HRESULT STDMETHODCALLTYPE LockServer(BOOL fLock)
