@@ -4,11 +4,8 @@
 
 
 BEG_NSP_DDM
-TEST(test_win_utils, last_error_msg)
-{
-    DDLOG_LASTERROR();
-}
-TEST(test_win_utils, get_process_id)
+
+TEST(test_process, get_process_id)
 {
     ddprocess p1;
     (void)p1.init(std::wstring(L"notepad.exe"));

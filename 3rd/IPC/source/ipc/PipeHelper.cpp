@@ -317,7 +317,7 @@ bool ServerPipeHelper::OnRegist(const std::shared_ptr<ipc::Message>& spMsg)
          }
 
          NSP_DDM::ddstrw guid;
-         NSP_DDM::random::gen_guidw(guid);
+         NSP_DDM::random::gen_guid(guid);
          std::wstring newName =
              std::wstring(L"Pipe") + guid + L"_" + L"1.0.0.1";
 

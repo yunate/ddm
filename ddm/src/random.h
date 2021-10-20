@@ -18,8 +18,8 @@ public:
     static bool get_rand_number(int min, int max, int& out);
 
     // Éú³Éguid
-    static bool gen_guida(ddstra& guid);
-    static bool gen_guidw(ddstrw& guid);
+    static bool gen_guid(ddstra& guid);
+    static bool gen_guid(ddstrw& guid);
 };
 
 END_NSP_DDM

@@ -25,8 +25,6 @@ HRESULT write_com_init_register(const std::wstring& clsid, const std::wstring& d
     LSTATUS status = ERROR_SUCCESS;
     HKEY clsidKey = NULL;
     HKEY inprocServer32Key = NULL;
-    TCHAR szModulePath[MAX_PATH];
-
     do {
         std::wstring clsidKeyStr = L"CLSID\\" + clsid;
         status = ::RegCreateKeyExW(HKEY_CLASSES_ROOT, clsidKeyStr.c_str(), 0, NULL, REG_OPTION_NON_VOLATILE, KEY_SET_VALUE | KEY_CREATE_SUB_KEY, NULL, &clsidKey, NULL);
@@ -34,7 +32,7 @@ HRESULT write_com_init_register(const std::wstring& clsid, const std::wstring& d
             break;
         }
 
-        status = ::RegSetValueExW(clsidKey, NULL, 0, REG_SZ, (const BYTE*)clsid.c_str(), clsid.size() * 2);
+        status = ::RegSetValueExW(clsidKey, NULL, 0, REG_SZ, (const BYTE*)desc.c_str(), (DWORD)desc.size() * 2);
         if (ERROR_SUCCESS != status) {
             break;
         }
@@ -44,13 +42,13 @@ HRESULT write_com_init_register(const std::wstring& clsid, const std::wstring& d
             break;
         }
 
-        status = ::RegSetValueExW(inprocServer32Key, NULL, 0, REG_SZ, (const BYTE*)dllFullPath.c_str(), dllFullPath.size() * 2);
+        status = ::RegSetValueExW(inprocServer32Key, NULL, 0, REG_SZ, (const BYTE*)dllFullPath.c_str(), (DWORD)dllFullPath.size() * 2);
         if (ERROR_SUCCESS != status) {
             break;
         }
 
         std::wstring threadModelStr = map_thread_model(threadModel);
-        status = RegSetValueExW(inprocServer32Key, L"ThreadingModel", 0, REG_SZ, (const BYTE*)threadModelStr.c_str(), threadModelStr.size() * 2);
+        status = RegSetValueExW(inprocServer32Key, L"ThreadingModel", 0, REG_SZ, (const BYTE*)threadModelStr.c_str(), (DWORD)threadModelStr.size() * 2);
         if (ERROR_SUCCESS != status) {
             break;
         }

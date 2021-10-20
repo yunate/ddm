@@ -17,11 +17,11 @@ TEST(test_random, random)
     }
 
     ddstra guida;
-    random::gen_guida(guida);
+    random::gen_guid(guida);
     std::cout << guida << std::endl;
 
     ddstrw guidw;
-    random::gen_guidw(guidw);
+    random::gen_guid(guidw);
     std::wcout << guidw << std::endl;
 }
 

@@ -25,6 +25,9 @@
     <Filter Include="src\hook">
       <UniqueIdentifier>{ccd3a690-7ee7-42b1-9754-3e1085bda8fc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\ddm\windows">
+      <UniqueIdentifier>{b2faa3ac-c736-4657-b7da-128ab7dbd971}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
@@ -81,11 +84,14 @@
     <ClCompile Include="..\src\ddm\thread\async\test_sync_n_buff.cpp">
       <Filter>src\ddm\thread\async</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\test_case_ddwindows_utils.cpp">
-      <Filter>src\ddm</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\hook\test_case_classic_syringe.cpp">
       <Filter>src\hook</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ddm\windows\test_case_ddwin_utils.cpp">
+      <Filter>src\ddm\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ddm\windows\test_case_ddprocess.cpp">
+      <Filter>src\ddm\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
