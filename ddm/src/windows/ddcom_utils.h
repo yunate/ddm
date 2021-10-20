@@ -59,7 +59,7 @@ public:
 class IDDComFactory : public IClassFactory
 {
 public:
-    IDDComFactory() = default;
+    IDDComFactory() { AddRef(); };
     ~IDDComFactory() = default;
     IDDComFactory(const IDDComFactory&) = delete;
     IDDComFactory(IDDComFactory&&) = delete;
