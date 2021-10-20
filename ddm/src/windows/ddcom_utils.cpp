@@ -77,6 +77,22 @@ HRESULT write_com_uninit_register(const std::wstring& clsid)
     std::wstring clsidKeyStr = L"CLSID\\" + clsid;
     return HRESULT_FROM_WIN32(::RegDeleteTree(HKEY_CLASSES_ROOT, clsidKeyStr.c_str()));
 }
+
+
+bool NSP_DDM::com_has_register(const std::wstring& clsid)
+{
+    std::wstring clsidKeyStr = L"CLSID\\" + clsid;
+    HKEY clsidKey = NULL;
+    LSTATUS status = ::RegOpenKeyEx(HKEY_CLASSES_ROOT, clsidKeyStr.c_str(), REG_OPTION_OPEN_LINK, KEY_SET_VALUE | KEY_CREATE_SUB_KEY, &clsidKey);
+    if (ERROR_SUCCESS != status || clsidKey == NULL) {
+        return false;
+    }
+
+    ::RegCloseKey(clsidKey);
+    clsidKey = NULL;
+    return true;
+}
+
 END_NSP_DDM
 #endif
 
