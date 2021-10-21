@@ -27,6 +27,9 @@ HRESULT write_com_init_register(const std::wstring& clsid, const std::wstring& d
 HRESULT write_com_uninit_register(const std::wstring& clsid);
 bool com_has_register(const std::wstring& clsid);
 
+#define CONN_CLSID_CLASS(GUID, CLASS) class __declspec(uuid(GUID)) CLASS
+#define CLSID_FROM_CLASS(CLASS) __uuidof(CLASS)
+
 #define  DDREF_COUNT_GEN(CALL_TYPE, REF_COUNT_DEF)                                                                        \
     inline unsigned long CALL_TYPE Release()                                                                              \
     {                                                                                                                     \
