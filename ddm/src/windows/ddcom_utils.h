@@ -2,6 +2,7 @@
 #define ddcom_tuils_h_
 
 #include "g_def.h"
+#include "nocopyable.hpp"
 
 #ifdef DD_WINDOW
 #include "ddwin_utils.h"
@@ -17,6 +18,37 @@ enum class com_thread_model
     Free,       // multi threaded
     Neutral     // 
 };
+
+class DDHKEY : public nocopyable
+{
+public:
+    DDHKEY& operator=(HKEY key)
+    {
+        if (m_key != NULL) {
+            ::RegCloseKey(m_key);
+            m_key = NULL;
+        }
+        m_key = key;
+    }
+    operator HKEY()
+    {
+        return m_key;
+    }
+    HKEY* operator&()
+    {
+        return &m_key;
+    }
+    ~DDHKEY()
+    {
+        if (m_key != NULL) {
+            ::RegCloseKey(m_key);
+            m_key = NULL;
+        }
+    }
+
+    HKEY m_key = NULL;
+};
+
 //////////////////////////////////////////////////////////////////////////
 // HKEY_CLASSES_ROOT\CLSID\{clsid}
 //     default desc
@@ -26,7 +58,25 @@ enum class com_thread_model
 //////////////////////////////////////////////////////////////////////////
 HRESULT write_com_init_register(const std::wstring& clsid, const std::wstring& desc, com_thread_model threadModel, const std::wstring dllFullPath);
 HRESULT write_com_uninit_register(const std::wstring& clsid);
-bool com_has_register(const std::wstring& clsid);
+bool com_has_register(const std::wstring& clsid); // 可以使用该函数来判断是否存在
+
+//////////////////////////////////////////////////////////////////////////
+// HKEY_CLASSES_ROOT\CLSID\{categroy}\Instance\
+//     {clsid} // 这个 guid 最好和 com 注册的id一致
+//          CLSID {clsid} // 这个 guid 一定要和 com 注册的id一致
+//          FilterData data
+//          FriendlyName nickName
+//////////////////////////////////////////////////////////////////////////
+struct dshow_register_desc
+{
+    std::wstring categroy;
+    std::wstring clsid;
+    std::vector<u8> filterData; // REGFILTER2
+    std::wstring friendlyName;
+};
+HRESULT write_dshow_filter_init_register(const dshow_register_desc& desc); // 该函数可以用来注册 direct show filter 也可以用来更新它
+HRESULT write_dshow_filter_uninit_register(const std::wstring& categroy, const std::wstring& clsid);
+bool read_dshow_filter_register(dshow_register_desc& desc); // 可以使用该函数来判断是否安装
 
 #define CONN_CLSID_CLASS(GUID, CLASS) class __declspec(uuid(GUID)) CLASS
 #define CLSID_FROM_CLASS(CLASS) __uuidof(CLASS)
