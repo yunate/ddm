@@ -59,6 +59,37 @@ inline bool ddguid_str(const ::GUID& guid, std::string& guidStr)
         guid.Data4[4], guid.Data4[5], guid.Data4[6], guid.Data4[7]);
     return cnt == 38;
 }
+
+
+class DDHKEY : public nocopyable
+{
+public:
+    DDHKEY& operator=(HKEY key)
+    {
+        if (m_key != NULL) {
+            ::RegCloseKey(m_key);
+            m_key = NULL;
+        }
+        m_key = key;
+    }
+    operator HKEY()
+    {
+        return m_key;
+    }
+    HKEY* operator&()
+    {
+        return &m_key;
+    }
+    ~DDHKEY()
+    {
+        if (m_key != NULL) {
+            ::RegCloseKey(m_key);
+            m_key = NULL;
+        }
+    }
+
+    HKEY m_key = NULL;
+};
 #endif
 END_NSP_DDM
 #endif // ddwin_utils_h_

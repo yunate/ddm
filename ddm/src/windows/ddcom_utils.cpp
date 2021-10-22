@@ -81,82 +81,75 @@ bool NSP_DDM::com_has_register(const std::wstring& clsid)
     return true;
 }
 
-//////////////////////////////////////////////////////////////////////////
-// HKEY_CLASSES_ROOT\CLSID\{categroy}\Instance\
-//     {clsid} // 这个 guid 最好和 com 注册的id一致
-//          CLSID {clsid} // 这个 guid 一定要和 com 注册的id一致
-//          FilterData data
-//          FriendlyName nickName
-//////////////////////////////////////////////////////////////////////////
-HRESULT write_dshow_filter_init_register(const dshow_register_desc& desc)
-{
-    LSTATUS status = ERROR_SUCCESS;
-    do {
-        DDHKEY filterKey;
-        std::wstring clsidKeyStr = L"CLSID\\" + desc.categroy + L"\\Instance\\" + desc.clsid;
-        status = ::RegCreateKeyExW(HKEY_CLASSES_ROOT, clsidKeyStr.c_str(), 0, NULL, REG_OPTION_NON_VOLATILE, KEY_SET_VALUE | KEY_CREATE_SUB_KEY, NULL, &filterKey, NULL);
-        if (ERROR_SUCCESS != status) {
-            break;
-        }
-
-        status = RegSetValueExW(filterKey, L"CLSID", 0, REG_SZ, (const BYTE*)desc.clsid.c_str(), (DWORD)desc.clsid.size() * 2);
-        if (ERROR_SUCCESS != status) {
-            break;
-        }
-
-        status = RegSetValueExW(filterKey, L"FilterData", 0, REG_SZ, (const BYTE*)desc.filterData.data(), (DWORD)desc.filterData.size());
-        if (ERROR_SUCCESS != status) {
-            break;
-        }
-
-        status = RegSetValueExW(filterKey, L"FriendlyName", 0, REG_SZ, (const BYTE*)desc.friendlyName.c_str(), (DWORD)desc.friendlyName.size() * 2);
-        if (ERROR_SUCCESS != status) {
-            break;
-        }
-    } while (0);
-
-    if (ERROR_SUCCESS != status) {
-        write_dshow_filter_uninit_register(desc.categroy, desc.clsid);
-    }
-
-    return HRESULT_FROM_WIN32(status);
-}
-
-HRESULT write_dshow_filter_uninit_register(const std::wstring& categroy, const std::wstring& clsid)
-{
-    std::wstring clsidKeyStr = L"CLSID\\" + categroy + L"\\Instance\\" + clsid;
-    return HRESULT_FROM_WIN32(::RegDeleteTree(HKEY_CLASSES_ROOT, clsidKeyStr.c_str()));
-}
-
-bool read_dshow_filter_register(dshow_register_desc& desc)
-{
-    DDHKEY filterKey;
-    std::wstring clsidKeyStr = L"CLSID\\" + desc.categroy + L"\\Instance\\" + desc.clsid;
-    if (ERROR_SUCCESS != ::RegOpenKeyExW(HKEY_CLASSES_ROOT, clsidKeyStr.c_str(), 0, KEY_QUERY_VALUE | KEY_ENUMERATE_SUB_KEYS, &filterKey)) {
-        return false;
-    }
-
-    {
-        DWORD type = 0;
-        DWORD dataLen = 0;
-        if (::RegQueryValueExW(filterKey, L"FilterData", NULL, &type, NULL, &dataLen) == ERROR_SUCCESS && dataLen != 0) {
-            desc.filterData.resize(dataLen);
-            (void)::RegQueryValueExW(filterKey, L"FilterData", NULL, &type, desc.filterData.data(), &dataLen);
-        }
-    }
-
-    {
-        DWORD type = 0;
-        DWORD dataLen = 0;
-        if (::RegQueryValueExW(filterKey, L"FriendlyName", NULL, &type, NULL, &dataLen) == ERROR_SUCCESS && dataLen != 0) {
-            dataLen += 2;
-            desc.friendlyName.resize(dataLen / 2);
-            (void)::RegQueryValueExW(filterKey, L"FriendlyName", NULL, &type, (u8*)desc.friendlyName.data(), &dataLen);
-        }
-    }
-
-    return true;
-}
+// HRESULT write_dshow_filter_init_register(const dshow_register_desc& desc)
+// {
+//     LSTATUS status = ERROR_SUCCESS;
+//     do {
+//         DDHKEY filterKey;
+//         std::wstring clsidKeyStr = L"CLSID\\" + desc.categroy + L"\\Instance\\" + desc.clsid;
+//         status = ::RegCreateKeyExW(HKEY_CLASSES_ROOT, clsidKeyStr.c_str(), 0, NULL, REG_OPTION_NON_VOLATILE, KEY_SET_VALUE | KEY_CREATE_SUB_KEY, NULL, &filterKey, NULL);
+//         if (ERROR_SUCCESS != status) {
+//             break;
+//         }
+// 
+//         status = RegSetValueExW(filterKey, L"CLSID", 0, REG_SZ, (const BYTE*)desc.clsid.c_str(), (DWORD)desc.clsid.size() * 2);
+//         if (ERROR_SUCCESS != status) {
+//             break;
+//         }
+// 
+//         status = RegSetValueExW(filterKey, L"FilterData", 0, REG_SZ, (const BYTE*)desc.filterData.data(), (DWORD)desc.filterData.size());
+//         if (ERROR_SUCCESS != status) {
+//             break;
+//         }
+// 
+//         status = RegSetValueExW(filterKey, L"FriendlyName", 0, REG_SZ, (const BYTE*)desc.friendlyName.c_str(), (DWORD)desc.friendlyName.size() * 2);
+//         if (ERROR_SUCCESS != status) {
+//             break;
+//         }
+//     } while (0);
+// 
+//     if (ERROR_SUCCESS != status) {
+//         write_dshow_filter_uninit_register(desc.categroy, desc.clsid);
+//     }
+// 
+//     return HRESULT_FROM_WIN32(status);
+// }
+// 
+// HRESULT write_dshow_filter_uninit_register(const std::wstring& categroy, const std::wstring& clsid)
+// {
+//     std::wstring clsidKeyStr = L"CLSID\\" + categroy + L"\\Instance\\" + clsid;
+//     return HRESULT_FROM_WIN32(::RegDeleteTree(HKEY_CLASSES_ROOT, clsidKeyStr.c_str()));
+// }
+// 
+// bool read_dshow_filter_register(dshow_register_desc& desc)
+// {
+//     DDHKEY filterKey;
+//     std::wstring clsidKeyStr = L"CLSID\\" + desc.categroy + L"\\Instance\\" + desc.clsid;
+//     if (ERROR_SUCCESS != ::RegOpenKeyExW(HKEY_CLASSES_ROOT, clsidKeyStr.c_str(), 0, KEY_QUERY_VALUE | KEY_ENUMERATE_SUB_KEYS, &filterKey)) {
+//         return false;
+//     }
+// 
+//     {
+//         DWORD type = 0;
+//         DWORD dataLen = 0;
+//         if (::RegQueryValueExW(filterKey, L"FilterData", NULL, &type, NULL, &dataLen) == ERROR_SUCCESS && dataLen != 0) {
+//             desc.filterData.resize(dataLen);
+//             (void)::RegQueryValueExW(filterKey, L"FilterData", NULL, &type, desc.filterData.data(), &dataLen);
+//         }
+//     }
+// 
+//     {
+//         DWORD type = 0;
+//         DWORD dataLen = 0;
+//         if (::RegQueryValueExW(filterKey, L"FriendlyName", NULL, &type, NULL, &dataLen) == ERROR_SUCCESS && dataLen != 0) {
+//             dataLen += 2;
+//             desc.friendlyName.resize(dataLen / 2);
+//             (void)::RegQueryValueExW(filterKey, L"FriendlyName", NULL, &type, (u8*)desc.friendlyName.data(), &dataLen);
+//         }
+//     }
+// 
+//     return true;
+// }
 END_NSP_DDM
 #endif
 
