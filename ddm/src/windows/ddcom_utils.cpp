@@ -23,21 +23,21 @@ std::wstring map_thread_model(com_thread_model model)
 HRESULT write_com_init_register(const std::wstring& clsid, const std::wstring& desc, com_thread_model threadModel, const std::wstring dllFullPath)
 {
     LSTATUS status = ERROR_SUCCESS;
-    HKEY clsidKey = NULL;
-    HKEY inprocServer32Key = NULL;
     do {
+        DDHKEY filterKey;
         std::wstring clsidKeyStr = L"CLSID\\" + clsid;
-        status = ::RegCreateKeyExW(HKEY_CLASSES_ROOT, clsidKeyStr.c_str(), 0, NULL, REG_OPTION_NON_VOLATILE, KEY_SET_VALUE | KEY_CREATE_SUB_KEY, NULL, &clsidKey, NULL);
+        status = ::RegCreateKeyExW(HKEY_CLASSES_ROOT, clsidKeyStr.c_str(), 0, NULL, REG_OPTION_NON_VOLATILE, KEY_SET_VALUE | KEY_CREATE_SUB_KEY, NULL, &filterKey, NULL);
         if (ERROR_SUCCESS != status) {
             break;
         }
 
-        status = ::RegSetValueExW(clsidKey, NULL, 0, REG_SZ, (const BYTE*)desc.c_str(), (DWORD)desc.size() * 2);
+        status = ::RegSetValueExW(filterKey, NULL, 0, REG_SZ, (const BYTE*)desc.c_str(), (DWORD)desc.size() * 2);
         if (ERROR_SUCCESS != status) {
             break;
         }
 
-        status = ::RegCreateKeyExW(clsidKey, L"InProcServer32", 0, NULL, REG_OPTION_NON_VOLATILE, KEY_SET_VALUE, NULL, &inprocServer32Key, NULL);
+        DDHKEY inprocServer32Key;
+        status = ::RegCreateKeyExW(filterKey, L"InProcServer32", 0, NULL, REG_OPTION_NON_VOLATILE, KEY_SET_VALUE, NULL, &inprocServer32Key, NULL);
         if (ERROR_SUCCESS != status) {
             break;
         }
@@ -53,17 +53,6 @@ HRESULT write_com_init_register(const std::wstring& clsid, const std::wstring& d
             break;
         }
     } while (0);
-
-
-    if (NULL != clsidKey) {
-        ::RegCloseKey(clsidKey);
-        clsidKey = NULL;
-    }
-
-    if (NULL != inprocServer32Key) {
-        ::RegCloseKey(inprocServer32Key);
-        inprocServer32Key = NULL;
-    }
 
     if (ERROR_SUCCESS != status) {
         write_com_uninit_register(clsid);
