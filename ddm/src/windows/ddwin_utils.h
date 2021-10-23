@@ -2,6 +2,7 @@
 #define ddwin_utils_h_
 #include "g_def.h"
 #include "ddlog.hpp"
+#include "nocopyable.hpp"
 #include "str/str_utils.h"
 #include <string>
 #include <windows.h>
