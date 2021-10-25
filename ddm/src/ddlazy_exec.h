@@ -17,7 +17,7 @@ public:
     ~ddlazy_exec() = default;
 
     using lazy_excutable = std::function<void()>;
-    inline void Exec(const lazy_excutable& exec)
+    inline void exec(const lazy_excutable& exec)
     {
         m_mutex.lock();
         if (m_ready) {
