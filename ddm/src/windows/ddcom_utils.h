@@ -174,6 +174,24 @@ protected:
     unsigned long m_lockCnt = 0;
 };
 
+#define QUERY_INTERFACE(rrid, className)                        \
+if (rrid == UUIDOF(className)) {                                \
+    *ppvObject = static_cast<className*>(this);                 \
+    if (*ppvObject != nullptr) {                                \
+        AddRef();                                               \
+        return S_OK;                                            \
+    }                                                           \
+}                                                               \
+
+#define QUERY_INTERFACE_EX(rrid, className, toClassName)        \
+if (rrid == UUIDOF(className)) {                                \
+    *ppvObject = static_cast<toClassName*>(this);               \
+    if (*ppvObject != nullptr) {                                \
+        AddRef();                                               \
+        return S_OK;                                            \
+    }                                                           \
+}                                                               \
+
 END_NSP_DDM
 #endif
 #endif
