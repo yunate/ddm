@@ -66,6 +66,7 @@
     <ClInclude Include="..\src\cmd_line_util.h" />
     <ClInclude Include="..\src\color_print.h" />
     <ClInclude Include="..\src\ddfilter.h" />
+    <ClInclude Include="..\src\ddlazy_exec.h" />
     <ClInclude Include="..\src\ddmacro.hpp" />
     <ClInclude Include="..\src\ddlog.hpp" />
     <ClInclude Include="..\src\ddinclude.h" />

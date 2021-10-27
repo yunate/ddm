@@ -287,6 +287,9 @@
     <ClInclude Include="..\src\windows\ddcom_utils.h">
       <Filter>src\windows</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\ddlazy_exec.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\src\asm\x64\utils.asm">
