@@ -192,6 +192,23 @@ if (rrid == UUIDOF(className)) {                                \
     }                                                           \
 }                                                               \
 
+#define HR_RTN_NULL_POINTER(point)                              \
+if (point == NULL) {                                            \
+    return E_POINTER;                                           \
+}                                                               \
+
+#define DD_SAFE_RELEASE(point)                                  \
+if (point != NULL) {                                            \
+    point->Release();                                           \
+    point = NULL;                                               \
+}                                                               \
+
+#define DD_SAFE_DELETE(point)                                   \
+if (point != NULL) {                                            \
+    delete point;                                               \
+    point = NULL;                                               \
+}                                                               \
+
 END_NSP_DDM
 #endif
 #endif
