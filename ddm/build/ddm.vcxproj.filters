@@ -126,6 +126,9 @@
     <ClCompile Include="..\src\windows\ddcom_utils.cpp">
       <Filter>src\windows</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\windows\ddsecurity.cpp">
+      <Filter>src\windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\cmd_line_util.h">
@@ -289,6 +292,9 @@
     </ClInclude>
     <ClInclude Include="..\src\ddlazy_exec.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\windows\ddsecurity.h">
+      <Filter>src\windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

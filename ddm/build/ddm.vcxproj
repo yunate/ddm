@@ -60,6 +60,7 @@
     <ClCompile Include="..\src\thread\thread_manager\simple_thread_manager.cpp" />
     <ClCompile Include="..\src\windows\ddcom_utils.cpp" />
     <ClCompile Include="..\src\windows\ddprocess.cpp" />
+    <ClCompile Include="..\src\windows\ddsecurity.cpp" />
     <ClCompile Include="..\src\windows\ddwin_utils.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -116,6 +117,7 @@
     <ClInclude Include="..\src\ddtimer.h" />
     <ClInclude Include="..\src\windows\ddcom_utils.h" />
     <ClInclude Include="..\src\windows\ddprocess.h" />
+    <ClInclude Include="..\src\windows\ddsecurity.h" />
     <ClInclude Include="..\src\windows\ddwin_utils.h" />
   </ItemGroup>
   <ItemGroup>
