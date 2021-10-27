@@ -7,7 +7,7 @@
 
 BEG_NSP_DDM
 
-DWORD create_low_sd(SECURITY_ATTRIBUTES& secAttr);
+DWORD create_low_sa(SECURITY_ATTRIBUTES& secAttr);
 
 END_NSP_DDM
 #endif // 
