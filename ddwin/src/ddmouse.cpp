@@ -158,7 +158,7 @@ bool ddmouse::on_msg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
             MOUSE_EVENTD ev {
                 MOUSE_EVENTD::TYPE::wheel, VK_MBUTTON,
                 (u32)pt.x, (u32)pt.y,
-                delta,
+                (u32)delta,
                 MAKE_BOOL(MK_LBUTTON & fwKeys), MAKE_BOOL(MK_RBUTTON & fwKeys), MAKE_BOOL(MK_MBUTTON & fwKeys)
             };
             push_mouse_event(ev);

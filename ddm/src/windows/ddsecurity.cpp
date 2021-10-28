@@ -7,7 +7,7 @@ BEG_NSP_DDM
 DWORD create_low_sa(SECURITY_ATTRIBUTES& secAttr)
 {
     do {
-        secAttr.nLength = sizeof(SECURITY_ATTRIBUTES);
+        secAttr.nLength = sizeof(SECURITY_DESCRIPTOR);
 
         // "S:(ML;;NW;;;LW)" this means "low integrity"
         PSECURITY_DESCRIPTOR pSD = NULL;

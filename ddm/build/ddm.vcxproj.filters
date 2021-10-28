@@ -13,9 +13,6 @@
     <Filter Include="src\pickle">
       <UniqueIdentifier>{708b5904-07eb-44ca-b669-9c6f9d87293f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\shared_memory">
-      <UniqueIdentifier>{5011fed9-da1c-497f-b897-506ab395b537}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\str">
       <UniqueIdentifier>{7fe95bb4-5fd8-4a99-99a7-5f1eb4a2eb0d}</UniqueIdentifier>
     </Filter>
@@ -123,8 +120,8 @@
     <ClCompile Include="..\src\windows\ddsecurity.cpp">
       <Filter>src\windows</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\shared_memory\ddshared_memory.cpp">
-      <Filter>src\shared_memory</Filter>
+    <ClCompile Include="..\src\windows\ddshared_memory.cpp">
+      <Filter>src\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -287,8 +284,8 @@
     <ClInclude Include="..\src\windows\ddsecurity.h">
       <Filter>src\windows</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\shared_memory\ddshared_memory.h">
-      <Filter>src\shared_memory</Filter>
+    <ClInclude Include="..\src\windows\ddshared_memory.h">
+      <Filter>src\windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

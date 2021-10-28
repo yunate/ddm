@@ -289,6 +289,8 @@ bool ddprocess_mutex::init(const std::wstring& name)
     // 以低权限创建
     SECURITY_ATTRIBUTES sa;
     sa.bInheritHandle = FALSE;
+    SECURITY_DESCRIPTOR sd;
+    sa.lpSecurityDescriptor = (void*)&sd;
     if (ERROR_SUCCESS != create_low_sa(sa)) {
         return false;
     }

@@ -47,7 +47,6 @@
     <ClCompile Include="..\src\pickle\pickle.cpp" />
     <ClCompile Include="..\src\random.cpp" />
     <ClCompile Include="..\src\resource_util.cpp" />
-    <ClCompile Include="..\src\shared_memory\ddshared_memory.cpp" />
     <ClCompile Include="..\src\stream\file_stream.cpp" />
     <ClCompile Include="..\src\stream\memory_stream.cpp" />
     <ClCompile Include="..\src\str\str_utils.cpp" />
@@ -60,6 +59,7 @@
     <ClCompile Include="..\src\windows\ddcom_utils.cpp" />
     <ClCompile Include="..\src\windows\ddprocess.cpp" />
     <ClCompile Include="..\src\windows\ddsecurity.cpp" />
+    <ClCompile Include="..\src\windows\ddshared_memory.cpp" />
     <ClCompile Include="..\src\windows\ddwin_utils.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -72,7 +72,6 @@
     <ClInclude Include="..\src\ddinclude.h" />
     <ClInclude Include="..\src\file\ddpath.h" />
     <ClInclude Include="..\src\member_count.hpp" />
-    <ClInclude Include="..\src\shared_memory\ddshared_memory.h" />
     <ClInclude Include="..\src\sys.h" />
     <ClInclude Include="..\src\ddassert.h" />
     <ClInclude Include="..\src\file\big_file_utils.h" />
@@ -116,6 +115,7 @@
     <ClInclude Include="..\src\windows\ddcom_utils.h" />
     <ClInclude Include="..\src\windows\ddprocess.h" />
     <ClInclude Include="..\src\windows\ddsecurity.h" />
+    <ClInclude Include="..\src\windows\ddshared_memory.h" />
     <ClInclude Include="..\src\windows\ddwin_utils.h" />
   </ItemGroup>
   <ItemGroup>

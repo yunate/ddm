@@ -26,7 +26,7 @@ bool ddshared_memory::init(u32 size, const std::wstring& name)
     close();
     m_size = size;
     m_name = name;
-    m_map = ::OpenFileMappingW(FILE_MAP_READ | FILE_MAP_READ, FALSE, name.c_str());
+    m_map = ::OpenFileMappingW(FILE_MAP_ALL_ACCESS, FALSE, name.c_str());
     if (m_map != nullptr) {
         u8* buff = get_buff();
         if (buff == nullptr) {
@@ -37,13 +37,15 @@ bool ddshared_memory::init(u32 size, const std::wstring& name)
             return false;
         }
 
-        m_size = info.RegionSize;
+        m_size = (u32)info.RegionSize;
         return true;
     }
 
     // 以低权限创建
     SECURITY_ATTRIBUTES sa;
     sa.bInheritHandle = FALSE;
+    SECURITY_DESCRIPTOR sd;
+    sa.lpSecurityDescriptor = (void*)&sd;
     if (ERROR_SUCCESS != create_low_sa(sa)) {
         return false;
     }

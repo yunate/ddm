@@ -1,6 +1,6 @@
 #ifndef shared_memory_ipc_h_
 #define shared_memory_ipc_h_
-#include "shared_memory/ddshared_memory.h"
+#include "windows/ddshared_memory.h"
 #include "single_limited.h"
 #include "nocopyable.hpp"
 BEG_NSP_DDM
