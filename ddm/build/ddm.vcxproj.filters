@@ -78,12 +78,6 @@
     <ClCompile Include="..\src\pickle\pickle.cpp">
       <Filter>src\pickle</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\shared_memory\shared_memory.cpp">
-      <Filter>src\shared_memory</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\shared_memory\shared_memory_manager.cpp">
-      <Filter>src\shared_memory</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\str\str_utils.cpp">
       <Filter>src\str</Filter>
     </ClCompile>
@@ -128,6 +122,9 @@
     </ClCompile>
     <ClCompile Include="..\src\windows\ddsecurity.cpp">
       <Filter>src\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\shared_memory\ddshared_memory.cpp">
+      <Filter>src\shared_memory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -190,12 +187,6 @@
     </ClInclude>
     <ClInclude Include="..\src\pickle\pickle.h">
       <Filter>src\pickle</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\shared_memory\shared_memory.h">
-      <Filter>src\shared_memory</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\shared_memory\shared_memory_manager.h">
-      <Filter>src\shared_memory</Filter>
     </ClInclude>
     <ClInclude Include="..\src\str\regex_example.h">
       <Filter>src\str</Filter>
@@ -295,6 +286,9 @@
     </ClInclude>
     <ClInclude Include="..\src\windows\ddsecurity.h">
       <Filter>src\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\shared_memory\ddshared_memory.h">
+      <Filter>src\shared_memory</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

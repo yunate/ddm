@@ -1,5 +1,6 @@
 #include "ddprocess.h"
 #include "ddassert.h"
+#include "windows/ddsecurity.h"
 #include <tlhelp32.h>
 
 BEG_NSP_DDM
@@ -280,6 +281,39 @@ void ddprocess::uninit()
     m_id = 0;
     m_parent_id = 0;
     m_x64 = false;
+}
+
+////////////////////////////////ddprocess_mutex//////////////////////////////////////////
+bool ddprocess_mutex::init(const std::wstring& name)
+{
+    // 以低权限创建
+    SECURITY_ATTRIBUTES sa;
+    sa.bInheritHandle = FALSE;
+    if (ERROR_SUCCESS != create_low_sa(sa)) {
+        return false;
+    }
+
+    m_mutex = ::CreateMutexW(&sa, false, (name + L"_MUTEX").c_str());
+    return (m_mutex != NULL);
+}
+
+bool ddprocess_mutex::lock(u32 waitTime /*= 1000*/)
+{
+    if (m_mutex == NULL) {
+        return false;
+    }
+    DWORD hr = ::WaitForSingleObject(m_mutex, waitTime);
+    if (hr == WAIT_ABANDONED || hr == WAIT_OBJECT_0) {
+        return true;
+    }
+    return false;
+}
+
+void ddprocess_mutex::unlock()
+{
+    if (m_mutex != NULL) {
+        (void)::ReleaseMutex(m_mutex);
+    }
 }
 
 END_NSP_DDM

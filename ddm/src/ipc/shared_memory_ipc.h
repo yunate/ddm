@@ -1,6 +1,6 @@
 #ifndef shared_memory_ipc_h_
 #define shared_memory_ipc_h_
-#include "shared_memory/shared_memory_manager.h"
+#include "shared_memory/ddshared_memory.h"
 #include "single_limited.h"
 #include "nocopyable.hpp"
 BEG_NSP_DDM
@@ -12,7 +12,7 @@ public:
     virtual bool create(const ddstr& name, u32 size);
     void close();
 protected:
-    sp_shared_memory m_shared_memory;
+    ddshared_memory* m_shared_memory;
     HANDLE m_recv_event = NULL;
     HANDLE m_send_event = NULL;
     u32 m_max_size = 0;

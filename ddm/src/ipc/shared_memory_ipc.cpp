@@ -11,17 +11,16 @@ bool shared_memory_ipc_base::create(const ddstr& name, u32 size)
 {
     m_name = name;
     do {
-        // 本程序已经打开了该名称的共享内存
-        if (SHARED_MEMORY_MANAGER.find(name) != NULL) {
-            return false;
+        if (m_shared_memory != nullptr) {
+            delete m_shared_memory;
         }
 
-        m_shared_memory = SHARED_MEMORY_MANAGER.create(name + _DDT("_shared_memory_ipc_memory"), size);
-        if (m_shared_memory == NULL) {
-            return false;
+        m_shared_memory = new(std::nothrow) ddshared_memory();
+        if (m_shared_memory == nullptr || !m_shared_memory->init(size, name)) {
+            break;
         }
 
-        if (m_shared_memory->get_buff(0) == NULL) {
+        if (m_shared_memory->get_buff() == nullptr) {
             break;
         }
 
@@ -58,9 +57,9 @@ void shared_memory_ipc_base::close()
     }
 
     if (m_shared_memory != nullptr) {
-        m_shared_memory.reset();
+        delete m_shared_memory;
+        m_shared_memory = nullptr;
     }
-    SHARED_MEMORY_MANAGER.close(m_name + _DDT("_shared_memory_ipc_memory"));
 }
 
 bool shared_memory_ipc_server::create(const ddstr& name, u32 size)

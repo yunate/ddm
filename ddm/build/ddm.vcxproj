@@ -47,8 +47,7 @@
     <ClCompile Include="..\src\pickle\pickle.cpp" />
     <ClCompile Include="..\src\random.cpp" />
     <ClCompile Include="..\src\resource_util.cpp" />
-    <ClCompile Include="..\src\shared_memory\shared_memory.cpp" />
-    <ClCompile Include="..\src\shared_memory\shared_memory_manager.cpp" />
+    <ClCompile Include="..\src\shared_memory\ddshared_memory.cpp" />
     <ClCompile Include="..\src\stream\file_stream.cpp" />
     <ClCompile Include="..\src\stream\memory_stream.cpp" />
     <ClCompile Include="..\src\str\str_utils.cpp" />
@@ -73,6 +72,7 @@
     <ClInclude Include="..\src\ddinclude.h" />
     <ClInclude Include="..\src\file\ddpath.h" />
     <ClInclude Include="..\src\member_count.hpp" />
+    <ClInclude Include="..\src\shared_memory\ddshared_memory.h" />
     <ClInclude Include="..\src\sys.h" />
     <ClInclude Include="..\src\ddassert.h" />
     <ClInclude Include="..\src\file\big_file_utils.h" />
@@ -88,8 +88,6 @@
     <ClInclude Include="..\src\pickle\pickle.h" />
     <ClInclude Include="..\src\random.h" />
     <ClInclude Include="..\src\resource_util.h" />
-    <ClInclude Include="..\src\shared_memory\shared_memory.h" />
-    <ClInclude Include="..\src\shared_memory\shared_memory_manager.h" />
     <ClInclude Include="..\src\singleton.hpp" />
     <ClInclude Include="..\src\single_limited.h" />
     <ClInclude Include="..\src\stream\file_stream.h" />

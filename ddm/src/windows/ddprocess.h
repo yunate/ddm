@@ -43,6 +43,20 @@ private:
     bool m_x64 = false;
 };
 
+class ddprocess_mutex : public nocopyable
+{
+public:
+    ddprocess_mutex() = default;
+    ~ddprocess_mutex() = default;
+
+    bool init(const std::wstring& name);
+    bool lock(u32 waitTime = 1000);
+    void unlock();
+
+protected:
+    HANDLE m_mutex = NULL;
+};
+
 #endif
 END_NSP_DDM
 #endif //
