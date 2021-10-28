@@ -7,6 +7,8 @@ BEG_NSP_DDM
 
 TEST(test_shared_memory, shared_memory)
 {
+    return;
+    ::CreateMutex(NULL, false, L"dddddd");
     ddshared_memory* sm = new(std::nothrow) ddshared_memory();
     if (sm == nullptr || !sm->init(4097, L"test_shared_memory")) {
         return;
@@ -26,7 +28,7 @@ TEST(test_shared_memory, shared_memory)
 
 TEST(test_shared_memory, shared_memory1)
 {
-    return;
+    HANDLE hh = ::CreateMutex(NULL, false, L"dddddd");
     ddshared_memory* sm = new(std::nothrow) ddshared_memory();
     if (sm == nullptr || !sm->init(4097, L"test_shared_memory")) {
         return;

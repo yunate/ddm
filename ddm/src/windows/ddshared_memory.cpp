@@ -62,7 +62,7 @@ bool ddshared_memory::init(u32 size, const std::wstring& name)
         path += name;
         HANDLE hFile = ::CreateFileW(path.c_str(), GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, &sa, CREATE_ALWAYS, FILE_FLAG_OVERLAPPED, nullptr);
         if (INVALID_HANDLE_VALUE != hFile) {
-            m_map = ::CreateFileMapping(hFile, nullptr, PAGE_READWRITE, 0, (DWORD)size, name.c_str());
+            m_map = ::CreateFileMapping(hFile, &sa, PAGE_READWRITE, 0, (DWORD)size, name.c_str());
             ::CloseHandle(hFile);
         }
     }
