@@ -174,40 +174,40 @@ protected:
     unsigned long m_lockCnt = 0;
 };
 
-#define QUERY_INTERFACE(rrid, className)                        \
-if (rrid == UUIDOF(className)) {                                \
-    *ppvObject = static_cast<className*>(this);                 \
-    if (*ppvObject != nullptr) {                                \
-        AddRef();                                               \
-        return S_OK;                                            \
-    }                                                           \
-}                                                               \
+#define QUERY_INTERFACE(rrid, className)                           \
+if (rrid == UUIDOF(className)) {                                   \
+    *ppvObject = static_cast<className*>(this);                    \
+    if (*ppvObject != nullptr) {                                   \
+        AddRef();                                                  \
+        return S_OK;                                               \
+    }                                                              \
+}                                                                  \
 
-#define QUERY_INTERFACE_EX(rrid, className, toClassName)        \
-if (rrid == UUIDOF(className)) {                                \
-    *ppvObject = static_cast<toClassName*>(this);               \
-    if (*ppvObject != nullptr) {                                \
-        AddRef();                                               \
-        return S_OK;                                            \
-    }                                                           \
-}                                                               \
+#define QUERY_INTERFACE_EX(rrid, className, toClassName)           \
+if (rrid == UUIDOF(className)) {                                   \
+    *ppvObject = static_cast<toClassName*>(this);                  \
+    if (*ppvObject != nullptr) {                                   \
+        AddRef();                                                  \
+        return S_OK;                                               \
+    }                                                              \
+}                                                                  \
 
-#define HR_RTN_NULL_POINTER(point)                              \
-if (point == NULL) {                                            \
-    return E_POINTER;                                           \
-}                                                               \
+#define HR_RTN_NULL_POINTER(point)                                 \
+if (point == nullptr) {                                            \
+    return E_POINTER;                                              \
+}                                                                  \
 
-#define DD_SAFE_RELEASE(point)                                  \
-if (point != NULL) {                                            \
-    point->Release();                                           \
-    point = NULL;                                               \
-}                                                               \
+#define DD_SAFE_RELEASE(point)                                     \
+if (point != nullptr) {                                            \
+    point->Release();                                              \
+    point = nullptr;                                               \
+}                                                                  \
 
-#define DD_SAFE_DELETE(point)                                   \
-if (point != NULL) {                                            \
-    delete point;                                               \
-    point = NULL;                                               \
-}                                                               \
+#define DD_SAFE_DELETE(point)                                      \
+if (point != nullptr) {                                            \
+    delete point;                                                  \
+    point = nullptr;                                               \
+}                                                                  \
 
 END_NSP_DDM
 #endif

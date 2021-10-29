@@ -7,8 +7,9 @@
 #include <windows.h>
 BEG_NSP_DDM
 
-class win_class_register : public nocopyable
+class win_class_register
 {
+    DD_NO_COPY_MOVE(win_class_register);
 public:
     win_class_register()
     {

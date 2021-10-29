@@ -13,10 +13,13 @@ BEG_NSP_DDM
 /** 简单事件
 @note 不提供析构函数，如果当该类析构的时候，但是还处于Wait() 状态，很不幸的告诉你发生未定义行为
 */
-class simple_event :
-    public nocopyable
+class simple_event
 {
+    DD_NO_COPY_MOVE(simple_event);
 public:
+    simple_event() = default;
+    ~simple_event() = default;
+
     /** 超时等待
     @param [in] timeOut 超时时间
     @return 超时返回false，否者true

@@ -5,8 +5,9 @@
 #include "nocopyable.hpp"
 BEG_NSP_DDM
 
-class shared_memory_ipc_base : private nocopyable
+class shared_memory_ipc_base
 {
+    DD_NO_COPY_MOVE(shared_memory_ipc_base);
 public:
     virtual ~shared_memory_ipc_base();
     virtual bool create(const ddstr& name, u32 size);

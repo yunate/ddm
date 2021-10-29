@@ -34,8 +34,9 @@ struct MOUSE_EVENTD
 
 using MOUSE_EVENT_CB = std::function<bool(const MOUSE_EVENTD&)>;
 
-class ddmouse : private nocopyable
+class ddmouse
 {
+    DD_NO_COPY_MOVE(ddmouse);
 public:
     static bool is_key_down(int key);
     static bool is_ldown();

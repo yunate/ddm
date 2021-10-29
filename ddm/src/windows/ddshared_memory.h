@@ -9,10 +9,9 @@
 #include <windows.h>
 
 BEG_NSP_DDM
-class ddasync_with_resize_shared_memory;
-class ddshared_memory : public nocopyable
+class ddshared_memory
 {
-    friend ddasync_with_resize_shared_memory;
+    DD_NO_COPY_MOVE(ddshared_memory);
 public:
     ddshared_memory();
     ~ddshared_memory();
@@ -30,9 +29,9 @@ protected:
     HANDLE m_map = nullptr;
 };
 
-class ddasync_shared_memory : public nocopyable
+class ddasync_shared_memory
 {
-    friend ddasync_with_resize_shared_memory;
+    DD_NO_COPY_MOVE(ddasync_shared_memory);
 public:
     ddasync_shared_memory();
     ~ddasync_shared_memory();

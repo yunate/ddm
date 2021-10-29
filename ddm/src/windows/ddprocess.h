@@ -7,8 +7,9 @@
 #include <windows.h>
 BEG_NSP_DDM
 #ifdef DD_WINDOW
-class ddprocess : private nocopyable
+class ddprocess
 {
+    DD_NO_COPY_MOVE(ddprocess);
 public:
     // 进程名称枚举所有的进程id
     // processName 进程名称, 比如 notepad.exe
@@ -43,8 +44,9 @@ private:
     bool m_x64 = false;
 };
 
-class ddprocess_mutex : public nocopyable
+class ddprocess_mutex
 {
+    DD_NO_COPY_MOVE(ddprocess_mutex);
 public:
     ddprocess_mutex() = default;
     ~ddprocess_mutex() = default;

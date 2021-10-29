@@ -7,9 +7,9 @@
 
 BEG_NSP_DDM
 
-class i_loop :
-    public nocopyable
+class i_loop
 {
+    DD_NO_COPY_MOVE(i_loop);
 public:
     i_loop() = default;
     virtual ~i_loop() = default;

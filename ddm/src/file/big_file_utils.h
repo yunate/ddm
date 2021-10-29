@@ -16,10 +16,12 @@ class big_file_mapper;
 
 /** 一个大文件的文件块
 */
-class file_block :
-    public nocopyable
+class file_block
 {
+    DD_NO_COPY_MOVE(file_block);
 public:
+    file_block() = default;
+
     /** 析构函数
     */
     ~file_block();
@@ -60,9 +62,9 @@ using sp_file_block = std::shared_ptr<file_block>;
 
 /** 内存映射文件来处理大文件，可读写，但是在文件大小改变了的话需要重新映射
 */
-class big_file_mapper :
-    public nocopyable
+class big_file_mapper
 {
+    DD_NO_COPY_MOVE(big_file_mapper);
 public:
     /** 构造函数
     */

@@ -27,8 +27,9 @@ public:
 4.是利用GetProcessAddree()获取LoadLibrary的地址。
 5.是调用远程线程，利用LoadLibrary（）去加载DLL
 */
-class ddclassic_syringe : private nocopyable
+class ddclassic_syringe
 {
+    DD_NO_COPY_MOVE(ddclassic_syringe);
 public:
     ddclassic_syringe(const std::shared_ptr<ddprocess>& process, const std::wstring& dllFullPath);
     ~ddclassic_syringe() = default;
@@ -45,8 +46,9 @@ private:
 注入的时候将目标入口函数点的前5个字节用当前的替换掉，防止目标进程对Load Library进行了HOOK
 来检查dll是否签名导致注入不了
 */
-class ddclassic_syringeex : private nocopyable
+class ddclassic_syringeex
 {
+    DD_NO_COPY_MOVE(ddclassic_syringeex);
 public:
     ddclassic_syringeex(const std::shared_ptr<ddprocess>& process, const std::wstring& dllFullPath);
     ~ddclassic_syringeex() = default;
@@ -68,8 +70,9 @@ private:
 @note 由于不知道线程何时会调用apc，为了提高命中率向每个线程中压入apc执行函数，这样一来，上述申请的内存就
       得不到释放，也不知道何时该卸载注入
 */
-class ddapc_syringe : private nocopyable
+class ddapc_syringe
 {
+    DD_NO_COPY_MOVE(ddapc_syringe);
 public:
     ddapc_syringe(const std::shared_ptr<ddprocess>& process, const std::wstring& dllFullPath);
     ~ddapc_syringe() = default;

@@ -8,8 +8,9 @@
 #include <windows.h>
 BEG_NSP_DDM
 
-class base_native_window : public nocopyable
+class base_native_window
 {
+    DD_NO_COPY_MOVE(base_native_window);
 public:
     static LRESULT CALLBACK win_proc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
     virtual bool win_proc_chain(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) = 0;

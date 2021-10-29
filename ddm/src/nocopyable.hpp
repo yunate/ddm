@@ -6,17 +6,17 @@
 
 BEG_NSP_DDM
 
-// ½ûÖ¹¸´ÖÆ»ùÀà
-class nocopyable
-{
-protected:
-    nocopyable() {}
-    ~nocopyable() {}
-    nocopyable(const nocopyable&) = delete;
-    nocopyable(nocopyable&&) = delete;
-    nocopyable& operator= (const nocopyable&) = delete;
-    nocopyable& operator= (nocopyable&&) = delete;
-};
+#define DD_NO_COPY(className)                                   \
+    className(const className&) = delete;                       \
+    className& operator= (const className&) = delete;           \
+
+#define DD_NO_MOVE(className)                                   \
+    className(className&&) = delete;                            \
+    className& operator= (className&&) = delete;                \
+
+#define DD_NO_COPY_MOVE(className)                              \
+    DD_NO_COPY(className);                                      \
+    DD_NO_MOVE(className);                                      \
 
 END_NSP_DDM
 #endif // nocopyable_hpp_

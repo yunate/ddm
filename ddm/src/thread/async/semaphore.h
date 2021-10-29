@@ -8,9 +8,9 @@
 #include <mutex>
 BEG_NSP_DDM
 
-class semaphore :
-    public nocopyable
+class semaphore
 {
+    DD_NO_COPY_MOVE(semaphore);
 public:
     /** 超时等待
     @param [in] timeOut 超时时间

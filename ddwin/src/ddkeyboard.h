@@ -21,8 +21,9 @@ struct KB_EVENT
 
 using KB_EVENT_CB = std::function<bool(u8)>;
 
-class ddkeyboard : private nocopyable
+class ddkeyboard
 {
+    DD_NO_COPY_MOVE(ddkeyboard);
 public:
     static bool is_key_down(int key);
     static bool is_ctrl_down();

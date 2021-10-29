@@ -4,6 +4,7 @@
 
 #include "../task/simple_task_queue.h"
 #include "../task/heartbeat_task_queue.h"
+#include "nocopyable.hpp"
 #include <thread>
 BEG_NSP_DDM
 
@@ -11,9 +12,9 @@ BEG_NSP_DDM
 @note 有点像生产者消费者模型，只是消费者只有一个
 */
 template<class TASK_QUEUE>
-class task_thread :
-    public nocopyable
+class task_thread
 {
+    DD_NO_COPY_MOVE(task_thread);
 public:
     /** 构造函数
     */

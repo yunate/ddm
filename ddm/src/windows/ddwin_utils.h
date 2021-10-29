@@ -76,9 +76,11 @@ inline bool ddguid_str(const ::GUID& guid, std::string& guidStr)
 }
 
 
-class DDHKEY : public nocopyable
+class DDHKEY
 {
+    DD_NO_COPY_MOVE(DDHKEY);
 public:
+    DDHKEY() = default;
     DDHKEY& operator=(HKEY key)
     {
         if (m_key != NULL) {

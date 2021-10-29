@@ -10,8 +10,9 @@
 BEG_NSP_DDM
 
 // 保证所有的执行体一定在调用了 ready() 之后执行
-class ddlazy_exec : public nocopyable
+class ddlazy_exec
 {
+    DD_NO_COPY_MOVE(ddlazy_exec);
 public:
     ddlazy_exec() = default;
     ~ddlazy_exec() = default;

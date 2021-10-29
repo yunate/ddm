@@ -4,8 +4,9 @@
 #include "ddinclude.h"
 using namespace NSP_DDM;
 
-class App : private nocopyable
+class App
 {
+    DD_NO_COPY_MOVE(App);
 protected:
     App() = default;
     ~App() = default;
