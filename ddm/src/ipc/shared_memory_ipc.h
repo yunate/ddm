@@ -9,6 +9,7 @@ class shared_memory_ipc_base
 {
     DD_NO_COPY_MOVE(shared_memory_ipc_base);
 public:
+    shared_memory_ipc_base() = default;
     virtual ~shared_memory_ipc_base();
     virtual bool create(const ddstr& name, u32 size);
     void close();
@@ -23,6 +24,8 @@ protected:
 class shared_memory_ipc_server : public shared_memory_ipc_base
 {
 public:
+    shared_memory_ipc_server() = default;
+    ~shared_memory_ipc_server() = default;
     virtual bool create(const ddstr& name, u32 size);
     // time_out 等于 0xFFFFFFFF 时候永不超时
     bool recv(ddbuff& buff, u32 time_out = 0xFFFFFFFF);
@@ -40,6 +43,8 @@ private:
 class shared_memory_ipc_client : public shared_memory_ipc_base
 {
 public:
+    shared_memory_ipc_client() = default;
+    ~shared_memory_ipc_client() = default;
     // 如果size大于共享内存大小则返回false，由调用者切片
     // 如果size大于buff大小则crash
     bool send(const void* buff, u32 size, u32 time_out = 0xFFFFFFFF);

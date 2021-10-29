@@ -163,6 +163,60 @@ template<class T, container_traits traits = _container_traits<T>>
 class pickle_reader_writer_helper;
 
 template<class T>
+inline pickle& operator << (pickle& pck, const T& r)
+{
+    return pickle_reader_writer_helper<T>::write(pck, r);
+}
+
+template<class T>
+inline pickle_reader& operator >> (pickle_reader& reader, T& r)
+{
+    return pickle_reader_writer_helper<T>::read(reader, r);
+}
+
+inline pickle& operator<<(pickle& pck, const std::string& r)
+{
+    return pck.append_buff(r.data(), (u32)r.size());
+}
+
+inline pickle_reader& operator>>(pickle_reader& reader, std::string& r)
+{
+    u32 size = 0;
+    char* data = (char*)reader.read_buff(size);
+    if (size != 0 && data != nullptr) {
+        r.assign(data, size);
+    }
+    return reader;
+}
+
+inline pickle& operator<<(pickle& pck, const std::wstring& r)
+{
+    return pck.append_buff(r.data(), (u32)r.size() * sizeof(wchar_t));
+}
+
+inline pickle_reader& operator>>(pickle_reader& reader, std::wstring& r)
+{
+    u32 size = 0;
+    wchar_t* data = (wchar_t*)reader.read_buff(size);
+    if (size != 0 && data != nullptr) {
+        r.assign(data, size / 2);
+    }
+    return reader;
+}
+
+inline pickle& operator<<(pickle& pck, const char* r)
+{
+    pck << std::string(r);
+    return pck;
+}
+
+inline pickle& operator<<(pickle& pck, const wchar_t* r)
+{
+    pck << std::wstring(r);
+    return pck;
+}
+
+template<class T>
 class pickle_reader_writer_helper<T, container_traits::container_traits_standard_layout>
 {
 public:
@@ -237,61 +291,6 @@ public:
         return reader;
     }
 };
-
-template<class T>
-inline pickle& operator << (pickle& pck, const T& r)
-{
-    return pickle_reader_writer_helper<T>::write(pck, r);
-}
-
-inline pickle& operator<<(pickle& pck, const std::string& r)
-{
-    return pck.append_buff(r.data(), (u32)r.size());
-}
-
-inline pickle& operator<<(pickle& pck, const char* r)
-{
-    pck << std::string(r);
-    return pck;
-}
-
-inline pickle& operator<<(pickle& pck, const std::wstring& r)
-{
-    return pck.append_buff(r.data(), (u32)r.size() * sizeof(wchar_t));
-}
-
-inline pickle& operator<<(pickle& pck, const wchar_t* r)
-{
-    pck << std::wstring(r);
-    return pck;
-}
-
-///////////////////////////// >> /////////////////////////////////////////////
-template<class T>
-inline pickle_reader& operator >> (pickle_reader& reader, T& r)
-{
-    return pickle_reader_writer_helper<T>::read(reader, r);
-}
-
-inline pickle_reader& operator>>(pickle_reader& reader, std::string& r)
-{
-    u32 size = 0;
-    char* data = (char*)reader.read_buff(size);
-    if (size != 0 && data != nullptr) {
-        r.assign(data, size);
-    }
-    return reader;
-}
-
-inline pickle_reader& operator>>(pickle_reader& reader, std::wstring& r)
-{
-    u32 size = 0;
-    wchar_t* data = (wchar_t*)reader.read_buff(size);
-    if (size != 0 && data != nullptr) {
-        r.assign(data, size / 2);
-    }
-    return reader;
-}
 
 #define DD_PICKLE_OPT_LL(a, idx) << r.a
 #define DD_PICKLE_OPT_RR(a, idx) >> r.a

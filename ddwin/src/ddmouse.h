@@ -38,6 +38,8 @@ class ddmouse
 {
     DD_NO_COPY_MOVE(ddmouse);
 public:
+    ddmouse() = default;
+    ~ddmouse() = default;
     static bool is_key_down(int key);
     static bool is_ldown();
     static bool is_rdown();

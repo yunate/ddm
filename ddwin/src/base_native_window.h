@@ -12,6 +12,8 @@ class base_native_window
 {
     DD_NO_COPY_MOVE(base_native_window);
 public:
+    base_native_window() = default;
+    ~base_native_window() = default;
     static LRESULT CALLBACK win_proc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
     virtual bool win_proc_chain(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) = 0;
 };

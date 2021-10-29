@@ -12,6 +12,8 @@ class semaphore
 {
     DD_NO_COPY_MOVE(semaphore);
 public:
+    semaphore() = default;
+    ~semaphore() = default;
     /** 超时等待
     @param [in] timeOut 超时时间
     @return 超时返回false，否者true

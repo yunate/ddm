@@ -25,6 +25,8 @@ class ddkeyboard
 {
     DD_NO_COPY_MOVE(ddkeyboard);
 public:
+    ddkeyboard() = default;
+    ~ddkeyboard() = default;
     static bool is_key_down(int key);
     static bool is_ctrl_down();
     static bool is_shift_down();
