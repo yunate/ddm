@@ -198,9 +198,9 @@ if (point == nullptr) {                                            \
 }                                                                  \
 
 #define DD_SAFE_RELEASE(point)                                     \
-if (point != nullptr) {                                            \
+if (point != NULL) {                                               \
     point->Release();                                              \
-    point = nullptr;                                               \
+    point = NULL;                                                  \
 }                                                                  \
 
 #define DD_SAFE_DELETE(point)                                      \
