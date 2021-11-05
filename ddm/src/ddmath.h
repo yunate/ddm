@@ -3,14 +3,16 @@
 #include "g_def.h"
 BEG_NSP_DDM
 
-// 32位有符号数最大值
+// 32位有符号数最大/小值
 #define MAX_S32 0x7fffffff
+#define MIN_S32 0x80000000
 
 // 32位无符号数最大值
 #define MAX_U32 0xffffffff
 
-// 64位有符号数最大值
+// 64位有符号数最大/小值
 #define MAX_S64 0x7fffffffffffffff
+#define MIN_S64 0x8000000000000000
 
 // 64位无符号数最大值
 #define MAX_U64 0xffffffffffffffff
