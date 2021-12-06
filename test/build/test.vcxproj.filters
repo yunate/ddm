@@ -93,6 +93,9 @@
     <ClCompile Include="..\src\ddm\windows\test_case_ddprocess.cpp">
       <Filter>src\ddm\windows</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\ddm\windows\test_case_ddperfermence.cpp">
+      <Filter>src\ddm\windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\test_case_factory.h">

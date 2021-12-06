@@ -51,6 +51,7 @@
     <ClCompile Include="..\src\ddm\thread\async\test_spin_mutex.cpp" />
     <ClCompile Include="..\src\ddm\thread\async\test_sync_n_buff.cpp" />
     <ClCompile Include="..\src\ddm\thread\test_thread.cpp" />
+    <ClCompile Include="..\src\ddm\windows\test_case_ddperfermence.cpp" />
     <ClCompile Include="..\src\ddm\windows\test_case_ddprocess.cpp" />
     <ClCompile Include="..\src\ddm\windows\test_case_ddwin_utils.cpp" />
     <ClCompile Include="..\src\ddwin\test_ddwin.cpp" />

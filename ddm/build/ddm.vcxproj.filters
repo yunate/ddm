@@ -123,6 +123,9 @@
     <ClCompile Include="..\src\windows\ddshared_memory.cpp">
       <Filter>src\windows</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\windows\ddperfermence.cpp">
+      <Filter>src\windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\cmd_line_util.h">
@@ -285,6 +288,9 @@
       <Filter>src\windows</Filter>
     </ClInclude>
     <ClInclude Include="..\src\windows\ddshared_memory.h">
+      <Filter>src\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\windows\ddperfermence.h">
       <Filter>src\windows</Filter>
     </ClInclude>
   </ItemGroup>

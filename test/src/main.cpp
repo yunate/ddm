@@ -5,7 +5,7 @@ BEG_NSP_DDM
 
 int test_main()
 {
-    TCF.insert_white_type("test_shared_memory");
+    TCF.insert_white_type("ddperfermence");
     TCF.run();
     ::system("pause");
     return 0;
