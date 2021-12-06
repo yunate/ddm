@@ -1,5 +1,9 @@
 #include "ddperfermence.h"
 #include "ddprocess.h"
+#include "ddtimer.h"
+#include "ddperfermence_gpu_ntd3dkmt.h"
+
+typedef NTSTATUS(APIENTRY* PD3DKMTQueryStatistics)(_In_ CONST D3DKMT_QUERYSTATISTICS*);
 
 BEG_NSP_DDM
 ddgpu_perfermence::ddgpu_perfermence()
@@ -29,7 +33,7 @@ bool ddgpu_perfermence::get_gpu_useagedesc(const LUID& gpuAdapterLuid, HANDLE hP
         memset(&stats, 0, sizeof(D3DKMT_QUERYSTATISTICS));
         stats.Type = D3DKMT_QUERYSTATISTICS_ADAPTER;
         stats.AdapterLuid = gpuAdapterLuid;
-        if (m_D3DKMTQueryStatistics(&stats) < 0) {
+        if (((PD3DKMTQueryStatistics)m_D3DKMTQueryStatistics)(&stats) < 0) {
             return false;
         }
         gpuNodeCount = stats.QueryResult.AdapterInformation.NodeCount;
@@ -43,7 +47,7 @@ bool ddgpu_perfermence::get_gpu_useagedesc(const LUID& gpuAdapterLuid, HANDLE hP
         stats.AdapterLuid = gpuAdapterLuid;
         stats.ProcessHandle = hProcess;
         stats.QueryProcessNode.NodeId = i;
-        if (m_D3DKMTQueryStatistics(&stats) < 0) {
+        if (((PD3DKMTQueryStatistics)m_D3DKMTQueryStatistics)(&stats) < 0) {
             continue;
         }
 

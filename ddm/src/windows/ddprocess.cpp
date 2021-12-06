@@ -192,7 +192,7 @@ bool ddprocess::init(const std::wstring& name)
         }
         ::CloseHandle(hSnapshot);
         if (m_id == 0) {
-            DDLOG(WARNING, str_utils::str_format("can not find process:%s", m_name.c_str()));
+            DDLOGW(WARNING, str_utils::str_format(L"can not find process:%s", m_name.c_str()));
             break;
         }
 

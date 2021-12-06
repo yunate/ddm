@@ -1,11 +1,9 @@
 #ifndef ddperfermence_h_
 #define ddperfermence_h_
-#include "ddperfermence_gpu_ntd3dkmt.h"
 
 #include "g_def.h"
-#include "ddtimer.h"
 
-typedef NTSTATUS(APIENTRY* PD3DKMTQueryStatistics)(_In_ CONST D3DKMT_QUERYSTATISTICS*);
+#include <windows.h>
 BEG_NSP_DDM
 
 class ddgpu_perfermence
@@ -32,7 +30,7 @@ protected:
 
 protected:
     HMODULE m_Gdi32DllHandle = NULL;
-    PD3DKMTQueryStatistics m_D3DKMTQueryStatistics = NULL;
+    void* m_D3DKMTQueryStatistics = NULL;
 };
 
 END_NSP_DDM
