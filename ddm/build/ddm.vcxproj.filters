@@ -293,6 +293,12 @@
     <ClInclude Include="..\src\windows\ddperfermence.h">
       <Filter>src\windows</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\ddversion.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\windows\ddwindows_version.h">
+      <Filter>src\windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\src\asm\x64\utils.asm">

@@ -39,6 +39,7 @@
     <ClCompile Include="..\src\ddm\test_case_member_count.cpp" />
     <ClCompile Include="..\src\ddm\pickle\pickle.cpp" />
     <ClCompile Include="..\src\ddm\test_case_ddfilter.cpp" />
+    <ClCompile Include="..\src\ddm\test_case_version.cpp" />
     <ClCompile Include="..\src\ddm\test_case_xtimer.cpp" />
     <ClCompile Include="..\src\ddm\test_cmd_line_util.cpp" />
     <ClCompile Include="..\src\ddm\test_file_utils.cpp" />

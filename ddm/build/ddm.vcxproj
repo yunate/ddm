@@ -71,6 +71,7 @@
     <ClInclude Include="..\src\ddmacro.hpp" />
     <ClInclude Include="..\src\ddlog.hpp" />
     <ClInclude Include="..\src\ddinclude.h" />
+    <ClInclude Include="..\src\ddversion.h" />
     <ClInclude Include="..\src\file\ddpath.h" />
     <ClInclude Include="..\src\member_count.hpp" />
     <ClInclude Include="..\src\sys.h" />
@@ -118,6 +119,7 @@
     <ClInclude Include="..\src\windows\ddprocess.h" />
     <ClInclude Include="..\src\windows\ddsecurity.h" />
     <ClInclude Include="..\src\windows\ddshared_memory.h" />
+    <ClInclude Include="..\src\windows\ddwindows_version.h" />
     <ClInclude Include="..\src\windows\ddwin_utils.h" />
   </ItemGroup>
   <ItemGroup>
