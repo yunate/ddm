@@ -16,7 +16,7 @@ ddgpu_perfermence::~ddgpu_perfermence()
 }
 
 // reference resources : process hacker gpumon.c
-bool ddgpu_perfermence::get_gpu_useagedesc(const LUID& gpuAdapterLuid, HANDLE hProcess, ddgpu_perfermence::GpuUsageDesc& desc)
+bool ddgpu_perfermence::get_gpu_useagedesc(const LUID& gpuAdapterLuid, HANDLE hProcess, ddgpu_perfermence::gpu_useage_desc& desc)
 {
     if (m_D3DKMTQueryStatistics == NULL && !init()) {
         return false;
@@ -53,7 +53,7 @@ bool ddgpu_perfermence::get_gpu_useagedesc(const LUID& gpuAdapterLuid, HANDLE hP
     return true;
 }
 
-bool ddgpu_perfermence::get_gpu_useagedesc_byname(const LUID& gpuAdapterLuid, const std::wstring& processName, GpuUsageDesc& gpuUseageDesc)
+bool ddgpu_perfermence::get_gpu_useagedesc_byname(const LUID& gpuAdapterLuid, const std::wstring& processName, gpu_useage_desc& gpuUseageDesc)
 {
     ddprocess process;
     if (!process.init(processName)) {

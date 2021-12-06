@@ -47,13 +47,13 @@ TEST(ddperfermence, gpu_useage)
 
     ddgpu_perfermence gpuperfermence;
     for (const auto& it : adapterDescs) {
-        ddgpu_perfermence::GpuUsageDesc desc;
+        ddgpu_perfermence::gpu_useage_desc desc;
         bool b1 = gpuperfermence.get_gpu_useagedesc_byname(it.AdapterLuid, L"notepad.exe", desc);
         ::Sleep(1000);
-        ddgpu_perfermence::GpuUsageDesc desc1;
+        ddgpu_perfermence::gpu_useage_desc desc1;
         bool b2 = gpuperfermence.get_gpu_useagedesc_byname(it.AdapterLuid, L"notepad.exe", desc1);
         if (b1 && b2) {
-            double useage = ddgpu_perfermence::GpuUsageDesc::get_usage(desc, desc1);
+            double useage = ddgpu_perfermence::gpu_useage_desc::get_usage(desc, desc1);
             std::wcout << it.Description << L" useage : " << useage << std::endl;
         }
     }
