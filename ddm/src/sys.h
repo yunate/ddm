@@ -10,7 +10,7 @@
 
 BEG_NSP_DDM
 
-u32 get_thread_count() 
+inline u32 get_thread_count() 
 {
 
     // 通过std提供的方法获取

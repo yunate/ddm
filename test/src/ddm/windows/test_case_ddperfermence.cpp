@@ -2,7 +2,7 @@
 #include "test_case_factory.h"
 #include "windows/ddperfermence.h"
 #include "windows/ddprocess.h"
-
+#include "str/str_utils.h"
 
 #pragma comment(lib, "DXGI.lib")
 #pragma comment(lib, "gdi32.lib")
@@ -45,34 +45,31 @@ TEST(ddperfermence, gpu_useage)
         return;
     }
 
-    std::wstring processName = L"notepad.exe";
+    std::wstring processName = L"MediaSDK_Server.exe";
     ddgpu_perfermence gpuperfermence;
+    ddgpu_perfermence::gpu_useage_desc gpuUseage;
+    ddcpu_perfermence::cpu_useage_desc cpuUseage;
+
+    gpuperfermence.get_gpu_useagedesc_byname(adapterDescs[0].AdapterLuid, processName, gpuUseage);
+    ddcpu_perfermence::get_cpu_useage_desc_byname(processName, cpuUseage);
+
     while (true) {
-        for (const auto& it : adapterDescs) {
-            ddgpu_perfermence::gpu_useage_desc desc;
-            bool b1 = gpuperfermence.get_gpu_useagedesc_byname(it.AdapterLuid, processName, desc);
-            if (!b1 || desc.mem_usage == 0) {
-                continue;
-            }
+        ::Sleep(1000);
+        ddgpu_perfermence::gpu_useage_desc gpuUseage1;
+        ddcpu_perfermence::cpu_useage_desc cpuUseage1;
+        gpuperfermence.get_gpu_useagedesc_byname(adapterDescs[0].AdapterLuid, processName, gpuUseage1);
+        ddcpu_perfermence::get_cpu_useage_desc_byname(processName, cpuUseage1);
 
-            ::Sleep(1000);
+        std::cout << str_utils::str_format("GPU:%f%% MEM_USAGE:%fM MEM_COMMIT_USAGE:%fM MEM_SHARE_USAGE:%fM",
+            ddgpu_perfermence::gpu_useage_desc::get_usage(gpuUseage, gpuUseage1) * 100, gpuUseage1.mem_usage * 1.0 / 1024 / 1024, gpuUseage1.mem_commit_usage * 1.0 / 1024 / 1024, gpuUseage1.mem_share_usage * 1.0 / 1024 / 1024) << std::endl;
 
-            ddgpu_perfermence::gpu_useage_desc desc1;
-            bool b2 = gpuperfermence.get_gpu_useagedesc_byname(it.AdapterLuid, processName, desc1);
-            if (!b2 || desc1.mem_usage == 0) {
-                continue;
-            }
-
-            double useage = ddgpu_perfermence::gpu_useage_desc::get_usage(desc, desc1);
-            std::wcout << it.Description << std::endl;
-            std::wcout << L" useage : " << useage << std::endl;
-            std::wcout << L"desc.mem_usage:" << desc.mem_usage / 1024 / 1024 << std::endl;
-            std::wcout << L"desc.mem_share_usage:" << desc.mem_share_usage / 1024 / 1024 << std::endl;
-            std::wcout << L"desc.mem_commit_usage:" << desc.mem_commit_usage / 1024 / 1024 << std::endl;
-            std::wcout << std::endl;
-        }
+        std::cout << str_utils::str_format("CPU:%f%% MEM_USAGE:%fM MEM_PRIVATE:USAGE%fM IO_READ:%fKB/S IO_WRITE:%fKB/S",
+            ddcpu_perfermence::cpu_useage_desc::get_cpu_usage(cpuUseage, cpuUseage1) * 100, cpuUseage1.mem_usage * 1.0 / 1024 / 1024, cpuUseage1.mem_private_usage * 1.0 / 1024 / 1024,
+            ddcpu_perfermence::cpu_useage_desc::get_io_read_usage(cpuUseage, cpuUseage1) / 1024, ddcpu_perfermence::cpu_useage_desc::get_io_write_usage(cpuUseage, cpuUseage1) / 1024) << std::endl;
+        std::cout << std::endl;
+        gpuUseage = gpuUseage1;
+        cpuUseage = cpuUseage1;
     }
-    
 }
 
 END_NSP_DDM
