@@ -45,7 +45,7 @@ TEST(ddperfermence, gpu_useage)
         return;
     }
 
-    std::wstring processName = L"MediaSDK_Server.exe";
+    std::wstring processName = L"notepad.exe";
     ddgpu_perfermence gpuperfermence;
     ddgpu_perfermence::gpu_useage_desc gpuUseage;
     ddcpu_perfermence::cpu_useage_desc cpuUseage;
