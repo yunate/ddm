@@ -12,7 +12,7 @@ void ddlog(int level, const char* level_str, const std::string& log)
 
     ddtimer::time_info ti;
     ddtimer::now_fmt(ti);
-    std::string log_fmt = str_utils::str_format("[%d-%d-%d %d-%d-%d %s]:%s\r\n", ti.year, ti.mon, ti.day, ti.hour, ti.min, ti.sec, level_str, log.c_str());
+    std::string log_fmt = str_utils::str_format("[%04d-%02d-%02d %02d-%02d-%02d %s]:%s\r\n", ti.year, ti.mon, ti.day, ti.hour, ti.min, ti.sec, level_str, log.c_str());
     std::cout << log_fmt;
 }
 void ddlog(int level, const wchar_t* level_str, const std::wstring& log)
@@ -29,7 +29,7 @@ void ddlog(int level, const wchar_t* level_str, const std::wstring& log)
 
     ddtimer::time_info ti;
     ddtimer::now_fmt(ti);
-    std::wstring log_fmt = str_utils::str_format(L"[%d-%d-%d %d-%d-%d %s]:%s\r\n", ti.year, ti.mon, ti.day, ti.hour, ti.min, ti.sec, level_str, log.c_str());
+    std::wstring log_fmt = str_utils::str_format(L"[%04d-%02d-%02d %02d-%02d-%02d %s]:%s\r\n", ti.year, ti.mon, ti.day, ti.hour, ti.min, ti.sec, level_str, log.c_str());
     std::wcout << log_fmt;
 }
 void ddlog(int level, const char* level_str, const char* file, const char* line, const std::string& log)
