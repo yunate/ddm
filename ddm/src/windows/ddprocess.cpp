@@ -185,7 +185,7 @@ bool ddprocess::init(const std::wstring& name)
         while (flag) {
             if (m_name == pe.szExeFile) {
                 m_id = pe.th32ProcessID;
-                m_parent_id = pe.th32ModuleID;
+                m_parent_id = pe.th32ParentProcessID;
                 break;
             }
             flag = ::Process32NextW(hSnapshot, &pe);
