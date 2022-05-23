@@ -3,6 +3,7 @@
 /.git/
 common_bin/
 bin/
+enc_temp_folder/
 
 #file
 *.db

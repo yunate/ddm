@@ -17,6 +17,7 @@ TEST(test_ddwin1, simple_native_window)
     nativeWin.create(_DDT("simple_native_window"), hinst);
     wnd_utils::set_pos(nativeWin.get_wnd(), 500, 200);
     wnd_utils::set_size(nativeWin.get_wnd(), 500, 300);
+    wnd_utils::show(nativeWin.get_wnd(), true);
     win_msg_loop loop;
     loop.loop();
 }
@@ -77,9 +78,12 @@ TEST(test_ddwin, simple_native_window1)
     (void)nativeWin.create(_DDT("simple_native_window"), hinst);
     wnd_utils::set_pos(nativeWin.get_wnd(), 500, 200);
     wnd_utils::set_size(nativeWin.get_wnd(), 500, 300);
+    wnd_utils::show(nativeWin.get_wnd(), true);
 
     nativeWin.KB.ON_KEY_DOWN = ([&nativeWin](u8 code) {
-        wnd_utils::set_title(nativeWin.get_wnd(), (s8*)&code);
+        u8 title[2] = {0};
+        title[0] = code;
+        wnd_utils::set_title(nativeWin.get_wnd(), (s8*)title);
         return true;
     });
 
